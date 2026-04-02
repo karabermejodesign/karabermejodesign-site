@@ -1,0 +1,122 @@
+---
+import Base from "../layouts/Base.astro";
+import { projects } from "../data/projects";
+
+const featured = projects.slice(0, 3);
+---
+
+<Base title="Home">
+  <section class="hero page-section">
+    <div class="container">
+      <h1 class="hero-headline">Design with heart. Humans in mind.<br />Foundations in place.</h1>
+      <p class="hero-sub">
+        I help teams build the foundations that unlock scale — navigating big
+        changes, untangling messy flows, and grounding feature work in real user
+        needs. That usually means refining core flows, setting direction, and
+        raising the bar on quality.
+      </p>
+      <a href="/work" class="cta-link">View my work</a>
+    </div>
+  </section>
+
+  <section class="featured page-section">
+    <div class="container">
+      <h2>Selected Work</h2>
+      <div class="project-grid">
+        {featured.map((project) => (
+          <a href={`/work/${project.slug}`} class="project-card">
+            <article>
+              <div class="project-thumb" aria-hidden="true"></div>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+            </article>
+          </a>
+        ))}
+      </div>
+      <a href="/work" class="cta-link" style="margin-top: var(--space-lg);">See all projects</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--space-2xl);
+  }
+
+  .hero-greeting {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    margin-bottom: var(--space-xs);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .hero-headline {
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-sub {
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .featured h2 {
+    margin-bottom: var(--space-lg);
+  }
+
+  .project-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .project-card {
+    display: block;
+  }
+
+  .project-card article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .project-thumb {
+    aspect-ratio: 16 / 10;
+    background: var(--color-border);
+    border-radius: 0.75rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .project-card:hover .project-thumb {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .project-card h3 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .project-card:hover h3 {
+    color: var(--color-accent);
+  }
+
+  .project-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 48rem) {
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .project-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

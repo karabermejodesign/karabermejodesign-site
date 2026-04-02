@@ -1,0 +1,194 @@
+---
+import Base from "../../layouts/Base.astro";
+import { projects, getProjectBySlug } from "../../data/projects";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return projects
+    .filter((p) => p.slug !== "grooverui")
+    .map((p) => ({ params: { slug: p.slug } }));
+};
+
+const { slug } = Astro.params;
+const project = getProjectBySlug(slug as string);
+
+if (!project) {
+  return Astro.redirect("/work");
+}
+---
+
+<Base title={project.title} description={project.description}>
+  <!-- Full-width hero -->
+  <div class="case-hero" aria-hidden="true"></div>
+
+  <article class="case-study">
+    <div class="container">
+      <!-- Header -->
+      <header class="case-header">
+        <div class="case-meta">
+          <span class="case-category">{project.category}</span>
+          <span class="case-year">{project.year}</span>
+        </div>
+        <h1>{project.title}</h1>
+        <p class="case-overview">{project.overview}</p>
+      </header>
+
+      <!-- The Challenge -->
+      <section class="case-section">
+        <h2>The Challenge</h2>
+        <p>{project.challenge}</p>
+      </section>
+
+      <!-- The Solution -->
+      <section class="case-section">
+        <h2>The Solution</h2>
+        <p>{project.solution}</p>
+      </section>
+
+      <!-- Image Gallery -->
+      <section class="case-section case-gallery-section">
+        <h2>Gallery</h2>
+        <div class="case-gallery">
+          <div class="gallery-item gallery-full" aria-hidden="true"></div>
+          <div class="gallery-item" aria-hidden="true"></div>
+          <div class="gallery-item" aria-hidden="true"></div>
+          <div class="gallery-item gallery-full" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- Outcome -->
+      <section class="case-section">
+        <h2>Outcome</h2>
+        <p>{project.outcome}</p>
+      </section>
+
+      <!-- Back link -->
+      <nav class="case-back" aria-label="Back to work">
+        <a href="/work" class="back-link">&larr; All Projects</a>
+      </nav>
+    </div>
+  </article>
+</Base>
+
+<style>
+  /* ── Hero ── */
+  .case-hero {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    background: var(--color-border);
+  }
+
+  /* ── Article wrapper ── */
+  .case-study {
+    padding-block: var(--space-xl);
+  }
+
+  .case-study .container {
+    max-width: var(--content-width);
+  }
+
+  /* ── Header ── */
+  .case-header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .case-meta {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .case-category {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .case-header h1 {
+    margin-bottom: var(--space-md);
+  }
+
+  .case-overview {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  /* ── Sections ── */
+  .case-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .case-section h2 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    margin-bottom: var(--space-sm);
+  }
+
+  .case-section p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  /* ── Gallery ── */
+  .case-gallery-section .container {
+    max-width: none;
+  }
+
+  .case-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .gallery-item {
+    aspect-ratio: 3 / 2;
+    background: var(--color-border);
+    border-radius: 0.75rem;
+  }
+
+  .gallery-item.gallery-full {
+    grid-column: 1 / -1;
+    aspect-ratio: 21 / 9;
+  }
+
+  /* ── Back link ── */
+  .case-back {
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .back-link {
+    font-weight: 600;
+    color: var(--color-accent);
+    transition: gap 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .back-link:hover {
+    gap: 0.75em;
+  }
+
+  /* ── Responsive ── */
+  @media (min-width: 48rem) {
+    .case-hero {
+      aspect-ratio: 21 / 7;
+    }
+
+    .case-gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .case-study {
+      padding-block: var(--space-2xl);
+    }
+
+    .case-section {
+      margin-bottom: var(--space-2xl);
+    }
+  }
+</style>

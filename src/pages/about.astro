@@ -1,0 +1,174 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="About">
+  <section class="about-hero page-section">
+    <div class="container about-layout">
+      <div class="about-photo" aria-hidden="true"></div>
+      <div class="about-intro">
+        <h1>About Me</h1>
+        <p class="about-lead">
+          I'm Kara Bermejo — a designer who believes that great design is equal
+          parts strategy, craft, and empathy.
+        </p>
+        <p>
+          With a background in visual communication and over six years of
+          experience across branding, product, and web, I partner with startups,
+          studios, and cultural organisations to create work that resonates.
+        </p>
+        <p>
+          I'm drawn to projects that sit at the intersection of aesthetics and
+          purpose — where thoughtful design can move people to feel, act, or
+          think differently.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-details page-section">
+    <div class="container details-grid">
+      <div class="detail-block">
+        <h2>Experience</h2>
+        <ul class="timeline">
+          <li>
+            <strong>Freelance Designer</strong>
+            <span>2022 — Present</span>
+          </li>
+          <li>
+            <strong>Senior Designer — Forma Studio</strong>
+            <span>2020 — 2022</span>
+          </li>
+          <li>
+            <strong>Designer — Bright & Co</strong>
+            <span>2018 — 2020</span>
+          </li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <h2>Skills</h2>
+        <ul class="tag-list">
+          <li>Brand Identity</li>
+          <li>UI / UX Design</li>
+          <li>Art Direction</li>
+          <li>Typography</li>
+          <li>Illustration</li>
+          <li>Motion Design</li>
+          <li>Figma</li>
+          <li>HTML & CSS</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <h2>Let's Connect</h2>
+        <p>
+          I'm always open to interesting collaborations. Whether it's a brand
+          that needs a fresh voice or a product that needs design love — let's
+          talk.
+        </p>
+        <a href="mailto:hello@karabermejo.design" class="cta-link">
+          Get in touch
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .about-photo {
+    aspect-ratio: 3 / 4;
+    max-height: 28rem;
+    background: var(--color-border);
+    border-radius: 0.75rem;
+  }
+
+  .about-intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .about-lead {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+  }
+
+  .about-intro p:not(.about-lead) {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .details-grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .detail-block h2 {
+    margin-bottom: var(--space-sm);
+    font-size: 1.25rem;
+  }
+
+  .detail-block p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .timeline li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .timeline li span {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag-list li {
+    padding: 0.375rem 0.875rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 2rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  @media (min-width: 48rem) {
+    .about-layout {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .about-photo {
+      flex: 0 0 40%;
+    }
+
+    .about-intro {
+      flex: 1;
+      padding-top: var(--space-sm);
+    }
+
+    .details-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

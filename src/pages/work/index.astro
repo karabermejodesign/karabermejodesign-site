@@ -1,0 +1,119 @@
+---
+import Base from "../../layouts/Base.astro";
+import { projects } from "../../data/projects";
+---
+
+<Base title="Work">
+  <section class="work-intro page-section">
+    <div class="container">
+      <h1>Work</h1>
+      <p class="work-lead">
+        A collection of projects spanning branding, product design, web
+        experiences, and art direction.
+      </p>
+    </div>
+  </section>
+
+  <section class="work-list page-section">
+    <div class="container">
+      <ul class="project-list">
+        {projects.map((project) => (
+          <li class="project-item">
+            <a href={`/work/${project.slug}`} class="project-link">
+              <article>
+                <div class="project-thumb" aria-hidden="true"></div>
+                <div class="project-info">
+                  <div class="project-meta">
+                    <span class="project-category">{project.category}</span>
+                    <span class="project-year">{project.year}</span>
+                  </div>
+                  <h2>{project.title}</h2>
+                  <p>{project.description}</p>
+                </div>
+              </article>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .work-intro {
+    padding-bottom: 0;
+  }
+
+  .work-lead {
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    margin-top: var(--space-sm);
+  }
+
+  .project-list {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .project-link {
+    display: block;
+  }
+
+  .project-link article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .project-thumb {
+    aspect-ratio: 16 / 10;
+    background: var(--color-border);
+    border-radius: 0.75rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .project-link:hover .project-thumb {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .project-meta {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .project-meta .project-category {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .project-item h2 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    transition: color 0.2s ease;
+  }
+
+  .project-link:hover h2 {
+    color: var(--color-accent);
+  }
+
+  .project-item p {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 48rem) {
+    .project-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

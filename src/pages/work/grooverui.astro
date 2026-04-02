@@ -1,0 +1,596 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+
+<Base title="GrooverUI — Design System">
+  <div class="grooverui-page">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="gv-hero">
+      <div class="gv-hero-inner">
+        <aside class="gv-sidebar" aria-label="Component list">
+          <ul>
+            <li><span class="gv-dot"></span>Primitives</li>
+            <li><span class="gv-dot"></span>Text</li>
+            <li><span class="gv-dot"></span>Design Tokens/Primitives</li>
+            <li><span class="gv-dot"></span>Glossary</li>
+            <li><span class="gv-dot"></span>Layouts/Breakpoints</li>
+            <li><span class="gv-dot"></span>Buttons</li>
+            <li><span class="gv-dot"></span>Chip-components</li>
+            <li><span class="gv-dot"></span>Activity Tracker</li>
+            <li><span class="gv-dot"></span>Dropdowns</li>
+            <li><span class="gv-dot"></span>Radio Button/Checkbox</li>
+            <li><span class="gv-dot"></span>Icons</li>
+            <li><span class="gv-dot"></span>Layout</li>
+          </ul>
+        </aside>
+        <div class="gv-hero-content">
+          <h1>Groover Design System V2</h1>
+          <p class="gv-hero-sub">Design System</p>
+          <div class="gv-hero-badge">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1" y="2" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M1 6h14" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M5 1v3M11 1v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Q4 2023
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ INTRO ═══ -->
+    <section class="gv-section gv-intro">
+      <div class="container">
+        <h2 class="gv-intro-headline">Building the foundation every feature now ships from</h2>
+        <p class="gv-intro-body">
+          I initiated and led GrooverUI from zero to a shared, token-based design system — spanning web and mobile — for Groover's multilingual marketplace serving 50K+ artists and 3,500+ curators. It's now the foundation every feature ships from.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ 01 · CONTEXT ═══ -->
+    <section class="gv-section">
+      <div class="container">
+        <span class="gv-label">01 / Context</span>
+        <h2>It had been tried before. It hadn't worked.</h2>
+        <p>
+          Before I joined, two previous attempts at a design system had stalled — once as an engineering-only effort with no design input, and once as a Figma library that never made it into production. Components were duplicated across repos, styles drifted between features, and mobile was an afterthought bolted onto desktop layouts.
+        </p>
+        <p>
+          It was clear that the problem wasn't talent or tooling — it was approach. A design system couldn't be a side project. It had to ship incrementally, tied to real feature work, with buy-in from both design and engineering from day one.
+        </p>
+        <div class="gv-image-block">
+          <img src="/images/work/grooverui/placeholder.svg" alt="Before state — fragmented UI across Groover's product" width="600" height="400" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 02 · APPROACH ═══ -->
+    <section class="gv-section">
+      <div class="container">
+        <span class="gv-label">02 / Approach</span>
+        <h2>Incremental by design — not all at once</h2>
+        <p>
+          Past attempts failed because they tried to systematize everything upfront. I took the opposite approach: ship components only when a feature needs them, then generalize.
+        </p>
+        <ol class="gv-numbered-list">
+          <li>
+            <span class="gv-number">1</span>
+            <div>
+              <strong>Start with what ships next.</strong>
+              <p>The first sprint of GrooverUI wasn't a component audit — it was the Spark sign-up redesign. Every token and component was born from a real shipping context, not a theoretical backlog.</p>
+            </div>
+          </li>
+          <li>
+            <span class="gv-number">2</span>
+            <div>
+              <strong>Formalize in Figma, validate in Storybook.</strong>
+              <p>Every component exists as a Figma variant and a Storybook story. Designers use the library; engineers reference the stories. Neither source drifts because both are part of the same PR review cycle.</p>
+            </div>
+          </li>
+          <li>
+            <span class="gv-number">3</span>
+            <div>
+              <strong>Expand only when friction appears.</strong>
+              <p>New patterns are added when the team encounters repeated inconsistency — not when someone imagines a future need. This kept the system lean and adoption high.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══ 03 · THE SYSTEM ═══ -->
+    <section class="gv-section">
+      <div class="container">
+        <span class="gv-label">03 / The System</span>
+        <h2>Tokens first. Components next. Patterns last.</h2>
+        <p>
+          GrooverUI is built in three layers. Tokens define the visual language — color, type, spacing. Components are the reusable building blocks. Patterns are the composed layouts that tie everything together for specific flows.
+        </p>
+        <div class="gv-image-block gv-image-block--carousel">
+          <img src="/images/work/grooverui/placeholder.svg" alt="GrooverUI component system — tokens, components, and patterns" width="600" height="400" />
+          <div class="gv-carousel-dots" aria-hidden="true">
+            <span class="gv-carousel-dot active"></span>
+            <span class="gv-carousel-dot"></span>
+            <span class="gv-carousel-dot"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 04 · MOBILE-FIRST PATTERNS ═══ -->
+    <section class="gv-section">
+      <div class="container">
+        <span class="gv-label">04 / Mobile-First Patterns</span>
+        <h2>Designed for thumbs first.</h2>
+        <p>
+          Groover's audience is global and increasingly mobile. Every component and pattern is designed mobile-first — responsive type scales across three breakpoints, bottom sheets instead of modals on small screens, and touch targets that exceed accessibility minimums.
+        </p>
+        <div class="gv-image-block">
+          <img src="/images/work/grooverui/placeholder.svg" alt="Mobile-first patterns — responsive type scale and bottom sheet comparison" width="600" height="400" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 05 · IMPACT ═══ -->
+    <section class="gv-section gv-impact">
+      <div class="container">
+        <span class="gv-label">05 / Impact</span>
+        <div class="gv-stats-grid">
+          <div class="gv-stat-card">
+            <span class="gv-stat-number">20+</span>
+            <p>Components shipped to production across web and mobile</p>
+          </div>
+          <div class="gv-stat-card">
+            <span class="gv-stat-number">6</span>
+            <p>Core flows migrated to GrooverUI in the first two quarters</p>
+          </div>
+          <div class="gv-stat-card">
+            <span class="gv-stat-number">3</span>
+            <p>Breakpoints in the responsive type scale — mobile, tablet, desktop</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 06 · TIMELINE ═══ -->
+    <section class="gv-section">
+      <div class="container">
+        <span class="gv-label">06 / How It Evolved</span>
+        <h2>From audit to OKR</h2>
+        <div class="gv-timeline">
+          <div class="gv-timeline-item">
+            <span class="gv-timeline-date">Q3 2023</span>
+            <p>Joined Groover. Conducted full UI audit — catalogued 40+ inconsistent patterns across 12 flows.</p>
+          </div>
+          <div class="gv-timeline-item">
+            <span class="gv-timeline-date">Q4 2023</span>
+            <p>Shipped GrooverUI V1 alongside the Spark sign-up redesign. First 8 components in Figma + Storybook.</p>
+          </div>
+          <div class="gv-timeline-item">
+            <span class="gv-timeline-date">Q1 2024</span>
+            <p>Expanded to 15+ components. Migrated Track Form and Catalog flows. Responsive type scale finalized.</p>
+          </div>
+          <div class="gv-timeline-item">
+            <span class="gv-timeline-date">Q2 2024</span>
+            <p>Design system adopted as a formal OKR metric. Bottom sheet pattern shipped for all mobile flows.</p>
+          </div>
+          <div class="gv-timeline-item">
+            <span class="gv-timeline-date">2025</span>
+            <p>V2 expansion — FigmaMake + AI integration, 20+ components, dark mode token layer in progress.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 07 · REFLECTIONS ═══ -->
+    <section class="gv-section">
+      <div class="container">
+        <span class="gv-label">07 / Reflections</span>
+        <h2>What I'd tell the next person</h2>
+        <div class="gv-reflections-grid">
+          <div class="gv-reflection-card">
+            <h3>Ship with features, not before them.</h3>
+            <p>A design system that launches as a standalone initiative will stall. Tie every component to a real deadline and a real user flow.</p>
+          </div>
+          <div class="gv-reflection-card">
+            <h3>Naming is half the work.</h3>
+            <p>If designers and engineers can't agree on what to call something, they'll never agree on how to use it. Invest early in shared vocabulary.</p>
+          </div>
+          <div class="gv-reflection-card">
+            <h3>Adoption beats coverage.</h3>
+            <p>10 components used everywhere are worth more than 50 components used sometimes. Optimize for adoption, not completeness.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BACK LINK ═══ -->
+    <nav class="gv-section gv-back" aria-label="Back to work">
+      <div class="container">
+        <a href="/work" class="gv-back-link">&larr; All Projects</a>
+      </div>
+    </nav>
+
+  </div>
+</Base>
+
+<style>
+  /* ── Dark-theme scoping ── */
+  :global(body):has(.grooverui-page) {
+    background-color: var(--color-bg);
+  }
+
+  .grooverui-page {
+    --cs-accent: #FF5C2B;
+    --cs-bg: #0c0c0c;
+    --cs-surface-1: #131313;
+    --cs-surface-2: #1a1a1a;
+    --cs-surface-3: #212121;
+    --cs-border: rgba(255,255,255,0.07);
+    --cs-text: #d8d8d8;
+    --cs-text-sub: #909090;
+    --cs-text-muted: #606060;
+    --cs-green: #4ade80;
+  }
+
+  /* ── Hero ── */
+  .gv-hero {
+    background: var(--cs-bg);
+    padding-block: var(--space-2xl) var(--space-xl);
+  }
+
+  .gv-hero-inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-sm);
+    display: flex;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .gv-sidebar {
+    display: none;
+  }
+
+  .gv-sidebar ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .gv-sidebar li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--cs-text-sub);
+    white-space: nowrap;
+  }
+
+  .gv-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cs-green);
+    flex-shrink: 0;
+  }
+
+  .gv-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    gap: var(--space-sm);
+  }
+
+  .gv-hero h1 {
+    color: #ffffff;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .gv-hero-sub {
+    color: var(--cs-text-sub);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .gv-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: var(--space-xs);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    background: var(--cs-surface-2);
+    color: var(--cs-text);
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  /* ── Shared section ── */
+  .gv-section {
+    padding-block: var(--space-xl);
+  }
+
+  .gv-section .container {
+    max-width: var(--content-width);
+  }
+
+  .gv-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--cs-accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  .gv-section h2 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+    line-height: 1.2;
+  }
+
+  .gv-section p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    max-width: 65ch;
+  }
+
+  .gv-section p + p {
+    margin-top: var(--space-sm);
+  }
+
+  /* ── Intro ── */
+  .gv-intro {
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-2xl);
+  }
+
+  .gv-intro-headline {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    max-width: 18ch;
+    margin-bottom: var(--space-md);
+  }
+
+  .gv-intro-body {
+    font-size: 1rem;
+  }
+
+  /* ── Image blocks ── */
+  .gv-image-block {
+    margin-top: var(--space-lg);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: var(--cs-surface-1);
+    position: relative;
+  }
+
+  .gv-image-block img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .gv-image-block--carousel {
+    padding-bottom: 2.5rem;
+  }
+
+  .gv-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.375rem;
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0;
+    right: 0;
+  }
+
+  .gv-carousel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cs-text-muted);
+  }
+
+  .gv-carousel-dot.active {
+    background: var(--cs-text);
+  }
+
+  /* ── Numbered list ── */
+  .gv-numbered-list {
+    margin-top: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .gv-numbered-list li {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+
+  .gv-number {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--cs-accent);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    margin-top: 0.125rem;
+  }
+
+  .gv-numbered-list strong {
+    display: block;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+  }
+
+  .gv-numbered-list p {
+    font-size: 0.9375rem;
+  }
+
+  /* ── Stats ── */
+  .gv-impact .container {
+    max-width: var(--max-width);
+  }
+
+  .gv-stats-grid {
+    display: grid;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .gv-stat-card {
+    background: var(--cs-surface-1);
+    border: 1px solid var(--cs-border);
+    border-radius: 0.75rem;
+    padding: var(--space-lg);
+    text-align: center;
+  }
+
+  .gv-stat-number {
+    display: block;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--cs-accent);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+  }
+
+  .gv-stat-card p {
+    color: var(--cs-text-sub);
+    font-size: 0.8125rem;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  /* ── Timeline ── */
+  .gv-timeline {
+    margin-top: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .gv-timeline-item {
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .gv-timeline-item:last-child {
+    border-bottom: none;
+  }
+
+  .gv-timeline-date {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--cs-accent);
+  }
+
+  .gv-timeline-item p {
+    font-size: 0.9375rem;
+  }
+
+  /* ── Reflections ── */
+  .gv-reflections-grid {
+    display: grid;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .gv-reflection-card {
+    padding: var(--space-md);
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+  }
+
+  .gv-reflection-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.375rem;
+  }
+
+  .gv-reflection-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── Back ── */
+  .gv-back {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .gv-back .container {
+    max-width: var(--content-width);
+  }
+
+  .gv-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-weight: 600;
+    color: var(--cs-accent);
+    transition: gap 0.2s ease;
+  }
+
+  .gv-back-link:hover {
+    gap: 0.75em;
+  }
+
+  /* ── Responsive ── */
+  @media (min-width: 48rem) {
+    .gv-hero-inner {
+      padding-inline: var(--space-lg);
+    }
+
+    .gv-sidebar {
+      display: block;
+      flex-shrink: 0;
+      width: 12rem;
+    }
+
+    .gv-section .container,
+    .gv-back .container {
+      padding-inline: var(--space-lg);
+    }
+
+    .gv-stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gv-reflections-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gv-section {
+      padding-block: var(--space-2xl);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .gv-hero {
+      padding-block: var(--space-2xl);
+    }
+  }
+</style>
