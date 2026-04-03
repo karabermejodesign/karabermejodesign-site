@@ -27,6 +27,7 @@ const featured = projects.slice(0, 3);
           <a href={`/work/${project.slug}`} class="project-card">
             <article>
               <div class="project-thumb" aria-hidden="true"></div>
+              <span class="project-eyebrow">{project.category}</span>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
             </article>
@@ -91,6 +92,14 @@ const featured = projects.slice(0, 3);
   .project-card:hover .project-thumb {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .project-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
   }
 
   .project-card h3 {

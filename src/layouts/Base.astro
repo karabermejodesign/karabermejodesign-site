@@ -22,8 +22,55 @@ const currentPath = Astro.url.pathname;
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      .pw-gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#fafaf9;font-family:"DM Sans",system-ui,-apple-system,sans-serif;transition:opacity .3s ease}
+      .pw-gate .pw-card{width:100%;max-width:22rem;padding:1rem;text-align:center}
+      .pw-gate .pw-greeting{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:#78716c;margin-bottom:.5rem}
+      .pw-gate .pw-heading{font-size:clamp(1.5rem,4vw,2rem);font-weight:700;color:#1c1917;margin-bottom:2.5rem;line-height:1.2}
+      .pw-gate .pw-form{display:flex;flex-direction:column;gap:1rem}
+      .pw-gate .pw-field{display:flex;align-items:center;border:1px solid #e7e5e4;border-radius:.5rem;background:#fff;transition:border-color .2s ease}
+      .pw-gate .pw-field:focus-within{border-color:#1c1917}
+      .pw-gate .pw-input{flex:1;border:none;background:transparent;padding:.75rem 1rem;font-family:inherit;font-size:.9375rem;color:#1c1917;outline:none}
+      .pw-gate .pw-input::placeholder{color:#78716c}
+      .pw-gate .pw-submit{display:flex;align-items:center;justify-content:center;width:2.75rem;height:2.75rem;border:none;background:transparent;color:#78716c;cursor:pointer;transition:color .2s ease;flex-shrink:0}
+      .pw-gate .pw-submit:hover{color:#1c1917}
+      .pw-gate .pw-error{font-size:.8125rem;color:#dc2626}
+      @keyframes pw-shake-anim{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+      .pw-shake{animation:pw-shake-anim .4s ease}
+      .site-content-hidden .site-header,.site-content-hidden main,.site-content-hidden .site-footer{visibility:hidden}
+    </style>
+    <script is:inline>
+      if(sessionStorage.getItem('pw_authed')==='1'){
+        document.documentElement.classList.add('pw-bypass');
+      }
+    </script>
   </head>
-  <body>
+  <body class="site-content-hidden">
+    <div class="pw-gate" id="pw-gate">
+      <div class="pw-card">
+        <p class="pw-greeting">Kara Bermejo</p>
+        <h1 class="pw-heading">Enter password</h1>
+        <form class="pw-form" id="pw-form">
+          <div class="pw-field">
+            <input
+              type="password"
+              id="pw-input"
+              class="pw-input"
+              placeholder="Password"
+              autocomplete="off"
+              autofocus
+            />
+            <button type="submit" class="pw-submit" aria-label="Submit">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <p class="pw-error" id="pw-error" hidden>Incorrect password. Try again.</p>
+        </form>
+      </div>
+    </div>
+
     <header class="site-header">
       <div class="container">
         <a href="/" class="site-logo">Kara Bermejo</a>
@@ -51,6 +98,42 @@ const currentPath = Astro.url.pathname;
         </div>
       </div>
     </footer>
+    <script is:inline>
+      (function() {
+        var PASS = 'kara2026';
+        var KEY  = 'pw_authed';
+        var gate  = document.getElementById('pw-gate');
+        var form  = document.getElementById('pw-form');
+        var input = document.getElementById('pw-input');
+        var error = document.getElementById('pw-error');
+
+        function unlock() {
+          document.body.classList.remove('site-content-hidden');
+          if (gate) { gate.remove(); }
+        }
+
+        if (sessionStorage.getItem(KEY) === '1') {
+          unlock();
+          return;
+        }
+
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          if (input.value === PASS) {
+            sessionStorage.setItem(KEY, '1');
+            gate.style.opacity = '0';
+            document.body.classList.remove('site-content-hidden');
+            setTimeout(function() { gate.remove(); }, 300);
+          } else {
+            error.hidden = false;
+            input.value = '';
+            input.focus();
+            input.classList.add('pw-shake');
+            setTimeout(function() { input.classList.remove('pw-shake'); }, 500);
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
 
