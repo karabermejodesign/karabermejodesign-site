@@ -8,7 +8,7 @@ import { projects } from "../data/projects";
 
     <nav class="home-nav" aria-label="Primary">
       <a href="/going-beyond">Going beyond</a>
-      <a href="/thoughts">Thoughts</a>
+      <!-- <a href="/thoughts">Thoughts</a> -->
       <a href="https://www.linkedin.com/in/karabermejo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="#" class="copy-email" data-email="karabermejo@gmail.com">Email</a>
     </nav>
@@ -16,7 +16,8 @@ import { projects } from "../data/projects";
     <div class="home-inner">
 
       <div class="home-top">
-        <p class="home-logo">Kara Bermejo</p>
+        <p class="home-logo" id="home-logo">Kara Bermejo</p>
+        <img src="/images/kara.png" alt="Kara Bermejo" class="home-logo-img" id="home-logo-img" />
         <p class="home-intro">
           Currently leading product design at <a href="https://groover.co" target="_blank" rel="noopener noreferrer">Groover</a>—a platform that connects independent artists with the opportunities and services that help them grow their music. Previously Design Director at <a href="https://splice.com" target="_blank" rel="noopener noreferrer">Splice</a>. Before that, <a href="https://meetup.com" target="_blank" rel="noopener noreferrer">Meetup</a> and <a href="https://theknot.com" target="_blank" rel="noopener noreferrer">The Knot</a>.
         </p>
@@ -100,6 +101,23 @@ import { projects } from "../data/projects";
     text-decoration: underline;
     margin-bottom: 12px;
     max-width: none;
+    cursor: default;
+    transition: opacity 0.2s ease;
+  }
+
+  .home-logo:hover {
+    opacity: 0.6;
+  }
+
+  .home-logo-img {
+    position: fixed;
+    width: 200px;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 100;
   }
 
   .home-intro {
@@ -237,3 +255,24 @@ import { projects } from "../data/projects";
     }
   }
 </style>
+
+<script is:inline>
+  (function() {
+    var logo = document.getElementById('home-logo');
+    var img = document.getElementById('home-logo-img');
+    if (!logo || !img) return;
+
+    logo.addEventListener('mouseenter', function() {
+      img.style.opacity = '1';
+    });
+
+    logo.addEventListener('mouseleave', function() {
+      img.style.opacity = '0';
+    });
+
+    logo.addEventListener('mousemove', function(e) {
+      img.style.left = e.clientX + 'px';
+      img.style.top = (e.clientY + 16) + 'px';
+    });
+  })();
+</script>
