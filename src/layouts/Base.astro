@@ -92,9 +92,9 @@ const currentPath = Astro.url.pathname;
       <div class="container">
         <p>&copy; {new Date().getFullYear()} Kara Bermejo</p>
         <div class="footer-links">
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/karabermejo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">Dribbble</a>
-          <a href="mailto:hello@karabermejo.design">Email</a>
+          <a href="#" class="copy-email" data-email="karabermejo@gmail.com">Email</a>
         </div>
       </div>
     </footer>
@@ -133,6 +133,19 @@ const currentPath = Astro.url.pathname;
           }
         });
       })();
+    </script>
+    <script is:inline>
+      document.addEventListener('click', function(e) {
+        var link = e.target.closest('.copy-email');
+        if (!link) return;
+        e.preventDefault();
+        var email = link.getAttribute('data-email');
+        navigator.clipboard.writeText(email).then(function() {
+          var orig = link.textContent;
+          link.textContent = 'Copied!';
+          setTimeout(function() { link.textContent = orig; }, 1500);
+        });
+      });
     </script>
   </body>
 </html>

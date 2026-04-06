@@ -21,7 +21,7 @@ I'm always open to interesting collaborations. Whether it's a brand
           talk.
 </p> <a href="mailto:hello@karabermejo.design" class="cta-link" data-astro-cid-kh7btl4r>
 Get in touch
-</a> </div> </div> </section>  </main> <footer class="site-footer" data-astro-cid-5hce7sga> <div class="container" data-astro-cid-5hce7sga> <p data-astro-cid-5hce7sga>&copy; 2026 Kara Bermejo</p> <div class="footer-links" data-astro-cid-5hce7sga> <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" data-astro-cid-5hce7sga>LinkedIn</a> <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" data-astro-cid-5hce7sga>Dribbble</a> <a href="mailto:hello@karabermejo.design" data-astro-cid-5hce7sga>Email</a> </div> </div> </footer> <script>
+</a> </div> </div> </section>  </main> <footer class="site-footer" data-astro-cid-5hce7sga> <div class="container" data-astro-cid-5hce7sga> <p data-astro-cid-5hce7sga>&copy; 2026 Kara Bermejo</p> <div class="footer-links" data-astro-cid-5hce7sga> <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" data-astro-cid-5hce7sga>LinkedIn</a> <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" data-astro-cid-5hce7sga>Dribbble</a> <a href="#" class="copy-email" data-email="karabermejo@gmail.com" data-astro-cid-5hce7sga>Email</a> </div> </div> </footer> <script>
       (function() {
         var PASS = 'kara2026';
         var KEY  = 'pw_authed';
@@ -56,4 +56,16 @@ Get in touch
           }
         });
       })();
+    </script> <script>
+      document.addEventListener('click', function(e) {
+        var link = e.target.closest('.copy-email');
+        if (!link) return;
+        e.preventDefault();
+        var email = link.getAttribute('data-email');
+        navigator.clipboard.writeText(email).then(function() {
+          var orig = link.textContent;
+          link.textContent = 'Copied!';
+          setTimeout(function() { link.textContent = orig; }, 1500);
+        });
+      });
     </script> </body> </html>  

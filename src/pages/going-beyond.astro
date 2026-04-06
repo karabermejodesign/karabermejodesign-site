@@ -1,0 +1,231 @@
+---
+import Base from "../layouts/Base.astro";
+
+const projects = [
+  {
+    name: "MataMata",
+    link: "https://matamata.store/",
+    thumb: "/images/matamatathumb.png",
+    description: "A jewelry brand exploring form, symbolism, and material—each piece designed as a small, intentional object.",
+  },
+  {
+    name: "Infinite Adventures of Candide",
+    link: null,
+    thumb: "/images/candidethumb.png",
+    description:
+      "A storytelling project for kids, turning everyday moments into small, interactive adventures led by Candide and friends.",
+  },
+  {
+    name: "Alahas Book",
+    link: "https://alahasbook.com/",
+    thumb: "/images/alahasthumb.png",
+    description:
+      "A book project documenting jewelry as culture—exploring identity, memory, and meaning through collected pieces and stories.",
+  },
+  {
+    name: "Manifesto Design Lab",
+    link: "https://www.manifestodesignlab.com/",
+    thumb: "/images/madlabthumb.png",
+    description:
+      "A design practice working across brand, digital, and spatial projects—focused on building clear, thoughtful systems with strong craft.",
+  },
+  {
+    name: "NYC Marathon Fundraiser",
+    link: "https://fundraisers.nyrr.org/runforkidslikemia?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn0wCVXoAmWd0qH-bt5xQJdkLDS5amxqA2TxfUw9iM00nJ9UNIdcvoYA_vlgM_aem_yYiwRE8iEooWGwdpGpvmTA",
+    thumb: "/images/marathonthumb.png",
+    description:
+      "Training for and running the NYC Marathon while raising funds for a cause I care deeply about.",
+  },
+];
+---
+
+<Base title="Going beyond">
+  <div class="gb">
+
+    <nav class="gb-nav" aria-label="Primary">
+      <a href="/going-beyond" aria-current="page">Going beyond</a>
+      <a href="https://www.linkedin.com/in/karabermejo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="#" class="copy-email" data-email="karabermejo@gmail.com">Email</a>
+    </nav>
+
+    <a href="/" class="gb-back">Back</a>
+
+    <div class="gb-inner">
+      <h1 class="gb-heading">Other facets of my life</h1>
+
+      <div class="gb-list">
+        <hr class="gb-divider" />
+        {projects.map((project) => (
+          <Fragment>
+            <article class="gb-item">
+              <img src={project.thumb} alt={project.name} class="gb-thumb" />
+              {project.link ? (
+                <a href={project.link} target="_blank" rel="noopener noreferrer" class="gb-name">{project.name}</a>
+              ) : (
+                <span class="gb-name gb-name--plain">{project.name}</span>
+              )}
+              <p class="gb-desc">{project.description}</p>
+            </article>
+            <hr class="gb-divider" />
+          </Fragment>
+        ))}
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  :global(.site-header),
+  :global(.site-footer) {
+    display: none;
+  }
+
+  .gb {
+    position: relative;
+    font-family: "Hedvig Letters Sans", sans-serif;
+    background: #fafaf9;
+    padding: 40px 24px 80px 24px;
+    min-height: 100vh;
+  }
+
+  .gb-nav {
+    position: absolute;
+    top: 58px;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .gb-nav a {
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    text-decoration: none;
+    letter-spacing: -0.4px;
+    line-height: 24px;
+    transition: opacity 0.2s ease;
+  }
+
+  .gb-nav a:hover {
+    opacity: 0.6;
+  }
+
+  .gb-back {
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 20px;
+    color: #1a1a1a;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    display: inline-block;
+    margin-bottom: 40px;
+    transition: opacity 0.2s ease;
+  }
+
+  .gb-back:hover {
+    opacity: 0.6;
+  }
+
+  .gb-inner {
+    max-width: 1055px;
+  }
+
+  .gb-heading {
+    font-family: "Hedvig Letters Serif", serif;
+    font-style: normal;
+    font-size: 38px;
+    font-weight: 400;
+    color: #1a1a1a;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    margin-bottom: 48px;
+  }
+
+  .gb-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 830px;
+  }
+
+  .gb-divider {
+    border: none;
+    height: 1px;
+    background: #d4d4d4;
+    margin: 0;
+  }
+
+  .gb-item {
+    display: grid;
+    grid-template-columns: 60px 220px 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .gb-thumb {
+    width: 60px;
+    height: 60px;
+    background: #d9d9d9;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+
+  .gb-name {
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #1a1a1a;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    line-height: 1.4;
+    transition: opacity 0.2s ease;
+  }
+
+  .gb-name:hover {
+    opacity: 0.6;
+  }
+
+  .gb-name--plain {
+    text-decoration: none;
+    cursor: default;
+  }
+
+  .gb-name--plain:hover {
+    opacity: 1;
+  }
+
+  .gb-desc {
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    line-height: 1.5;
+    max-width: none;
+  }
+
+  @media (max-width: 64rem) {
+    .gb-nav {
+      position: static;
+      flex-direction: row;
+      gap: 20px;
+      margin-bottom: 40px;
+      align-items: flex-start;
+    }
+
+    .gb-item {
+      grid-template-columns: 60px 1fr;
+      gap: 16px;
+    }
+
+    .gb-desc {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .gb {
+      padding: 58px 40px 80px 120px;
+    }
+  }
+</style>

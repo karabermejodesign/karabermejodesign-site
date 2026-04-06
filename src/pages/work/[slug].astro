@@ -4,9 +4,7 @@ import { projects, getProjectBySlug } from "../../data/projects";
 import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths: GetStaticPaths = () => {
-  return projects
-    .filter((p) => p.slug !== "grooverui")
-    .map((p) => ({ params: { slug: p.slug } }));
+  return projects.map((p) => ({ params: { slug: p.slug } }));
 };
 
 const { slug } = Astro.params;
@@ -23,8 +21,8 @@ if (!project) {
     <nav class="cs-nav" aria-label="Primary">
       <a href="/work">Work</a>
       <a href="/thoughts">Thoughts</a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="mailto:hello@karabermejo.design">Email</a>
+      <a href="https://www.linkedin.com/in/karabermejo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="#" class="copy-email" data-email="karabermejo@gmail.com">Email</a>
     </nav>
 
     <a href="/" class="cs-back">Back</a>

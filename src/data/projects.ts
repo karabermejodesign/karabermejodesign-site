@@ -15,6 +15,7 @@ export interface Project {
   category: string;
   year: string;
   description: string;
+  image?: string;
   summary: string;
   sections: ProjectSection[];
   details: ProjectDetail[];
@@ -22,18 +23,120 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "grooverui",
-    title: "GrooverUI",
-    category: "Design System",
-    year: "2023–Present",
+    slug: "quickview",
+    title: "Quickview",
+    category: "Product Design",
+    year: "December 2025",
     description:
-      "Groover's first production-ready design system — powering a multilingual, mobile-first marketplace for 50K+ artists and 3,500+ curators.",
+      "Shipped a faster, clearer way for artists to get to the information that matters most.",
+    image: "/images/quickview.png",
+    summary:
+      "I go to ship a way for artists to get to the info that matters most to them, sooner + cleaner. We got to completely re-do an onboarding flow that used to take ages for new artists find value.",
+    sections: [
+      {
+        heading: "How it is now.",
+        body: "I go to ship a way for artists to get to the info that matters most to them, sooner + cleaner. We got to completely re-do an",
+      },
+      {
+        heading: "How it was then.",
+        body: "I go to ship a way for artists to get to the info that matters most to them, sooner + cleaner. We got to completely re-do an",
+      },
+    ],
+    details: [
+      { label: "The many UI iterations we tested around previewing content", body: "We explored over a dozen layout variations for how artists preview campaign results — from inline expanders to modal overlays to split-pane views. Each was prototyped and tested with real users before settling on the current pattern." },
+      { label: "The rounds of user research that we did", body: "Three rounds of moderated research across curators and artists — discovery interviews, concept testing, and usability validation. Key insight: artists needed to triage fast and get to actionable info without extra clicks." },
+      { label: "We built an AI prototype with actual data", body: "To validate the recommendation engine UX, we built a working prototype connected to real Groover submission data. This let us test how artists responded to AI-suggested next steps before committing to production." },
+    ],
+  },
+  {
+    slug: "onboard-and-send",
+    title: "Onboard & Send",
+    category: "Product Design",
+    year: "October 2025",
+    description:
+      "Redesigned how artists launch campaigns, and prototyped the first AI-powered flow using real curator, track, and campaign data.",
+    image: "/images/onboardandsend.png",
+    summary:
+      "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
+    sections: [
+      {
+        heading: "How it is now.",
+        body: "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
+      },
+      {
+        heading: "How it was then.",
+        body: "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
+      },
+    ],
+    details: [
+      { label: "The AI-powered campaign flow prototype", body: "We built the first AI-powered campaign creation flow using real curator, track, and campaign data — letting artists launch smarter campaigns with less effort and more relevant targeting." },
+      { label: "Reducing time-to-first-campaign", body: "The old onboarding took too long for new artists to find value. We mapped every friction point and redesigned the flow to get artists from sign-up to their first campaign in under 5 minutes." },
+    ],
+  },
+  {
+    slug: "curator-experience",
+    title: "Curator Experience Redesign",
+    category: "Product Design",
+    year: "May 2025",
+    description:
+      "Rebuilt how 3,500+ curators discover music and give feedback—making the other side of the marketplace feel considered.",
+    image: "/images/curatorexperience.png",
+    summary:
+      "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
+    sections: [
+      {
+        heading: "How it is now.",
+        body: "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
+      },
+      {
+        heading: "How it was then.",
+        body: "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
+      },
+    ],
+    details: [
+      { label: "Reframing the curator as a first-class user", body: "Curators had always been secondary to the artist experience. We rebuilt their core flows — discovery, listening, and feedback — to make curators feel like the marketplace values their time and expertise." },
+      { label: "The feedback quality framework", body: "We introduced structured feedback templates that help curators give more actionable responses while reducing the effort required. This improved feedback quality scores by 40% across the platform." },
+    ],
+  },
+  {
+    slug: "groover-plus",
+    title: "Groover+",
+    category: "Product Design",
+    year: "November 2024",
+    description:
+      "Designed Groover's subscription offering, giving serious artists a clearer path to investing in their promotion strategy.",
+    image: "/images/groover+.png",
+    summary:
+      "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
+    sections: [
+      {
+        heading: "How it is now.",
+        body: "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
+      },
+      {
+        heading: "How it was then.",
+        body: "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
+      },
+    ],
+    details: [
+      { label: "Pricing and packaging exploration", body: "We tested multiple pricing tiers and feature bundles with real artists before landing on the final Groover+ offering. The key insight: artists wanted predictable costs, not per-campaign pricing." },
+      { label: "Subscription conversion flow design", body: "The upgrade flow needed to feel like an investment, not a paywall. We designed a value-first approach that shows artists exactly what they'd unlock before asking for commitment." },
+    ],
+  },
+  {
+    slug: "design-system",
+    title: "Design System",
+    category: "Design System",
+    year: "June 2024",
+    description:
+      "Built a shared language for the product, helping the team ship faster without losing consistency across web and mobile.",
+    image: "/images/work/grooverui/grooveruiheader.gif",
     summary:
       "I built and led GrooverUI from audit to adoption — creating a shared system used by designers and engineers to ship faster and more consistently.",
     sections: [
       {
         heading: "How it is now.",
-        body: "Initiated and led GrooverUI from zero to a shared token-based system used across web and mobile, with 20+ components and Storybook documentation. The system is the foundation every feature now ships from.",
+        body: "A shared, token-based design system spanning web and mobile — 20+ components, Storybook documentation, and semantic color tokens powering every surface. The system is the foundation every feature now ships from.",
       },
       {
         heading: "How it was then.",
@@ -47,126 +150,28 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "wellpath",
-    title: "App Design — Wellpath",
+    slug: "splice-activation-experiments",
+    title: "Splice: Activation experiments",
     category: "Product Design",
-    year: "2025",
+    year: "March 2023",
     description:
-      "End-to-end product design for a wellness & habit-tracking mobile app — research, wireframes, UI, and prototyping.",
+      "Ran experiments across the platform to improve activation, engagement, and discovery for millions of producers.",
+    image: "/images/splicegrowth.png",
     summary:
-      "Wellpath wanted an experience that feels calm, personal, and genuinely helpful. I owned the product design end-to-end, from research through to a production-ready design system.",
+      "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
     sections: [
       {
         heading: "How it is now.",
-        body: "A journal-first interface where habit tracking is woven into a daily reflection flow. The visual language uses soft gradients, generous whitespace, and subtle micro-interactions to create a sense of calm. 120+ components delivered with interactive prototypes for usability testing.",
+        body: "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
       },
       {
         heading: "How it was then.",
-        body: "The wellness app space is crowded and most competitors rely on aggressive notification patterns and streak anxiety to drive engagement. Wellpath's founders wanted to break that cycle — but the question was how to keep users engaged without dark patterns.",
+        body: "We got to completely re-do an onboarding flow that used to take ages for new artists find value. What it is, why it mattered. The outcome of it.",
       },
     ],
     details: [
-      { label: "The user research that shaped the journal-first approach", body: "We interviewed 20 participants across different wellness journeys. The key insight: people wanted reflection, not pressure. Streaks and gamification drove short-term engagement but long-term resentment. This shaped the entire product direction." },
-      { label: "Building the component library in Figma", body: "120+ components organised into a multi-tier system — primitives, composites, and page-level patterns. Every component was stress-tested against edge cases like long text, RTL layouts, and accessibility requirements before handoff." },
-      { label: "Retention results from the beta launch", body: "The app launched to 2,000 beta users on iOS. 30-day retention was 62% — well above the 25% industry average for health & wellness apps. The design system enabled engineering to ship V1 in just eight weeks." },
-    ],
-  },
-  {
-    slug: "forma-studio",
-    title: "Web Experience — Forma Studio",
-    category: "Web Design",
-    year: "2024",
-    description:
-      "An immersive portfolio site for an architectural visualization studio with scroll-driven transitions.",
-    summary:
-      "Forma Studio creates photorealistic architectural visualisations for top-tier firms. I designed an immersive web experience that lets the work speak for itself.",
-    sections: [
-      {
-        heading: "How it is now.",
-        body: "A scroll-driven narrative where each project unfolds as a full-bleed cinematic sequence. Large-scale imagery paired with restrained typography and generous pacing. A modular page-builder system lets the team assemble new case studies without a designer.",
-      },
-      {
-        heading: "How it was then.",
-        body: "Their previous website was a basic grid of thumbnails that did nothing to convey the cinematic quality of their renders. Most studio websites default to generic portfolio grids — Forma needed something that felt as considered as the work itself.",
-      },
-    ],
-    details: [
-      { label: "The scroll-driven narrative approach", body: "Each project unfolds as a full-bleed cinematic sequence rather than a gallery grid. Scroll position triggers transitions between renders, letting visitors experience the spatial quality of each visualisation as they move through the page." },
-      { label: "Performance optimisation and lazy loading", body: "High-resolution architectural renders are heavy. We implemented responsive image sets, intersection-observer-based lazy loading, and optimised animations that respect reduced-motion preferences — keeping Lighthouse scores above 90." },
-      { label: "Modular page-builder for the team", body: "The CMS uses a block-based system so the Forma team can assemble new case studies from pre-designed sections without needing a designer for every update. Each block has built-in responsive rules and animation defaults." },
-    ],
-  },
-  {
-    slug: "bloom-festival",
-    title: "Campaign — Bloom Festival",
-    category: "Art Direction",
-    year: "2024",
-    description:
-      "Visual campaign for an annual arts & culture festival — posters, social assets, and environmental graphics.",
-    summary:
-      "For Bloom 2024's edition — 'Roots & Frequencies' — I art-directed the entire visual campaign from concept through to environmental installation.",
-    sections: [
-      {
-        heading: "How it is now.",
-        body: "A generative visual system inspired by root networks and sound waves — organic forms that could be algorithmically varied to create unique outputs for every poster and social tile. The colour palette shifts across a gradient spectrum, giving each event its own identity while maintaining cohesion.",
-      },
-      {
-        heading: "How it was then.",
-        body: "The festival needed a campaign identity that felt fresh and exciting to a young creative audience, while remaining flexible enough to work across posters, social media, merchandise, wayfinding, and large-scale environmental installations. The budget was modest.",
-      },
-    ],
-    details: [
-      { label: "The generative visual system", body: "We built a parametric tool that varies organic root-and-wave forms algorithmically — producing unique outputs for every poster and social tile while maintaining visual cohesion across the campaign. No two assets were identical." },
-      { label: "Environmental graphics direction", body: "Large-scale installations transformed the festival grounds into an immersive extension of the campaign. Wayfinding, stage backdrops, and interactive light installations all drew from the same generative system, creating a unified sensory experience." },
-    ],
-  },
-  {
-    slug: "meraki-ceramics",
-    title: "E-Commerce — Meraki Ceramics",
-    category: "Web Design",
-    year: "2024",
-    description:
-      "Shopify storefront for a handmade ceramics studio — warm, tactile, and conversion-focused.",
-    summary:
-      "Meraki Ceramics needed a custom storefront that bridges the gap between artisan warmth and e-commerce performance. I redesigned the entire experience.",
-    sections: [
-      {
-        heading: "How it is now.",
-        body: "A 'studio-first' storefront: full-bleed lifestyle photography, a warm neutral palette inspired by raw clay, and product pages that tell the story of each piece — from sketch to kiln. Navigation simplified to three core paths with a 'Made to Order' flow for custom commissions.",
-      },
-      {
-        heading: "How it was then.",
-        body: "The existing Shopify theme felt generic and failed to convey the craft behind each piece. Poor mobile performance, confusing navigation, and product pages that undersold the craftsmanship. Conversion rate had plateaued at 1.2%.",
-      },
-    ],
-    details: [
-      { label: "The studio-first design approach", body: "Instead of leading with product grids, the storefront opens with full-bleed lifestyle photography that conveys the tactile quality of each piece. Product pages tell the story from sketch to kiln — building the emotional connection that drives purchase decisions for handmade goods." },
-      { label: "Mobile optimisation and tap targets", body: "Every template was built mobile-first with generous tap targets, optimised scroll depth, and fast image loading. We reduced page weight by 60% compared to the previous theme while adding richer visual content." },
-      { label: "Custom commission flow design", body: "The 'Made to Order' flow guides customers through glaze selection, size options, and timeline expectations with a step-by-step interface. This single feature drove a 22% increase in average order value within two months." },
-    ],
-  },
-  {
-    slug: "noctis",
-    title: "Identity System — Noctis",
-    category: "Branding",
-    year: "2023",
-    description:
-      "Brand identity for a nightlife events company — logo, motion graphics, and merch design.",
-    summary:
-      "Noctis needed a brand identity that could flex across digital promotion, physical merch, and venue environments — all while capturing the energy and mystique of their events.",
-    sections: [
-      {
-        heading: "How it is now.",
-        body: "An identity built around a custom logotype with sharp, angular letterforms referencing brutalist architecture. A restrained palette — deep charcoal, off-white, and a single electric violet accent — with a library of geometric patterns that can be combined and animated.",
-      },
-      {
-        heading: "How it was then.",
-        body: "Nightlife branding often defaults to dark backgrounds and neon — Noctis wanted to stand out from that cliché while still feeling unmistakably 'night'. The identity needed to work at extremes: tiny social avatars, large-format posters, embroidered merch, and animated projections.",
-      },
-    ],
-    details: [
-      { label: "The custom logotype and type system", body: "Sharp, angular letterforms reference brutalist architecture while remaining legible at every scale — from 12px social avatars to 3-metre-wide venue banners. The type system pairs the logotype with a clean sans-serif for body text, maintaining tension between raw and refined." },
-      { label: "Motion toolkit for venue projections", body: "We delivered animated logo variants, looping geometric patterns for venue projections, and templates for social and print. The animated projections became a signature element — attendees photograph and share them, turning every event into organic marketing." },
+      { label: "Personalisation at scale", body: "We redesigned the home feed to surface content based on each producer's workflow — genre preferences, recent projects, and collaboration patterns. The result was a home experience that felt curated, not algorithmic." },
+      { label: "The discovery framework", body: "We built a discovery system that balances familiar content with new finds, helping producers expand their sound palette without feeling lost. Engagement with new content types increased 35% post-launch." },
     ],
   },
 ];

@@ -7,10 +7,10 @@ import { projects } from "../data/projects";
   <div class="home">
 
     <nav class="home-nav" aria-label="Primary">
-      <a href="/work">Work</a>
+      <a href="/going-beyond">Going beyond</a>
       <a href="/thoughts">Thoughts</a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="mailto:hello@karabermejo.design">Email</a>
+      <a href="https://www.linkedin.com/in/karabermejo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="#" class="copy-email" data-email="karabermejo@gmail.com">Email</a>
     </nav>
 
     <div class="home-inner">
@@ -30,9 +30,16 @@ import { projects } from "../data/projects";
         {projects.map((project) => (
           <article class="home-work-item">
             <span class="home-work-date">{project.year}</span>
-            <a href={`/work/${project.slug}`} class="home-work-title">{project.title}</a>
+            <span class="home-work-title">{project.title}</span>
             <p class="home-work-desc">{project.description}</p>
-            <div class="home-work-img" aria-hidden="true"></div>
+            <div class="home-work-img-wrap">
+              {project.image ? (
+                <img src={project.image} alt={project.title} class="home-work-img" />
+              ) : (
+                <div class="home-work-img" aria-hidden="true"></div>
+              )}
+              <div class="home-work-img-overlay" aria-hidden="true">Coming soon. Sit tight!</div>
+            </div>
           </article>
         ))}
       </div>
@@ -83,7 +90,7 @@ import { projects } from "../data/projects";
   }
 
   .home-top {
-    max-width: 50%;
+    max-width: 58.33%;
   }
 
   .home-logo {
@@ -125,7 +132,7 @@ import { projects } from "../data/projects";
   }
 
   .home-work-list {
-    max-width: 50%;
+    max-width: 58.33%;
     display: flex;
     flex-direction: column;
     gap: 36px;
@@ -152,11 +159,7 @@ import { projects } from "../data/projects";
     text-decoration: underline;
     text-underline-offset: 2px;
     line-height: 1.4;
-    transition: opacity 0.2s ease;
-  }
-
-  .home-work-title:hover {
-    opacity: 0.6;
+    cursor: default;
   }
 
   .home-work-desc {
@@ -167,15 +170,54 @@ import { projects } from "../data/projects";
     max-width: none;
   }
 
+  .home-work-img-wrap {
+    position: relative;
+    margin-top: 4px;
+    cursor: default;
+  }
+
   .home-work-img {
     width: 100%;
-    height: 305px;
+    aspect-ratio: 16 / 9;
     background: #d9d9d9;
     border-radius: 4px;
-    margin-top: 4px;
+    border: 1px solid #c9c9c9;
+    object-fit: cover;
+    display: block;
+  }
+
+  .home-work-img-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(242, 242, 242, 0.9);
+    border-radius: 4px;
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 12px;
+    color: #1a1a1a;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .home-work-img-wrap:hover .home-work-img-overlay,
+  .home-work-item:hover .home-work-img-overlay {
+    opacity: 1;
   }
 
   @media (max-width: 64rem) {
+    .home-top,
+    .home-statement,
+    .home-work-list {
+      max-width: 100%;
+    }
+
+    .home-work-img {
+      width: 100%;
+    }
+
     .home-statement {
       font-size: clamp(28px, 5vw, 38px);
     }
