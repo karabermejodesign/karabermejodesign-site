@@ -18,177 +18,265 @@ if (!project) {
 ---
 
 <Base title={project.title} description={project.description}>
-  <!-- Full-width hero -->
-  <div class="case-hero" aria-hidden="true"></div>
+  <div class="cs">
 
-  <article class="case-study">
-    <div class="container">
-      <!-- Header -->
-      <header class="case-header">
-        <div class="case-meta">
-          <span class="case-category">{project.category}</span>
-          <span class="case-year">{project.year}</span>
+    <nav class="cs-nav" aria-label="Primary">
+      <a href="/work">Work</a>
+      <a href="/thoughts">Thoughts</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:hello@karabermejo.design">Email</a>
+    </nav>
+
+    <a href="/" class="cs-back">Back</a>
+
+    <div class="cs-inner">
+
+      <div class="cs-header">
+        <h1 class="cs-title">{project.title}</h1>
+        <p class="cs-summary">{project.summary}</p>
+      </div>
+
+      <div class="cs-sections">
+        {project.sections.map((section) => (
+          <div class="cs-section">
+            <h2 class="cs-section-heading">{section.heading}</h2>
+            <p class="cs-section-body">{section.body}</p>
+            {section.image ? (
+              <img src={section.image} alt={section.heading} class="cs-section-img" />
+            ) : (
+              <div class="cs-section-img" aria-hidden="true"></div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div class="cs-details">
+        <h2 class="cs-details-heading">Want to dive into the details?</h2>
+        <div class="cs-details-list">
+          {project.details.map((item) => (
+            <details class="cs-detail-item">
+              <summary class="cs-detail-row">
+                <span class="cs-detail-label">{item.label}</span>
+                <span class="cs-detail-toggle" aria-hidden="true"></span>
+              </summary>
+              <div class="cs-detail-body">
+                <p>{item.body}</p>
+              </div>
+            </details>
+          ))}
         </div>
-        <h1>{project.title}</h1>
-        <p class="case-overview">{project.overview}</p>
-      </header>
+      </div>
 
-      <!-- The Challenge -->
-      <section class="case-section">
-        <h2>The Challenge</h2>
-        <p>{project.challenge}</p>
-      </section>
-
-      <!-- The Solution -->
-      <section class="case-section">
-        <h2>The Solution</h2>
-        <p>{project.solution}</p>
-      </section>
-
-      <!-- Image Gallery -->
-      <section class="case-section case-gallery-section">
-        <h2>Gallery</h2>
-        <div class="case-gallery">
-          <div class="gallery-item gallery-full" aria-hidden="true"></div>
-          <div class="gallery-item" aria-hidden="true"></div>
-          <div class="gallery-item" aria-hidden="true"></div>
-          <div class="gallery-item gallery-full" aria-hidden="true"></div>
-        </div>
-      </section>
-
-      <!-- Outcome -->
-      <section class="case-section">
-        <h2>Outcome</h2>
-        <p>{project.outcome}</p>
-      </section>
-
-      <!-- Back link -->
-      <nav class="case-back" aria-label="Back to work">
-        <a href="/work" class="back-link">&larr; All Projects</a>
-      </nav>
     </div>
-  </article>
+  </div>
 </Base>
 
 <style>
-  /* ── Hero ── */
-  .case-hero {
-    width: 100%;
-    aspect-ratio: 21 / 9;
-    background: var(--color-border);
+  :global(.site-header),
+  :global(.site-footer) {
+    display: none;
   }
 
-  /* ── Article wrapper ── */
-  .case-study {
-    padding-block: var(--space-xl);
+  .cs {
+    position: relative;
+    font-family: "Hedvig Letters Sans", sans-serif;
+    background: #fafaf9;
+    padding: 40px 24px 80px 24px;
+    min-height: 100vh;
   }
 
-  .case-study .container {
-    max-width: var(--content-width);
-  }
-
-  /* ── Header ── */
-  .case-header {
-    margin-bottom: var(--space-xl);
-  }
-
-  .case-meta {
+  .cs-nav {
+    position: absolute;
+    top: 58px;
+    right: 40px;
     display: flex;
-    gap: var(--space-sm);
-    font-size: 0.8125rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-sm);
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
   }
 
-  .case-category {
-    color: var(--color-accent);
-    font-weight: 600;
+  .cs-nav a {
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    text-decoration: none;
+    letter-spacing: -0.4px;
+    line-height: 24px;
+    transition: opacity 0.2s ease;
   }
 
-  .case-header h1 {
-    margin-bottom: var(--space-md);
+  .cs-nav a:hover {
+    opacity: 0.6;
   }
 
-  .case-overview {
-    font-size: 1.125rem;
-    color: var(--color-text-muted);
-    line-height: 1.8;
+  .cs-back {
+    display: inline-block;
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 20px;
+    color: #1a1a1a;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    margin-bottom: 40px;
+    transition: opacity 0.2s ease;
   }
 
-  /* ── Sections ── */
-  .case-section {
-    margin-bottom: var(--space-xl);
+  .cs-back:hover {
+    opacity: 0.6;
   }
 
-  .case-section h2 {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    margin-bottom: var(--space-sm);
+  .cs-inner {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
   }
 
-  .case-section p {
-    color: var(--color-text-muted);
-    line-height: 1.8;
+  .cs-header {
+    max-width: 1055px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
   }
 
-  /* ── Gallery ── */
-  .case-gallery-section .container {
+  .cs-title {
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 38px;
+    color: #1a1a1a;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+  }
+
+  .cs-summary {
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 20px;
+    color: #1a1a1a;
+    max-width: 586px;
+    line-height: 1.5;
+  }
+
+  .cs-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 588px;
+  }
+
+  .cs-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .cs-section-heading {
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 24px;
+    color: #1a1a1a;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .cs-section-body {
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    line-height: 1.6;
     max-width: none;
   }
 
-  .case-gallery {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-sm);
+  div.cs-section-img {
+    width: 100%;
+    height: 305px;
+    background: #d9d9d9;
   }
 
-  .gallery-item {
-    aspect-ratio: 3 / 2;
-    background: var(--color-border);
-    border-radius: 0.75rem;
+  img.cs-section-img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
-  .gallery-item.gallery-full {
-    grid-column: 1 / -1;
-    aspect-ratio: 21 / 9;
+  .cs-details {
+    max-width: 588px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
-  /* ── Back link ── */
-  .case-back {
-    padding-top: var(--space-lg);
-    border-top: 1px solid var(--color-border);
+  .cs-details-heading {
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 24px;
+    color: #1a1a1a;
+    font-weight: 400;
+    line-height: 1.2;
   }
 
-  .back-link {
-    font-weight: 600;
-    color: var(--color-accent);
-    transition: gap 0.2s ease;
-    display: inline-flex;
+  .cs-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cs-detail-item {
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .cs-detail-row {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.5em;
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 20px;
+    color: #1a1a1a;
+    padding: 12px 0;
+    cursor: pointer;
+    list-style: none;
   }
 
-  .back-link:hover {
-    gap: 0.75em;
+  .cs-detail-row::-webkit-details-marker {
+    display: none;
   }
 
-  /* ── Responsive ── */
-  @media (min-width: 48rem) {
-    .case-hero {
-      aspect-ratio: 21 / 7;
-    }
+  .cs-detail-toggle {
+    flex-shrink: 0;
+    width: 22px;
+    text-align: right;
+    transition: transform 0.2s ease;
+  }
 
-    .case-gallery {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .cs-detail-toggle::before {
+    content: "+";
+  }
 
-    .case-study {
-      padding-block: var(--space-2xl);
-    }
+  .cs-detail-item[open] .cs-detail-toggle {
+    transform: rotate(45deg);
+  }
 
-    .case-section {
-      margin-bottom: var(--space-2xl);
+  .cs-detail-body {
+    padding: 0 0 16px 0;
+  }
+
+  .cs-detail-body p {
+    font-family: "Hedvig Letters Sans", sans-serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    line-height: 1.6;
+    max-width: none;
+  }
+
+  @media (max-width: 64rem) {
+    .cs-nav {
+      position: static;
+      flex-direction: row;
+      gap: 20px;
+      margin-bottom: 24px;
+      align-items: flex-start;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .cs {
+      padding: 58px 40px 80px 120px;
     }
   }
 </style>

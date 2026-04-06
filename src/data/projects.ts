@@ -1,13 +1,23 @@
+export interface ProjectSection {
+  heading: string;
+  body: string;
+  image?: string;
+}
+
+export interface ProjectDetail {
+  label: string;
+  body: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
   category: string;
   year: string;
   description: string;
-  overview: string;
-  challenge: string;
-  solution: string;
-  outcome: string;
+  summary: string;
+  sections: ProjectSection[];
+  details: ProjectDetail[];
 }
 
 export const projects: Project[] = [
@@ -18,14 +28,23 @@ export const projects: Project[] = [
     year: "2023–Present",
     description:
       "Groover's first production-ready design system — powering a multilingual, mobile-first marketplace for 50K+ artists and 3,500+ curators.",
-    overview:
-      "Initiated and led GrooverUI from zero to a shared token-based system used across web and mobile, with 20+ components and Storybook documentation.",
-    challenge:
-      "Fragmented UI with no shared tokens, inconsistent mobile patterns, and no process for cross-functional adoption.",
-    solution:
-      "Incremental shipping strategy tied to feature work — components shipped when needed, not all at once. Established semantic color tokens, a responsive type scale, and mobile-native patterns like bottom sheets.",
-    outcome:
-      "48% improvement in Spark sign-up conversion. Design system adopted as a formal OKR metric. Full FigmaMake + AI integration in 2025.",
+    summary:
+      "I built and led GrooverUI from audit to adoption — creating a shared system used by designers and engineers to ship faster and more consistently.",
+    sections: [
+      {
+        heading: "How it is now.",
+        body: "Initiated and led GrooverUI from zero to a shared token-based system used across web and mobile, with 20+ components and Storybook documentation. The system is the foundation every feature now ships from.",
+      },
+      {
+        heading: "How it was then.",
+        body: "Fragmented UI with no shared tokens, inconsistent mobile patterns, and no process for cross-functional adoption. Two previous attempts had stalled — once as an engineering-only effort, once as a Figma library that never made it to production.",
+      },
+    ],
+    details: [
+      { label: "The incremental shipping strategy", body: "Rather than building a full component library upfront, we tied every new component to a shipping feature. The Spark sign-up redesign was the first proving ground — every token and component was born from real production needs, not a theoretical backlog." },
+      { label: "How we built the token architecture", body: "We started with semantic color tokens and a responsive type scale, then layered in spacing and elevation. Every value maps to a named intent — so switching to dark mode or a new brand palette is a config change, not a redesign." },
+      { label: "Storybook documentation and adoption", body: "Every component exists as both a Figma variant and a Storybook story. Designers use the library; engineers reference the stories. Neither source drifts because both are reviewed in the same PR cycle." },
+    ],
   },
   {
     slug: "wellpath",
@@ -34,14 +53,23 @@ export const projects: Project[] = [
     year: "2025",
     description:
       "End-to-end product design for a wellness & habit-tracking mobile app — research, wireframes, UI, and prototyping.",
-    overview:
-      "Wellpath is a wellness startup building a habit-tracking app that goes beyond streaks and gamification. They wanted an experience that feels calm, personal, and genuinely helpful. I owned the product design end-to-end, from research through to a production-ready design system.",
-    challenge:
-      "The wellness app space is crowded and most competitors rely on aggressive notification patterns and streak anxiety to drive engagement. Wellpath's founders wanted to break that cycle — but the question was how to keep users engaged without dark patterns, while still delivering a product that felt polished enough to compete with well-funded incumbents.",
-    solution:
-      "I conducted user interviews with 20 participants across different wellness journeys to understand motivation patterns. The key insight: people wanted reflection, not pressure. I designed a journal-first interface where habit tracking is woven into a daily reflection flow. The visual language uses soft gradients, generous whitespace, and subtle micro-interactions to create a sense of calm. I built a component library in Figma with 120+ components and delivered interactive prototypes for usability testing.",
-    outcome:
-      "The app launched on iOS to a beta group of 2,000 users. Retention at 30 days was 62% — well above the industry average of 25% for health & wellness apps. The design system enabled the engineering team to ship the full V1 in just eight weeks.",
+    summary:
+      "Wellpath wanted an experience that feels calm, personal, and genuinely helpful. I owned the product design end-to-end, from research through to a production-ready design system.",
+    sections: [
+      {
+        heading: "How it is now.",
+        body: "A journal-first interface where habit tracking is woven into a daily reflection flow. The visual language uses soft gradients, generous whitespace, and subtle micro-interactions to create a sense of calm. 120+ components delivered with interactive prototypes for usability testing.",
+      },
+      {
+        heading: "How it was then.",
+        body: "The wellness app space is crowded and most competitors rely on aggressive notification patterns and streak anxiety to drive engagement. Wellpath's founders wanted to break that cycle — but the question was how to keep users engaged without dark patterns.",
+      },
+    ],
+    details: [
+      { label: "The user research that shaped the journal-first approach", body: "We interviewed 20 participants across different wellness journeys. The key insight: people wanted reflection, not pressure. Streaks and gamification drove short-term engagement but long-term resentment. This shaped the entire product direction." },
+      { label: "Building the component library in Figma", body: "120+ components organised into a multi-tier system — primitives, composites, and page-level patterns. Every component was stress-tested against edge cases like long text, RTL layouts, and accessibility requirements before handoff." },
+      { label: "Retention results from the beta launch", body: "The app launched to 2,000 beta users on iOS. 30-day retention was 62% — well above the 25% industry average for health & wellness apps. The design system enabled engineering to ship V1 in just eight weeks." },
+    ],
   },
   {
     slug: "forma-studio",
@@ -50,14 +78,23 @@ export const projects: Project[] = [
     year: "2024",
     description:
       "An immersive portfolio site for an architectural visualization studio with scroll-driven transitions.",
-    overview:
-      "Forma Studio creates photorealistic architectural visualisations for top-tier firms. Their previous website was a basic grid of thumbnails that did nothing to convey the cinematic quality of their renders. I designed and art-directed an immersive web experience that lets the work speak for itself.",
-    challenge:
-      "Architectural visualisation is inherently visual, yet most studio websites default to generic portfolio grids. Forma needed a site that felt as considered and high-end as the renders themselves, while remaining fast, accessible, and easy to update. The client also needed the site to work as a sales tool — guiding prospective clients from inspiration to enquiry.",
-    solution:
-      "I designed a scroll-driven narrative where each project unfolds as a full-bleed cinematic sequence. Large-scale imagery is paired with restrained typography and generous pacing. I created a modular page-builder system so the team can assemble new case studies without a designer. Performance was a priority — I worked closely with the developer to implement lazy loading, responsive image sets, and optimised animations that respect reduced-motion preferences.",
-    outcome:
-      "The new site reduced bounce rate by 40% and average session duration increased to 3 minutes 20 seconds. Forma reported a 35% increase in inbound enquiries within the first quarter, and the site was featured in several design award galleries.",
+    summary:
+      "Forma Studio creates photorealistic architectural visualisations for top-tier firms. I designed an immersive web experience that lets the work speak for itself.",
+    sections: [
+      {
+        heading: "How it is now.",
+        body: "A scroll-driven narrative where each project unfolds as a full-bleed cinematic sequence. Large-scale imagery paired with restrained typography and generous pacing. A modular page-builder system lets the team assemble new case studies without a designer.",
+      },
+      {
+        heading: "How it was then.",
+        body: "Their previous website was a basic grid of thumbnails that did nothing to convey the cinematic quality of their renders. Most studio websites default to generic portfolio grids — Forma needed something that felt as considered as the work itself.",
+      },
+    ],
+    details: [
+      { label: "The scroll-driven narrative approach", body: "Each project unfolds as a full-bleed cinematic sequence rather than a gallery grid. Scroll position triggers transitions between renders, letting visitors experience the spatial quality of each visualisation as they move through the page." },
+      { label: "Performance optimisation and lazy loading", body: "High-resolution architectural renders are heavy. We implemented responsive image sets, intersection-observer-based lazy loading, and optimised animations that respect reduced-motion preferences — keeping Lighthouse scores above 90." },
+      { label: "Modular page-builder for the team", body: "The CMS uses a block-based system so the Forma team can assemble new case studies from pre-designed sections without needing a designer for every update. Each block has built-in responsive rules and animation defaults." },
+    ],
   },
   {
     slug: "bloom-festival",
@@ -66,14 +103,22 @@ export const projects: Project[] = [
     year: "2024",
     description:
       "Visual campaign for an annual arts & culture festival — posters, social assets, and environmental graphics.",
-    overview:
-      "Bloom is an annual arts and culture festival celebrating emerging creatives. Each year the campaign is built from scratch around a new theme. For 2024's edition — 'Roots & Frequencies' — I art-directed the entire visual campaign from concept through to environmental installation.",
-    challenge:
-      "The festival needed a campaign identity that felt fresh and exciting to a young creative audience, while remaining flexible enough to work across posters, social media, merchandise, wayfinding, and large-scale environmental installations. The budget was modest, so the system had to generate maximum impact from minimal production.",
-    solution:
-      "I developed a generative visual system inspired by root networks and sound waves — organic forms that could be algorithmically varied to create unique outputs for every poster and social tile. The colour palette shifted across a gradient spectrum, giving each event its own identity while maintaining cohesion. I designed a modular type system that let the production team rapidly generate assets, and I directed the environmental graphics that transformed the festival grounds.",
-    outcome:
-      "The campaign reached over 1.2 million impressions across social channels. Festival attendance grew 18% year-over-year, and the campaign was shortlisted for a regional design award. Attendees frequently shared photos of the environmental graphics, generating significant organic reach.",
+    summary:
+      "For Bloom 2024's edition — 'Roots & Frequencies' — I art-directed the entire visual campaign from concept through to environmental installation.",
+    sections: [
+      {
+        heading: "How it is now.",
+        body: "A generative visual system inspired by root networks and sound waves — organic forms that could be algorithmically varied to create unique outputs for every poster and social tile. The colour palette shifts across a gradient spectrum, giving each event its own identity while maintaining cohesion.",
+      },
+      {
+        heading: "How it was then.",
+        body: "The festival needed a campaign identity that felt fresh and exciting to a young creative audience, while remaining flexible enough to work across posters, social media, merchandise, wayfinding, and large-scale environmental installations. The budget was modest.",
+      },
+    ],
+    details: [
+      { label: "The generative visual system", body: "We built a parametric tool that varies organic root-and-wave forms algorithmically — producing unique outputs for every poster and social tile while maintaining visual cohesion across the campaign. No two assets were identical." },
+      { label: "Environmental graphics direction", body: "Large-scale installations transformed the festival grounds into an immersive extension of the campaign. Wayfinding, stage backdrops, and interactive light installations all drew from the same generative system, creating a unified sensory experience." },
+    ],
   },
   {
     slug: "meraki-ceramics",
@@ -82,14 +127,23 @@ export const projects: Project[] = [
     year: "2024",
     description:
       "Shopify storefront for a handmade ceramics studio — warm, tactile, and conversion-focused.",
-    overview:
-      "Meraki Ceramics is a small-batch ceramics studio selling handmade pieces directly to customers. Their existing Shopify theme felt generic and failed to convey the craft and care behind each piece. I designed a custom storefront that bridges the gap between artisan warmth and e-commerce performance.",
-    challenge:
-      "Handmade ceramics are inherently tactile — customers need to feel texture, weight, and scale through a screen. The existing theme had poor mobile performance, a confusing navigation structure, and product pages that undersold the craftsmanship. Conversion rate had plateaued at 1.2%, well below the Shopify average.",
-    solution:
-      "I redesigned the entire storefront with a 'studio-first' approach: full-bleed lifestyle photography, a warm neutral palette inspired by raw clay, and product pages that tell the story of each piece — from sketch to kiln. I simplified the navigation to three core paths (Shop, Studio, Story) and introduced a 'Made to Order' flow for custom commissions. Every template was optimised for mobile-first, with attention to tap targets and scroll depth.",
-    outcome:
-      "Conversion rate increased to 2.8% within two months — more than doubling the previous figure. Average order value rose 22% thanks to improved cross-selling and the custom commission flow. The founder reported that customers now frequently reference the website's feeling as a reason they chose Meraki over competitors.",
+    summary:
+      "Meraki Ceramics needed a custom storefront that bridges the gap between artisan warmth and e-commerce performance. I redesigned the entire experience.",
+    sections: [
+      {
+        heading: "How it is now.",
+        body: "A 'studio-first' storefront: full-bleed lifestyle photography, a warm neutral palette inspired by raw clay, and product pages that tell the story of each piece — from sketch to kiln. Navigation simplified to three core paths with a 'Made to Order' flow for custom commissions.",
+      },
+      {
+        heading: "How it was then.",
+        body: "The existing Shopify theme felt generic and failed to convey the craft behind each piece. Poor mobile performance, confusing navigation, and product pages that undersold the craftsmanship. Conversion rate had plateaued at 1.2%.",
+      },
+    ],
+    details: [
+      { label: "The studio-first design approach", body: "Instead of leading with product grids, the storefront opens with full-bleed lifestyle photography that conveys the tactile quality of each piece. Product pages tell the story from sketch to kiln — building the emotional connection that drives purchase decisions for handmade goods." },
+      { label: "Mobile optimisation and tap targets", body: "Every template was built mobile-first with generous tap targets, optimised scroll depth, and fast image loading. We reduced page weight by 60% compared to the previous theme while adding richer visual content." },
+      { label: "Custom commission flow design", body: "The 'Made to Order' flow guides customers through glaze selection, size options, and timeline expectations with a step-by-step interface. This single feature drove a 22% increase in average order value within two months." },
+    ],
   },
   {
     slug: "noctis",
@@ -98,14 +152,22 @@ export const projects: Project[] = [
     year: "2023",
     description:
       "Brand identity for a nightlife events company — logo, motion graphics, and merch design.",
-    overview:
-      "Noctis is a nightlife and events company producing immersive club nights and music experiences. They needed a brand identity that could flex across digital promotion, physical merch, and venue environments — all while capturing the energy and mystique of their events.",
-    challenge:
-      "Nightlife branding often defaults to dark backgrounds and neon — Noctis wanted to stand out from that cliché while still feeling unmistakably 'night'. The identity also needed to work at extremes: tiny social avatars, large-format posters, embroidered merch, and animated projections in dark venues. Durability and flexibility were paramount.",
-    solution:
-      "I built the identity around a custom logotype with sharp, angular letterforms that reference brutalist architecture. The visual system uses a restrained palette — deep charcoal, off-white, and a single electric violet accent — with a library of geometric patterns that can be combined and animated. I delivered a motion toolkit with animated logo variants, looping patterns for venue projections, and templates for social and print. The merch line was designed to feel like streetwear, not promotional material.",
-    outcome:
-      "Noctis launched the new identity at a sold-out 800-person event. Merch sell-through rate hit 70% on opening night. The animated projections became a signature element that attendees actively photograph and share, turning every event into organic marketing.",
+    summary:
+      "Noctis needed a brand identity that could flex across digital promotion, physical merch, and venue environments — all while capturing the energy and mystique of their events.",
+    sections: [
+      {
+        heading: "How it is now.",
+        body: "An identity built around a custom logotype with sharp, angular letterforms referencing brutalist architecture. A restrained palette — deep charcoal, off-white, and a single electric violet accent — with a library of geometric patterns that can be combined and animated.",
+      },
+      {
+        heading: "How it was then.",
+        body: "Nightlife branding often defaults to dark backgrounds and neon — Noctis wanted to stand out from that cliché while still feeling unmistakably 'night'. The identity needed to work at extremes: tiny social avatars, large-format posters, embroidered merch, and animated projections.",
+      },
+    ],
+    details: [
+      { label: "The custom logotype and type system", body: "Sharp, angular letterforms reference brutalist architecture while remaining legible at every scale — from 12px social avatars to 3-metre-wide venue banners. The type system pairs the logotype with a clean sans-serif for body text, maintaining tension between raw and refined." },
+      { label: "Motion toolkit for venue projections", body: "We delivered animated logo variants, looping geometric patterns for venue projections, and templates for social and print. The animated projections became a signature element — attendees photograph and share them, turning every event into organic marketing." },
+    ],
   },
 ];
 
