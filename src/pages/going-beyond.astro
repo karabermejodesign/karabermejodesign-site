@@ -10,7 +10,7 @@ const projects = [
   },
   {
     name: "Infinite Adventures of Candide",
-    link: null,
+    link: "/candide-strategy-lab",
     thumb: "/images/candidethumb.png",
     description:
       "A storytelling project for kids, turning everyday moments into small, interactive adventures led by Candide and friends.",
@@ -60,7 +60,13 @@ const projects = [
             <article class="gb-item">
               <img src={project.thumb} alt={project.name} class="gb-thumb" />
               {project.link ? (
-                <a href={project.link} target="_blank" rel="noopener noreferrer" class="gb-name">{project.name}</a>
+                <a
+                  href={project.link}
+                  class="gb-name"
+                  {...(project.link.startsWith("/")
+                    ? {}
+                    : { target: "_blank", rel: "noopener noreferrer" })}
+                >{project.name}</a>
               ) : (
                 <span class="gb-name gb-name--plain">{project.name}</span>
               )}

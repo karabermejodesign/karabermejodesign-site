@@ -1,0 +1,693 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Candide · Strategy Lab">
+  <div class="lab-stage">
+
+    <div class="phone">
+      <div class="notch"></div>
+
+      <!-- ===== CHOOSER ===== -->
+      <section class="screen active" id="lab">
+        <span class="kick">Strategy lab · pick one to feel it</span>
+        <h1>Four ways to land the magic</h1>
+        <p class="sub">same family, same bedtime — different bet on what hooks them</p>
+        <div class="vcard a" onclick="go('a1')">
+          <span class="vtag">STRATEGY A</span>
+          <b>Candide, the storyteller</b>
+          <small>He stays a guide — never inside the photo. The child's drawing stays theirs; the magic is the rich little tale he spins about it.</small>
+          <span class="tests">tests: does the <i>story</i> alone make them light up?</span>
+        </div>
+        <div class="vcard b" onclick="go('b1')">
+          <span class="vtag">STRATEGY B</span>
+          <b>Candide moves in</b>
+          <small>Today's simple prompt. Candide is composited standing <i>inside</i> what they drew — the "he's really there!" recognition hit.</small>
+          <span class="tests">tests: does seeing him <i>in</i> their world land?</span>
+        </div>
+        <div class="vcard c" onclick="go('c1')">
+          <span class="vtag">STRATEGY C</span>
+          <b>The adventure you do together</b>
+          <small>Scratch-to-reveal a surprise dare for the two of you. Do it, snap it, keep it. Candide hosts the book of 100.</small>
+          <span class="tests">tests: is the <i>bond</i> the product, not the artifact?</span>
+        </div>
+        <div class="vcard d" onclick="go('d1')">
+          <span class="vtag">STRATEGY D</span>
+          <b>The little lesson</b>
+          <small>You pick a value — gratitude, brave, big feelings — and the gang member who embodies it hosts the adventure. Boro for feelings, Step for brave, Theo for patience…</small>
+          <span class="tests">tests: does a gentle <i>value</i> + the right friend make it repeat?</span>
+        </div>
+        <div class="dim" style="text-align:center; margin-top:4px">tap a card → walk the flow → come back to compare</div>
+      </section>
+
+      <!-- ================= STRATEGY A ================= -->
+      <section class="screen invite" id="a1" style="background:radial-gradient(120% 80% at 50% 0%, #efdcec, var(--paper) 60%)">
+        <div class="backlink" onclick="go('lab')">‹ strategies</div>
+        <span class="tagpill" style="background:var(--plum)">A · storyteller</span>
+        <img class="world" src="/assets/candide/world.jpg" alt="Candide's world">
+        <img class="candide portrait" src="/assets/candide/cut/rooster.png" alt="Candide">
+        <h1 style="color:var(--plum)">Make something. Candide will tell its story.</h1>
+        <div class="says storyfont">
+          "Draw me a place, or a creature, or a weather.<br>
+          Whatever you make, I'll find out what <b>happens</b> there."
+        </div>
+        <div style="flex:1; min-height:6px"></div>
+        <button class="btn plum" onclick="go('a2')">Start drawing →</button>
+      </section>
+
+      <section class="screen invite" id="a2" style="background:var(--paper); text-align:left; align-items:stretch; gap:10px">
+        <div class="backlink" onclick="go('a1')">‹ back</div>
+        <span class="tagpill" style="background:var(--plum)">A · storyteller</span>
+        <div style="height:6px"></div>
+        <h1 style="color:var(--plum); text-align:center">Draw your place</h1>
+        <p class="dim" style="text-align:center; margin-top:-2px">the drawing stays 100% yours — Candide never draws on it</p>
+        <div class="stepcard"><span class="ic">✏️</span>Draw a place, a creature, or a kind of weather</div>
+        <div class="stepcard"><span class="ic">💬</span>Say one true thing about it out loud</div>
+        <div class="stepcard"><span class="ic">⏳</span>No rush. Candide is patient.</div>
+        <div style="flex:1; min-height:6px"></div>
+        <button class="btn plum" onclick="goCapture('a')">We made it →</button>
+      </section>
+
+      <section class="screen reveal" id="a3">
+        <div class="backlink" onclick="go('lab')" style="color:#4a7080">‹ strategies</div>
+        <div class="book">
+          <div class="pic"><div class="crayon" id="a-draw" style="width:100%;height:100%"></div></div>
+          <div class="story">
+            <p class="storyfont">Something is different here.<br><br>
+            Last night, while you slept, a small wind found the door you drew. It knocked — politely, the way visitors do in good houses. A traveller had walked a long way looking for somewhere warm; your roof, the colour of a strawberry, can be seen from very far.<br><br>
+            She stayed the night. By morning she'd left a pebble on the step — that's how travellers say thank you. Your place isn't only a drawing now. It's on the map, and I'm keeping watch. Goodnight.</p>
+            <div class="narr"><img src="/assets/candide/cut/rooster.png" alt=""> told by Candide — he stays outside the picture</div>
+          </div>
+        </div>
+        <div class="revealnav" onclick="go('again')">that's the story → was it enough?</div>
+      </section>
+
+      <!-- ================= STRATEGY B ================= -->
+      <section class="screen invite" id="b1" style="background:radial-gradient(120% 80% at 50% 0%, var(--sky), var(--paper) 60%)">
+        <div class="backlink" onclick="go('lab')">‹ strategies</div>
+        <span class="tagpill" style="background:var(--teal-deep)">B · moves in</span>
+        <img class="world" src="/assets/candide/world.jpg" alt="Candide's world">
+        <img class="candide portrait" src="/assets/candide/cut/rooster.png" alt="Candide">
+        <h1 style="color:var(--teal-deep)">Candide's world is empty</h1>
+        <div class="says storyfont">
+          "Something is different here.<br>
+          I think I need <b>a place to be</b>. Will you make me one?"
+        </div>
+        <div style="flex:1; min-height:6px"></div>
+        <button class="btn" onclick="go('b2')">Draw him a place →</button>
+      </section>
+
+      <section class="screen invite" id="b2" style="background:var(--paper); text-align:left; align-items:stretch; gap:10px">
+        <div class="backlink" onclick="go('b1')">‹ back</div>
+        <span class="tagpill" style="background:var(--teal-deep)">B · moves in</span>
+        <div style="height:6px"></div>
+        <h1 style="color:var(--teal-deep); text-align:center">Make Candide a place</h1>
+        <div class="stepcard"><span class="ic">✏️</span>Draw a den, a nest, or a little house</div>
+        <div class="stepcard"><span class="ic">💬</span>Tell him about it while you draw</div>
+        <div style="flex:1; min-height:6px"></div>
+        <button class="btn" onclick="goCapture('b')">We drew it — show Candide →</button>
+      </section>
+
+      <section class="screen reveal" id="b3">
+        <div class="backlink" onclick="go('lab')" style="color:#4a7080">‹ strategies</div>
+        <div class="book">
+          <div class="pic">
+            <div class="crayon" id="b-draw" style="width:100%;height:100%"></div>
+            <img class="candide portrait" src="/assets/candide/cut/rooster.png" alt="Candide inside the drawing">
+          </div>
+          <div class="story">
+            <p class="storyfont">You made me a place. I walked inside — it fit me exactly. I think I'll stay. 🌙</p>
+            <div class="narr"><img src="/assets/candide/cut/rooster.png" alt=""> Candide is standing in your drawing</div>
+          </div>
+        </div>
+        <div class="revealnav" onclick="go('again')">he's really in there → did they see it?</div>
+      </section>
+
+      <!-- ================= STRATEGY C ================= -->
+      <section class="screen invite" id="c1" style="background:radial-gradient(120% 80% at 50% 0%, #ffe0dd, var(--paper) 60%)">
+        <div class="backlink" onclick="go('lab')">‹ strategies</div>
+        <span class="tagpill" style="background:var(--advred)">C · together</span>
+        <img class="candide portrait" src="/assets/candide/cut/rooster.png" alt="Candide" style="margin-top:24px">
+        <h1 style="color:var(--advred-deep)">100 little adventures<br>for the two of you</h1>
+        <div class="says storyfont">
+          "No screens, no rush — just you and your kid.<br>
+          Scratch one open… and then you <b>have</b> to do it."
+        </div>
+        <div class="dim">tonight's is #7 of 100</div>
+        <div style="flex:1; min-height:6px"></div>
+        <button class="btn coral" onclick="go('c2')">Scratch tonight's adventure →</button>
+      </section>
+
+      <section class="screen" id="c2">
+        <div class="backlink" onclick="go('c1')">‹ back</div>
+        <span class="tagpill" style="background:var(--advred)">C · together</span>
+        <div style="height:6px"></div>
+        <h1>Scratch it together ✦</h1>
+        <p class="dim" style="text-align:center; margin-top:-2px">use your finger — no peeking first</p>
+        <div class="scratchwrap">
+          <div class="under">
+            <span class="cat">Indoor · cozy</span>
+            <span class="adv">Build a blanket fort and tell each other the scariest thing that <i>isn't</i> actually scary.</span>
+          </div>
+          <canvas id="scratch" width="280" height="170"></canvas>
+        </div>
+        <div class="advmeta">
+          <span>⏱ 15 min</span><span>🏠 indoors</span><span>💲 free</span>
+        </div>
+        <div class="norule">⚠️ No going back. Once it's scratched, you do it — that's the rule that makes it count.</div>
+        <div style="flex:1; min-height:6px"></div>
+        <button class="btn coral locked" id="c2btn" onclick="go('c3')">We're doing it →</button>
+      </section>
+
+      <section class="screen invite" id="c3" style="background:radial-gradient(120% 80% at 50% 0%, #ffe0dd, var(--paper) 60%); text-align:center">
+        <div class="backlink" onclick="go('c2')">‹ back</div>
+        <span class="tagpill" style="background:var(--advred)">C · together</span>
+        <img class="candide portrait" src="/assets/candide/cut/rooster.png" alt="Candide" style="margin-top:30px">
+        <h1 style="color:var(--advred-deep)">Go and do it — together</h1>
+        <div class="says storyfont">"I'll wait right here. When you're in the thick of it, take <b>one</b> photo. That's all I need for tonight's story."</div>
+        <div style="flex:1; min-height:6px"></div>
+        <button class="btn coral" onclick="goCapture('c')">We did the adventure → capture it</button>
+      </section>
+
+      <!-- ================= STRATEGY D ================= -->
+      <section class="screen" id="d1">
+        <div class="backlink" onclick="go('lab')">‹ strategies</div>
+        <span class="tagpill" style="background:var(--mint-deep)">D · lesson</span>
+        <div style="height:8px"></div>
+        <h1>What do you want to grow<br>in her tonight?</h1>
+        <p class="dim" style="text-align:center; margin-top:-2px">pick a value — its friend from the gang will host it</p>
+        <div style="height:4px"></div>
+        <div class="valgrid">
+          <div class="valchip" data-v="gratitude" onclick="pickLesson('gratitude')"><img src="/assets/candide/cut/rooster.png" alt="Candide"><b>Gratitude</b><small>with Candide 🐔</small></div>
+          <div class="valchip" data-v="feelings" onclick="pickLesson('feelings')"><img src="/assets/candide/cut/monster.png" alt="Boro"><b>Big feelings</b><small>with Boro 🧸</small></div>
+          <div class="valchip" data-v="patience" onclick="pickLesson('patience')"><img src="/assets/candide/cut/fox.png" alt="Theo"><b>Patience</b><small>with Theo 🦊</small></div>
+          <div class="valchip" data-v="flavors" onclick="pickLesson('flavors')"><img src="/assets/candide/cut/monkey.png" alt="Momo"><b>Trying new things</b><small>with Momo 🐵</small></div>
+          <div class="valchip" data-v="brave" onclick="pickLesson('brave')"><img src="/assets/candide/cut/tallman.png" alt="Step"><b>Being brave</b><small>with Step 🧍</small></div>
+          <div class="valchip" data-v="energy" onclick="pickLesson('energy')"><img src="/assets/candide/cut/frog.png" alt="Kiko"><b>Big energy</b><small>with Kiko 🐸</small></div>
+        </div>
+        <div style="flex:1; min-height:8px"></div>
+        <button class="btn mint locked" id="d1btn" onclick="go('d2')">See tonight's adventure →</button>
+      </section>
+
+      <section class="screen" id="d2">
+        <div class="backlink" onclick="go('d1')">‹ pick another</div>
+        <span class="tagpill" style="background:var(--mint-deep)">D · lesson</span>
+        <div style="height:6px"></div>
+        <h1 id="d2title">Tonight's tiny adventure</h1>
+        <div class="questcard">
+          <img class="qhost" id="d2host" src="/assets/candide/cut/rooster.png" alt="">
+          <p class="candsays" id="d2says">—</p>
+          <p class="qadv storyfont" id="d2adv">—</p>
+        </div>
+        <p class="dim" style="text-align:center">she's the hero — the friend just plays along. Candide names it after, never during.</p>
+        <div style="flex:1; min-height:8px"></div>
+        <button class="btn mint" onclick="goCapture('d')">We did it →</button>
+      </section>
+
+      <section class="screen reveal" id="d3">
+        <div class="backlink" onclick="go('lab')" style="color:#4a7080">‹ strategies</div>
+        <div class="book">
+          <div class="pic"><div id="d-draw" style="width:100%;height:100%"></div></div>
+          <div class="story">
+            <p class="storyfont" id="d3story">—</p>
+            <div class="practiced" id="d3badge">🌱 she practiced: —</div>
+            <div class="narr"><img src="/assets/candide/cut/rooster.png" alt=""> <span id="d3narr">told by Candide</span></div>
+          </div>
+        </div>
+        <div class="revealnav" onclick="go('again')">that's the lesson → did it land softly?</div>
+      </section>
+
+      <!-- ===== SHARED: CAPTURE THE MOMENT ===== -->
+      <section class="screen capture" id="capture">
+        <div class="backlink" onclick="go('lab')" style="color:#cbb9d6">‹ strategies</div>
+        <p class="label">Capture the moment.<br><span id="capSub" style="font-weight:600; opacity:.85">Snap the drawing.</span></p>
+        <div class="vf"><div id="capPreview" style="width:100%;height:100%"></div></div>
+        <div class="shutter" id="capShutter" onclick="goBedtime()"></div>
+        <p class="testnote">📸 This photo is the whole point — tonight it becomes a story.<br>(In the test a grown-up snaps it, with consent.)</p>
+      </section>
+
+      <!-- ===== SHARED: LATER, AT BEDTIME ===== -->
+      <section class="screen assemble" id="bedtime" style="background:radial-gradient(120% 80% at 50% 40%, #fff, var(--paper) 70%)">
+        <div style="font-size:11px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; color:var(--plum)">Later · at bedtime</div>
+        <img class="portrait" src="/assets/candide/cut/rooster.png" alt="Candide">
+        <p class="line storyfont" id="bedtimeLine">…</p>
+        <div class="prog"><i id="bedtimeProg"></i></div>
+        <p class="dim">from the photo you took today</p>
+      </section>
+
+      <!-- ===== STRATEGY C · bedtime story ===== -->
+      <section class="screen reveal" id="c4">
+        <div class="backlink" onclick="go('lab')" style="color:#4a7080">‹ strategies</div>
+        <div class="book">
+          <div class="pic"><div style="width:100%;height:100%;background:url('/assets/fort.jpg') center/cover"></div></div>
+          <div class="story">
+            <p class="storyfont">Tonight you both built a fort out of blankets and climbed inside. You took turns naming the scariest thing that isn't really scary — a sock with a face, a shadow shaped like a hat. You laughed so hard the roof came down. Twice. Adventure #7: survived. 🌙</p>
+            <div class="practiced" style="background:#fdeef0; color:var(--advred-deep); border-color:var(--advred)">🏅 7 of 100 lived · 93 still hidden</div>
+            <div class="narr"><img src="/assets/candide/cut/rooster.png" alt=""> told by Candide · from the photo you took</div>
+          </div>
+        </div>
+        <div class="revealnav" onclick="go('again')">that's tonight's story → did it land?</div>
+      </section>
+
+      <!-- ===== SHARED SIGNAL ===== -->
+      <section class="screen again" id="again">
+        <img class="portrait" src="/assets/candide/cut/rooster.png" alt="Candide">
+        <h1>Did it land?</h1>
+        <p>That's the whole question this test answers: did the child light up, and would you do it again tomorrow?</p>
+        <div class="choices">
+          <button class="btn coral" onclick="signal('yes')">Yes — again tomorrow 🌙</button>
+          <button class="btn soft" onclick="signal('flat')">It fell a little flat</button>
+          <button class="btn soft" onclick="go('lab')">↺ try another strategy</button>
+        </div>
+      </section>
+    </div>
+
+    <aside>
+      <h2>Candide · strategy lab</h2>
+      <div class="vrow a" onclick="go('a1')"><b>A · The storyteller</b><small>Guide only, never composited. Bets the magic is the imaginative tale, not the trick. Richest narrative, lowest production lift.</small></div>
+      <div class="vrow b" onclick="go('b1')"><b>B · Candide moves in</b><small>Today's build. Bets recognition — "he's really in my drawing!" — is the hook. Needs clean compositing.</small></div>
+      <div class="vrow c" onclick="go('c1')"><b>C · Adventure together</b><small>100-Aventuras model. Bets the parent-child bond + surprise + keepsake is the product. Candide hosts; no compositing at all.</small></div>
+      <div class="vrow d" onclick="go('d1')"><b>D · The little lesson</b><small>Parent picks a value; the cast member who embodies it hosts (Boro=feelings, Theo=patience, Momo=new things, Step=brave, Kiko=energy, Candide=gratitude). Uses the whole gang; no compositing.</small></div>
+      <div class="note">
+        <b style="color:#b9b2d8">Shared spine (the fixed constant):</b> every strategy = do the activity → <b style="color:#b9b2d8">capture the moment</b> (snap) → <b style="color:#b9b2d8">later, at bedtime</b> → told as a story. The strategies differ only in what the story <i>is</i>.<br><br>
+        Run the same family through 2–3 and watch which they ask to repeat. A, C &amp; D need no compositing — cheapest to fake by hand; B is the current spec.
+      </div>
+    </aside>
+
+  </div>
+</Base>
+
+<style>
+  :global(.site-header),
+  :global(.site-footer) {
+    display: none;
+  }
+
+  :root {
+    --paper:#fbf8f1; --ink:#3a2340; --ink-dim:#9b8aa0;
+    --pink:#ef4d8e; --pink-deep:#d63677;
+    --teal:#43c6bb; --teal-deep:#2ea89e;
+    --coral:#ff5d57; --mint:#5fcb8b; --mint-deep:#3c9b63;
+    --plum:#6d2f5d; --plum-deep:#4d2044;
+    --advred:#e84545; --advred-deep:#bf2f2f;
+    --sky:#cdeef7; --shadow:0 10px 28px rgba(109,47,93,.16);
+  }
+  * { box-sizing:border-box; margin:0; }
+  .lab-stage { background:#181024; color:var(--ink);
+    font-family:"Segoe UI","Avenir Next",system-ui,sans-serif;
+    display:flex; gap:44px; align-items:center; justify-content:center;
+    min-height:100dvh; padding:32px; }
+  .storyfont { font-family:"Segoe Print","Comic Sans MS","Segoe UI",sans-serif; }
+
+  .phone { width:375px; height:812px; border-radius:48px; position:relative;
+    background:var(--paper); overflow:hidden; flex:none;
+    box-shadow:0 0 0 12px #2a1b38, 0 0 0 14px #4a3361, 0 40px 90px rgba(0,0,0,.7); }
+  .phone::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:210;
+    opacity:.5; mix-blend-mode:multiply;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.045"/></feComponentTransfer></filter><rect width="140" height="140" filter="url(%23n)"/></svg>'); }
+  .notch { position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:150px; height:28px; background:#2a1b38; border-radius:0 0 18px 18px; z-index:220; }
+
+  .screen { position:absolute; inset:0; display:none; flex-direction:column; overflow-y:auto; }
+  .screen.active { display:flex; animation:pop .4s ease; }
+  @keyframes pop { from { opacity:0; transform:scale(.985) } to { opacity:1; transform:none } }
+
+  h1 { font-size:22px; font-weight:800; letter-spacing:.2px; }
+  .dim { color:var(--ink-dim); font-size:13px; line-height:1.5; }
+  .btn { display:block; width:100%; padding:15px; border:none; border-radius:18px;
+    font-size:16px; font-weight:800; cursor:pointer; background:var(--teal); color:#fff;
+    box-shadow:0 6px 0 var(--teal-deep); transition:opacity .2s; }
+  .btn:active { transform:translateY(3px); box-shadow:0 3px 0 var(--teal-deep); }
+  .btn.plum { background:var(--plum); box-shadow:0 6px 0 var(--plum-deep); }
+  .btn.coral { background:var(--advred); box-shadow:0 6px 0 var(--advred-deep); }
+  .btn.mint { background:var(--mint); box-shadow:0 6px 0 var(--mint-deep); }
+  .btn.soft { background:#fff; color:var(--ink); box-shadow:0 5px 0 #e4dccc; font-weight:700; }
+  .btn.locked { opacity:.4; pointer-events:none; }
+  .backlink { position:absolute; top:38px; left:14px; z-index:30; font-size:13px;
+    color:var(--ink-dim); cursor:pointer; padding:6px 10px; font-weight:800; }
+  .tagpill { position:absolute; top:38px; right:14px; z-index:30; font-size:11px; font-weight:800;
+    letter-spacing:.5px; border-radius:11px; padding:5px 10px; color:#fff; }
+
+  .portrait { object-fit:contain; background:none; border:none;
+    filter:drop-shadow(0 10px 14px rgba(60,30,60,.28));
+    animation:breathe 3.6s ease-in-out infinite; }
+  @keyframes breathe { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-5px) } }
+
+  /* ============ LAB CHOOSER ============ */
+  #lab { padding:54px 18px 18px; gap:12px; }
+  #lab .kick { font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--teal-deep); text-align:center; }
+  #lab h1 { text-align:center; color:var(--plum); }
+  #lab p.sub { text-align:center; font-size:12.5px; color:var(--ink-dim); font-weight:600; margin-top:-4px; }
+  .vcard { border-radius:22px; padding:14px 15px; box-shadow:var(--shadow); cursor:pointer;
+    color:#fff; display:flex; flex-direction:column; gap:5px; position:relative; overflow:hidden;
+    transition:transform .15s; }
+  .vcard:active { transform:scale(.97); }
+  .vcard .vtag { font-size:11px; font-weight:800; letter-spacing:1px; opacity:.85; }
+  .vcard b { font-size:17px; font-weight:800; }
+  .vcard small { font-size:12.5px; line-height:1.45; opacity:.95; font-weight:600; }
+  .vcard .tests { margin-top:5px; font-size:11px; font-weight:700; background:rgba(255,255,255,.16);
+    border-radius:10px; padding:5px 9px; align-self:flex-start; }
+  .vcard.a { background:linear-gradient(160deg, var(--plum), var(--plum-deep)); }
+  .vcard.b { background:linear-gradient(160deg, var(--teal), var(--teal-deep)); }
+  .vcard.c { background:linear-gradient(160deg, var(--advred), var(--advred-deep)); }
+  .vcard.d { background:linear-gradient(160deg, var(--mint), var(--mint-deep)); }
+
+  /* ====== D: value picker ====== */
+  #d1 { padding:62px 20px 22px; gap:11px; align-items:stretch; text-align:center; }
+  #d1 h1 { color:var(--mint-deep); }
+  .valgrid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  .valchip { background:#fff; border-radius:16px; padding:13px 12px; box-shadow:var(--shadow);
+    cursor:pointer; border:3px solid transparent; display:flex; flex-direction:column; gap:3px;
+    align-items:center; transition:transform .14s, border-color .14s; }
+  .valchip:active { transform:scale(.96); }
+  .valchip.picked { border-color:var(--mint-deep); transform:scale(1.03); }
+  .valchip .e { font-size:30px; }
+  .valchip img { height:50px; object-fit:contain; filter:drop-shadow(0 5px 7px rgba(60,30,60,.22)); }
+  .valchip b { font-size:14.5px; }
+  .valchip small { font-size:11px; color:var(--mint-deep); font-weight:700; line-height:1.3; }
+  #d2 { padding:62px 22px 22px; gap:13px; align-items:center; text-align:center; }
+  #d2 h1 { color:var(--mint-deep); }
+  #d2 .questcard { background:#fff; border-radius:20px; padding:18px 18px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:9px; }
+  #d2 .questcard .qe { font-size:42px; }
+  #d2 .questcard .qhost { width:84px; height:104px; object-fit:contain; align-self:center;
+    filter:drop-shadow(0 9px 12px rgba(60,30,60,.26)); animation:breathe 3.6s ease-in-out infinite; }
+  #d2 .questcard .qadv { font-size:16px; line-height:1.5; font-weight:700; }
+  #d2 .candsays { font-size:13px; color:var(--mint-deep); font-weight:700; line-height:1.5; }
+  .practiced { display:inline-flex; align-items:center; gap:7px; background:#e9f8ef; color:var(--mint-deep);
+    border:2px dashed var(--mint-deep); border-radius:13px; padding:8px 13px; font-size:12.5px; font-weight:800;
+    margin-top:11px; }
+
+  /* shared invite layout */
+  .invite { padding:62px 22px 22px; gap:13px; align-items:center; text-align:center; }
+  .invite .world { width:100%; height:150px; object-fit:cover; object-position:center 30%;
+    border-radius:22px; box-shadow:var(--shadow); opacity:.92; }
+  .invite .candide { width:104px; height:130px; margin-top:-78px; z-index:5; }
+  .invite h1 { margin-top:2px; }
+  .invite .says { background:#fff; border-radius:18px; padding:13px 16px; box-shadow:var(--shadow);
+    font-size:15px; line-height:1.6; }
+
+  /* steps */
+  .stepcard { background:#fff; border-radius:14px; padding:11px 13px; box-shadow:var(--shadow);
+    display:flex; align-items:center; gap:11px; font-size:14px; font-weight:700; line-height:1.35; }
+  .stepcard .ic { font-size:22px; width:30px; text-align:center; flex:none; }
+
+  /* capture */
+  .capture { background:#141016; align-items:center; justify-content:center; padding:24px; gap:16px; }
+  .capture .vf { width:264px; height:330px; border-radius:18px; position:relative; overflow:hidden;
+    border:3px solid rgba(255,255,255,.5); box-shadow:0 0 0 6px rgba(255,255,255,.08); }
+  .capture .vf > * { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .capture .label { color:#fff; font-size:14px; font-weight:700; text-align:center; opacity:.92; line-height:1.4; }
+  .capture .shutter { width:66px; height:66px; border-radius:50%; border:5px solid #fff;
+    cursor:pointer; box-shadow:0 0 0 4px rgba(255,255,255,.18); }
+  .capture .shutter:active { transform:scale(.92); }
+  .capture .testnote { color:#b9a9c2; font-size:10.5px; text-align:center; max-width:264px; line-height:1.5; }
+
+  /* assemble */
+  .assemble { align-items:center; justify-content:center; gap:16px; text-align:center; padding:30px; }
+  .assemble img { width:100px; height:125px; }
+  .assemble .line { font-size:16px; font-weight:700; color:var(--plum); }
+  .assemble .prog { width:190px; height:8px; border-radius:99px; background:#eadff0; overflow:hidden; }
+  .assemble .prog i { display:block; height:100%; width:0; background:var(--teal); animation:fill 2.3s ease forwards; }
+  @keyframes fill { to { width:100%; } }
+
+  /* book / reveal */
+  .reveal { background:var(--sky); align-items:center; justify-content:center; padding:20px; }
+  .book { width:316px; background:#fffdf6; border-radius:8px 22px 22px 8px;
+    box-shadow:0 14px 40px rgba(70,40,70,.32), inset 5px 0 12px rgba(160,120,140,.12); overflow:hidden; }
+  .book .pic { position:relative; height:250px; background:#fff; overflow:hidden; }
+  .book .pic .candide { position:absolute; bottom:12px; left:50%; transform:translateX(-50%);
+    width:96px; height:120px; z-index:4; }
+  .book .story { padding:15px 18px 18px; }
+  .book .story p { font-size:14.5px; line-height:1.58; color:var(--ink); }
+  .book .narr { display:flex; align-items:center; gap:7px; margin-top:11px;
+    font-size:11px; color:var(--ink-dim); font-weight:700; }
+  .book .narr img { width:24px; height:32px; object-fit:contain; }
+  .revealnav { position:absolute; bottom:18px; width:100%; text-align:center;
+    font-size:12px; color:#4a7080; font-weight:700; cursor:pointer; }
+
+  /* ====== C: scratch adventure ====== */
+  #c2 { padding:62px 20px 22px; gap:13px; align-items:center; text-align:center; }
+  #c2 h1 { color:var(--advred-deep); }
+  .scratchwrap { position:relative; width:280px; height:170px; border-radius:18px; overflow:hidden;
+    box-shadow:var(--shadow); }
+  .scratchwrap .under { position:absolute; inset:0; background:#fff; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:7px; padding:16px; }
+  .scratchwrap .under .cat { font-size:11px; font-weight:800; letter-spacing:1px; color:var(--advred);
+    text-transform:uppercase; }
+  .scratchwrap .under .adv { font-size:15.5px; font-weight:800; line-height:1.35; color:var(--ink); }
+  .scratchwrap canvas { position:absolute; inset:0; touch-action:none; cursor:grab; }
+  .advmeta { display:flex; gap:8px; justify-content:center; }
+  .advmeta span { background:#fff; border:1.5px solid #f0d9d9; border-radius:11px; padding:5px 10px;
+    font-size:11.5px; font-weight:800; color:#a85; }
+  .norule { background:#fff4d6; border-radius:13px; padding:9px 13px; font-size:12px; line-height:1.5;
+    color:#8a6f2e; font-weight:700; }
+
+  /* C keepsake */
+  #c4 { background:var(--paper); align-items:center; padding:60px 20px 22px; gap:13px; }
+  #c4 .albumpage { background:#fff; border-radius:14px; padding:12px; box-shadow:var(--shadow);
+    width:100%; transform:rotate(-1.2deg); }
+  #c4 .albumpage .ph { height:200px; border-radius:8px; background-size:cover; background-position:center; }
+  #c4 .albumpage .cap { font-size:13.5px; font-weight:700; padding:9px 4px 2px; line-height:1.4; }
+  #c4 .albumpage .cap small { display:block; color:var(--ink-dim); font-weight:600; font-size:11.5px; margin-top:2px; }
+  #c4 .stamp { display:inline-flex; align-items:center; gap:7px; background:#fdeef0; color:var(--advred-deep);
+    border:2px dashed var(--advred); border-radius:13px; padding:8px 13px; font-size:12.5px; font-weight:800; }
+
+  /* signal */
+  .again { align-items:center; justify-content:center; text-align:center; gap:14px; padding:30px;
+    background:linear-gradient(165deg, var(--plum), var(--plum-deep)); color:#fdeff5; }
+  .again img { width:88px; height:110px; }
+  .again h1 { font-size:21px; }
+  .again p { font-size:13.5px; line-height:1.6; color:#e8c7da; max-width:270px; }
+  .again .choices { display:flex; flex-direction:column; gap:10px; width:100%; max-width:270px; }
+
+  aside { max-width:320px; color:#cdc8e4; }
+  aside h2 { font-size:14px; text-transform:uppercase; letter-spacing:2px; color:#8d87b0; margin-bottom:14px; }
+  aside .vrow { padding:11px 13px; border-radius:14px; margin-bottom:8px; cursor:pointer; }
+  aside .vrow:hover { background:#221636; }
+  aside .vrow b { font-size:13.5px; }
+  aside .vrow.a b { color:#d89ec6; } aside .vrow.b b { color:#5fd6cb; } aside .vrow.c b { color:#ff8f8f; }
+  aside .vrow.d b { color:#7fd9a2; }
+  aside .vrow small { display:block; color:#8d80a5; font-size:12px; margin-top:3px; line-height:1.45; }
+  aside .note { margin-top:14px; font-size:12px; color:#8d80a5; line-height:1.6;
+    border-top:1px solid #2b2040; padding-top:12px; }
+
+  @media (max-width:920px) {
+    .lab-stage { padding:0; background:var(--paper); min-height:100dvh; }
+    .phone { width:100%; height:100dvh; max-width:100%; border-radius:0;
+      box-shadow:none; transform:none; }
+    .notch { display:none; }
+    .phone::after { display:none; }
+    aside { display:none; }
+    /* keep top-pinned controls clear of the notch / status bar */
+    .backlink, .tagpill { top: calc(env(safe-area-inset-top) + 14px); }
+    /* preserve each top-aligned screen's original top padding, plus the safe-area inset */
+    #lab { padding-top: calc(env(safe-area-inset-top) + 54px); }
+    .invite, #d1, #d2, #c2 { padding-top: calc(env(safe-area-inset-top) + 62px); }
+    #c4 { padding-top: calc(env(safe-area-inset-top) + 60px); }
+  }
+</style>
+
+<script is:inline>
+  function go(id) {
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+    const el = document.getElementById(id);
+    el?.classList.add("active");
+    document.querySelector(".phone").scrollTop = 0;
+    if (id === 'c2') setTimeout(initScratch, 30);
+    if (id === 'd2') renderLesson();
+    if (id === 'd3') renderLessonReveal();
+  }
+
+  /* ====== D: the little lesson ====== */
+  /* each lesson is hosted by the cast member whose psychomotor role embodies it */
+  const LESSONS = {
+    gratitude: { e:"🙏", name:"Gratitude", host:"Candide", img:"rooster.png",
+      says:"“Something is different here… let's find three good things hiding in plain sight.”",
+      adv:"Walk slowly through one room with Candide. Point at three things that quietly make life better — and thank each one out loud.",
+      story:"Tonight Candide walked you slowly around the room. You found three quiet good things — the lamp, the warm blanket, the window that keeps the morning. You thanked them out loud. Nothing answered, but the room felt kinder afterward." },
+    feelings: { e:"🌦️", name:"Big feelings", host:"Boro", img:"monster.png",
+      says:"“When it feels too big, Boro stays right here. Let's find where the feeling lives.”",
+      adv:"Build a little nest of cushions with Boro and climb in. Name the weather inside you — stormy, foggy, sunny — then take three slow Boro-breaths.",
+      story:"Tonight Boro helped you build a nest, and you climbed in with all your big feelings. You gave the weather inside a name. Once it had a name, it got a little smaller. Boro stayed until it did." },
+    patience: { e:"🐌", name:"Patience", host:"Theo", img:"fox.png",
+      says:"“Theo is watching how this changes. Most people look away too soon.”",
+      adv:"Theo picks one slow thing — an ice cube melting, the sky going dark. Watch it together, very still, until it changes. No looking away.",
+      story:"Tonight Theo sat with you and one slow thing. You stayed still and watched it all the way to the change — the part most people never wait for. You did. Theo noticed that." },
+    flavors: { e:"🍋", name:"Trying new things", host:"Momo", img:"monkey.png",
+      says:"“Momo isn't sure where this goes… that's the fun part. Let's try it anyway.”",
+      adv:"Momo dares you to try one new thing — a new taste, a new way home. Make your most honest face, then give it a name and a score out of ten.",
+      story:"Tonight Momo talked you into something new. Your face did three things at once. You didn't decide too fast — you named it and scored it, the way real explorers do. Momo was very proud, in his unsure way." },
+    brave: { e:"🦁", name:"Being brave", host:"Step", img:"tallman.png",
+      says:"“Step just does it. Stand tall. Say the brave thing out loud.”",
+      adv:"Stand on the tallest safe thing and reach up as high as Step. Announce one brave thing you'll do tomorrow — loud enough for the whole room to hear.",
+      story:"Tonight you stood up tall, the way Step does, and announced your brave thing loud enough for the whole room. Your voice wobbled. Brave voices do. But it's out there now — too big to hide from." },
+    energy: { e:"🐸", name:"Big energy", host:"Kiko", img:"frog.png",
+      says:"“Kiko moves, then stops. Ready? Let's get the wiggles out.”",
+      adv:"Kiko leads: spin, jump and roll until every last wiggle is gone — then FREEZE like a statue and feel how quiet it gets.",
+      story:"Tonight Kiko helped you spin and jump until the very last wiggle was out. Then — FREEZE. The quiet that came after was the best part. Kiko moves, then stops. So did you." }
+  };
+  let selectedLesson = null;
+
+  function pickLesson(key) {
+    selectedLesson = key;
+    document.querySelectorAll("#d1 .valchip").forEach(c =>
+      c.classList.toggle("picked", c.dataset.v === key));
+    document.getElementById("d1btn").classList.remove("locked");
+  }
+
+  /* a soft storybook illustration of the hosting friend */
+  function hostScene(l) {
+    return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 38%, #fff, var(--sky))">
+      <img src="/assets/candide/cut/${l.img}" alt="${l.host}" style="height:84%;object-fit:contain;filter:drop-shadow(0 12px 16px rgba(60,30,60,.28))"></div>`;
+  }
+
+  function renderLesson() {
+    const l = LESSONS[selectedLesson] || LESSONS.gratitude;
+    document.getElementById("d2host").src = "/assets/candide/cut/" + l.img;
+    document.getElementById("d2adv").textContent = l.adv;
+    document.getElementById("d2says").textContent = l.says;
+    document.getElementById("d2title").textContent = l.host + " hosts: a little " + l.name.toLowerCase();
+  }
+
+  function renderLessonReveal() {
+    const l = LESSONS[selectedLesson] || LESSONS.gratitude;
+    document.getElementById("d-draw").innerHTML = hostScene(l);
+    document.getElementById("d3story").textContent = l.story;
+    document.getElementById("d3badge").textContent = l.e + "  she practiced: " + l.name + " — with " + l.host;
+    document.getElementById("d3narr").textContent = "told by Candide · with " + l.host;
+  }
+
+  function toast(msg) {
+    let t = document.getElementById("toast");
+    if (!t) {
+      t = document.createElement("div");
+      t.id = "toast";
+      t.style.cssText = "position:absolute;left:50%;bottom:96px;transform:translateX(-50%);z-index:300;" +
+        "background:#3a2340;color:#fff;border-radius:14px;padding:10px 16px;font-size:13px;" +
+        "max-width:300px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.3);";
+      document.querySelector(".phone").appendChild(t);
+    }
+    t.textContent = msg; t.style.display = "block";
+    clearTimeout(t._h); t._h = setTimeout(() => { t.style.display = "none"; }, 2800);
+  }
+
+  function signal(kind) {
+    toast(kind === 'yes'
+      ? "💚 Noted: this strategy landed — they'd do it again."
+      : "Noted: this one fell flat — compare against the others.");
+  }
+
+  /* stand-in child's crayon drawing */
+  function crayonSVG() {
+    return `<svg viewBox="0 0 280 250" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%" xmlns="http://www.w3.org/2000/svg">
+      <rect width="280" height="250" fill="#fffdf6"/>
+      <circle cx="234" cy="42" r="20" fill="none" stroke="#f7b500" stroke-width="6" stroke-linecap="round"/>
+      <g stroke="#f7b500" stroke-width="5" stroke-linecap="round">
+        <line x1="234" y1="8" x2="234" y2="16"/><line x1="270" y1="42" x2="262" y2="42"/>
+        <line x1="209" y1="18" x2="215" y2="24"/><line x1="259" y1="18" x2="253" y2="24"/></g>
+      <path d="M0 212 Q70 202 140 212 T280 210" fill="none" stroke="#5fcb8b" stroke-width="7" stroke-linecap="round"/>
+      <rect x="74" y="120" width="132" height="92" fill="#cdeef7" stroke="#3aa0c4" stroke-width="6"/>
+      <path d="M62 122 L140 72 L218 122 Z" fill="#ff7a8a" stroke="#e0455a" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M120 212 L120 168 A20 20 0 0 1 160 168 L160 212 Z" fill="#f6c453" stroke="#c98a18" stroke-width="5"/>
+      <circle cx="152" cy="190" r="3.5" fill="#c98a18"/>
+      <rect x="89" y="140" width="24" height="24" fill="#fff3c0" stroke="#3aa0c4" stroke-width="4"/>
+      <path d="M22 236 q10 -9 20 0 t20 0" fill="none" stroke="#b48ad6" stroke-width="3" stroke-linecap="round"/>
+    </svg>`;
+  }
+
+  function paintDrawings() {
+    document.getElementById("a-draw").innerHTML = crayonSVG();
+    document.getElementById("b-draw").innerHTML = crayonSVG();
+  }
+
+  /* ====== shared spine: capture the moment → later → told as a story ====== */
+  const STORY_OF = { a:'a3', b:'b3', c:'c4', d:'d3' };
+  const BEDTIME_LINE = {
+    a: "Candide turns what you made into a story…",
+    b: "Candide slips into the picture…",
+    c: "Candide turns tonight's adventure into a story…",
+    d: "Candide turns it into a story — and quietly names what you practiced…"
+  };
+  let captureVariant = 'a';
+
+  function goCapture(variant) {
+    captureVariant = variant;
+    paintDrawings();
+    const prev = document.getElementById("capPreview");
+    const sub = document.getElementById("capSub");
+    const shutter = document.getElementById("capShutter");
+    if (variant === 'c') {
+      prev.innerHTML = `<div style="width:100%;height:100%;background:url('/assets/fort.jpg') center/cover"></div>`;
+      sub.textContent = "Snap the two of you, mid-adventure.";
+      shutter.style.background = "var(--advred)";
+    } else if (variant === 'd') {
+      const l = LESSONS[selectedLesson] || LESSONS.gratitude;
+      prev.innerHTML = hostScene(l);
+      sub.textContent = "Snap her mid-adventure with " + l.host + ".";
+      shutter.style.background = "var(--mint)";
+    } else {
+      prev.innerHTML = crayonSVG();
+      sub.textContent = "Snap the drawing.";
+      shutter.style.background = variant === 'b' ? "var(--teal)" : "var(--plum)";
+    }
+    go('capture');
+  }
+
+  function goBedtime() {
+    document.getElementById("bedtimeLine").textContent = BEDTIME_LINE[captureVariant];
+    go('bedtime');
+    const bar = document.getElementById("bedtimeProg");
+    bar.style.animation = "none"; void bar.offsetWidth; bar.style.animation = "fill 2.3s ease forwards";
+    setTimeout(() => go(STORY_OF[captureVariant]), 2200);
+  }
+
+  /* ====== scratch-off canvas ====== */
+  let scratchInit = false;
+  function initScratch() {
+    const c = document.getElementById("scratch");
+    if (!c) return;
+    const ctx = c.getContext("2d");
+    const w = c.width, h = c.height;
+    ctx.globalCompositeOperation = "source-over";
+    const g = ctx.createLinearGradient(0, 0, w, h);
+    g.addColorStop(0, "#d8c4e0"); g.addColorStop(1, "#c2a6d2");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = "#6d2f5d"; ctx.font = "bold 16px 'Segoe UI',sans-serif"; ctx.textAlign = "center";
+    ctx.fillText("scratch here ✦", w / 2, h / 2 - 6);
+    ctx.font = "12px 'Segoe UI',sans-serif"; ctx.fillStyle = "#8a6aa0";
+    ctx.fillText("(no peeking first)", w / 2, h / 2 + 14);
+
+    let drawing = false, done = false;
+    const btn = document.getElementById("c2btn");
+    btn.classList.add("locked");
+    function pos(e) {
+      const r = c.getBoundingClientRect();
+      const t = e.touches ? e.touches[0] : e;
+      return [(t.clientX - r.left) * (w / r.width), (t.clientY - r.top) * (h / r.height)];
+    }
+    function scratch(x, y) {
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.beginPath(); ctx.arc(x, y, 20, 0, Math.PI * 2); ctx.fill();
+    }
+    function pct() {
+      const d = ctx.getImageData(0, 0, w, h).data; let clear = 0;
+      for (let i = 3; i < d.length; i += 4 * 12) if (d[i] === 0) clear++;
+      return clear / (d.length / (4 * 12));
+    }
+    function check() {
+      if (!done && pct() > 0.45) {
+        done = true;
+        c.style.transition = "opacity .5s"; c.style.opacity = 0;
+        btn.classList.remove("locked");
+      }
+    }
+    c.onpointerdown = e => { drawing = true; scratch(...pos(e)); };
+    c.onpointermove = e => { if (drawing) scratch(...pos(e)); };
+    window.addEventListener("pointerup", () => { if (drawing) { drawing = false; check(); } });
+    window.addEventListener("pointercancel", () => { drawing = false; });
+  }
+
+  paintDrawings();
+</script>
