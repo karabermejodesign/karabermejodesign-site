@@ -19,6 +19,7 @@ export interface Project {
   summary: string;
   sections: ProjectSection[];
   details: ProjectDetail[];
+  comingSoon?: boolean;
 }
 
 export const projects: Project[] = [
@@ -27,6 +28,7 @@ export const projects: Project[] = [
     title: "Quickview",
     category: "Product Design",
     year: "December 2025",
+    comingSoon: true,
     description:
       "Shipped a faster, clearer way for artists to get to the information that matters most.",
     image: "/images/quickview.png",

@@ -31,7 +31,11 @@ import { projects } from "../data/projects";
         {projects.map((project) => (
           <article class="home-work-item">
             <span class="home-work-date">{project.year}</span>
-            <a href={`/work/${project.slug}`} class="home-work-title">{project.title}</a>
+            {project.comingSoon ? (
+              <span class="home-work-title">{project.title}</span>
+            ) : (
+              <a href={`/work/${project.slug}`} class="home-work-title">{project.title}</a>
+            )}
             <p class="home-work-desc">{project.description}</p>
             <div class="home-work-img-wrap">
               {project.image ? (
@@ -178,11 +182,15 @@ import { projects } from "../data/projects";
     text-underline-offset: 2px;
     line-height: 1.4;
     align-self: flex-start;
+    cursor: default;
+  }
+
+  a.home-work-title {
     cursor: pointer;
     transition: opacity 0.2s ease;
   }
 
-  .home-work-title:hover {
+  a.home-work-title:hover {
     opacity: 0.6;
   }
 
