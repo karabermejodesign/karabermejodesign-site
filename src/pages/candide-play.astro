@@ -1,0 +1,788 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Candide · Play Flow">
+  <div class="lab-stage">
+
+    <div class="phone">
+      <div class="notch"></div>
+
+      <!-- HOME -->
+      <section class="screen active" id="home">
+        <div class="top">
+          <h1>CANDIDE</h1>
+          <span class="topright">
+            <a href="/candide-strategy-lab" class="lablink">‹ strategy lab</a>
+            <span style="color:#b5a8be; font-size:20px">⚙</span>
+          </span>
+        </div>
+        <p class="tagline">Play together by day — get a storybook every night.</p>
+        <div class="bento">
+          <div class="block hero" onclick="go('deck')">
+            <img class="world" src="/assets/candide/world.jpg" alt="the Candide world">
+            <div class="cta"><b>Pick a game to play together</b><small>real-world games · 5–20 min · the gang hosts</small></div>
+          </div>
+          <div class="block tonight" onclick="openTonight()">
+            <div class="tb-head">
+              <img class="portrait" src="/assets/candide/cut/bird.png" style="animation-delay:.3s" alt="Pio">
+              <div><b>Tonight's storybook</b><small>Pio collects a page from every game & snap</small></div>
+              <span class="peek">peek ›</span>
+            </div>
+            <div class="pagetrack">
+              <div class="pageslot filled">🖍</div>
+              <div class="pageslot filled">🏗</div>
+              <div class="pageslot next">+</div>
+              <div class="pageslot"></div>
+              <div class="pageslot"></div>
+            </div>
+            <div class="tb-status"><b>2 pages ready</b> — a fine little book. Add a page:</div>
+            <div class="tb-chips">
+              <span onclick="event.stopPropagation(); go('deck')">🎴 game</span>
+              <span onclick="event.stopPropagation(); toast('Show the gang: snap anything your child made (mock)')">📸 snap</span>
+              <span onclick="event.stopPropagation(); toast('Add photos from today (mock)')">🖼 photos</span>
+            </div>
+          </div>
+          <div class="block square show" onclick="toast('Snap what they made — the right friend reacts: Grub reviews food, Rico judges art... (mock)')">
+            <div class="ic">📸</div>
+            <b>Snap what they made</b>
+            <small>the gang reacts — and it joins tonight's story</small>
+          </div>
+          <div class="block square tell" onclick="toast('Léon watched your day from up there... and got it all wrong. Correct him! (mock)')">
+            <div class="ic">🗣️</div>
+            <b>Turn your day into a story</b>
+            <small>Léon saw it all — incorrectly. 3 little questions</small>
+          </div>
+          <div class="block shelfrow2" onclick="go('shelf')">
+            📚 <b>Your storybooks</b><small>· every play day, kept forever</small>
+            <div class="covers">
+              <i style="background-image:url('/assets/battle.jpg')"></i>
+              <i style="background-image:url('/assets/park.jpg')"></i>
+              <i style="background-image:url('/assets/fort.jpg')"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DECK -->
+      <section class="screen" id="deck">
+        <div class="backlink" onclick="go('home')">‹ back</div>
+        <div style="height:10px"></div>
+        <h1>🎴 Today's deck</h1>
+        <p class="sub">tap a card — or let the gang choose</p>
+        <div class="gamecard" data-g="battle" onclick="openSession('battle')">
+          <img class="portrait" src="/assets/candide/cut/rooster.png" alt="Rico">
+          <div><span class="host">Rico hosts</span><b>The Great Drawing Battle</b>
+            <div class="meta"><span class="tag">⏱ 15 min</span><span class="tag">🧺 paper + crayons</span><span class="tag">🏠</span></div>
+          </div>
+        </div>
+        <div class="gamecard" data-g="build" onclick="openSession('build')">
+          <img class="portrait" src="/assets/candide/cut/monkey.png" style="animation-delay:.5s" alt="Momo">
+          <div><span class="host">Momo hosts</span><b>Build It for Momo</b>
+            <div class="meta"><span class="tag">⏱ 20 min</span><span class="tag">🧺 one room</span><span class="tag">🏠</span></div>
+          </div>
+        </div>
+        <div class="gamecard" data-g="detective" onclick="openSession('detective')">
+          <img class="portrait" src="/assets/candide/cut/fox.png" style="animation-delay:1s" alt="Fig">
+          <div><span class="host">Fig hosts</span><b>The Case of Rico's Egg</b>
+            <div class="meta"><span class="tag">⏱ 15 min</span><span class="tag">🧺 nothing</span><span class="tag">🏠</span></div>
+          </div>
+        </div>
+        <div class="gamecard" data-g="expedition" onclick="openSession('expedition')">
+          <img class="portrait" src="/assets/candide/cut/walrus.png" style="animation-delay:1.5s" alt="Waldo">
+          <div><span class="host">Waldo the Magnificent hosts</span><b>The Grand Expedition</b>
+            <div class="meta"><span class="tag">⏱ any walk</span><span class="tag">🧺 the world</span><span class="tag">🌳</span></div>
+          </div>
+        </div>
+        <div style="flex:1"></div>
+        <button class="btn" onclick="pipPicks()">🎲 Let the gang pick!</button>
+        <div style="height:6px"></div>
+      </section>
+
+      <!-- SESSION -->
+      <section class="screen" id="session">
+        <div class="backlink" onclick="go('deck')">‹ deck</div>
+        <div style="height:6px"></div>
+        <div id="sessionbody" style="display:flex; flex-direction:column; gap:10px;"></div>
+        <div style="height:10px"></div>
+      </section>
+
+      <!-- SHELF -->
+      <section class="screen" id="shelf">
+        <div class="backlink" onclick="go('home')">‹ home</div>
+        <div style="height:20px"></div>
+        <h1>📚 Your storybooks</h1>
+        <div class="books">
+          <figure class="book" onclick="chooseRead()">
+            <div class="cover" style="background-image:url('/assets/battle.jpg')"></div>
+            <figcaption>The Great Drawing Battle ⭐<small>tonight · told by Rico</small></figcaption>
+          </figure>
+          <figure class="book b2" onclick="chooseRead()">
+            <div class="cover" style="background-image:url('/assets/park.jpg')"></div>
+            <figcaption>The Playground Day<small>Sunday · told by Gus</small></figcaption>
+          </figure>
+          <figure class="book b3" onclick="chooseRead()">
+            <div class="cover plain"><img src="/assets/candide/cut/monster.png" alt=""></div>
+            <figcaption>Mimi's Quiet Day<small>Friday · her own day</small></figcaption>
+          </figure>
+        </div>
+        <div class="woodrow"></div>
+        <div class="books" style="margin-top:14px">
+          <figure class="book" onclick="chooseRead()">
+            <div class="cover" style="background-image:url('/assets/drawing.jpg')"></div>
+            <figcaption>You Drew the Gang!<small>Thursday · told by Rico</small></figcaption>
+          </figure>
+          <figure class="book b2" onclick="chooseRead()">
+            <div class="cover" style="background-image:url('/assets/fort.jpg')"></div>
+            <figcaption>Momo Moves In<small>Wednesday · told by Momo</small></figcaption>
+          </figure>
+        </div>
+        <div class="woodrow"></div>
+        <div style="flex:1"></div>
+        <button class="btn soft">🖨️ Print this week as a little book</button>
+        <div style="height:18px"></div>
+      </section>
+
+      <!-- READER -->
+      <section class="screen" id="reader">
+        <div class="backlink" onclick="go('home')" style="color:#4a7080">‹ home</div>
+        <div class="bookframe" id="bookframe"></div>
+        <p class="readerhint">tap the right side to turn the page →</p>
+        <div class="flipzone l" onclick="flip(-1)"></div>
+        <div class="flipzone r" onclick="flip(1)"></div>
+        <div id="endcard">
+          <div class="panel">
+            <h2>The end 🌙 sweet dreams!</h2>
+            <button class="btn soft" onclick="openBook()">Read it again</button>
+            <button class="btn soft" onclick="go('shelf')">Back to the shelf</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- READING MODE -->
+      <div id="readmode">
+        <div class="panel">
+          <h2>How shall we read tonight?</h2>
+          <p class="hintline">pick the cozy level — three of these need no screen at all</p>
+          <div class="mode primary" onclick="startReading()">
+            <div class="ic">📖</div><div>Read together on screen<small>the classic page-flip book</small></div>
+          </div>
+          <div class="mode" onclick="toast('Listen mode: tonight\'s narrator reads it out loud, phone face-down (mock)')">
+            <div class="ic">🌙</div><div>Listen in the dark<small>tonight's narrator reads, phone face-down</small></div>
+          </div>
+          <div class="mode" onclick="toast('Print: one A4 sheet folds into a tiny 8-page book (mock)')">
+            <div class="ic">🖨️</div><div>Print the little book<small>one sheet of paper, bedtime stays paper</small></div>
+          </div>
+          <div class="mode" onclick="toast('Parent mode: dim script view, only you see the screen (mock)')">
+            <div class="ic">🤫</div><div>Parent-reading mode<small>dim script view — the child never sees a screen</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside>
+      <h2>Candide · cast reskin v5</h2>
+      <div class="step now" data-s="home" onclick="go('home')"><b>1</b><span>Home<small>The hero IS the world art. Pio runs the page meter; Grub fronts Snap, Léon fronts Tell — every surface has a face.</small></span></div>
+      <div class="step" data-s="deck" onclick="go('deck')"><b>2</b><span>The deck<small>Each game card shows its HOST: Rico judges battles, Momo runs builds, Fig investigates, Waldo leads expeditions.</small></span></div>
+      <div class="step" data-s="session" onclick="openSession('detective')"><b>3</b><span>Sessions<small>Briefs rewritten in each host's voice. The detective case is now inter-cast: Rico's egg is missing.</small></span></div>
+      <div class="step" data-s="shelf" onclick="go('shelf')"><b>4</b><span>Shelf<small>Books credit their narrator ("told by Rico"). Mimi narrates every goodnight page.</small></span></div>
+      <div class="step" data-s="reader" onclick="chooseRead()"><b>5</b><span>The book<small>World-art cover; narrator badge on each page; Mimi's goodnight.</small></span></div>
+      <div class="note">
+        Cast & roles: docs/CAST.md (names are placeholders for the artist).
+        Character art © the commissioning artist; grain/palette lifted from it.
+        Story texts/photos remain real pipeline output.
+      </div>
+    </aside>
+
+  </div>
+</Base>
+
+<style>
+  :global(.site-header),
+  :global(.site-footer) {
+    display: none;
+  }
+
+  :root {
+    --paper: #fbf8f1;
+    --ink: #3a2340;
+    --ink-dim: #9b8aa0;
+    --pink: #ef4d8e; --pink-deep: #d63677;
+    --teal: #43c6bb; --teal-deep: #2ea89e;
+    --coral: #ff5d57;
+    --mint: #5fcb8b;
+    --plum: #6d2f5d; --plum-deep: #4d2044;
+    --sky: #cdeef7;
+    --shadow: 0 10px 28px rgba(109, 47, 93, .16);
+  }
+  * { box-sizing:border-box; margin:0; }
+  .lab-stage { background:#181024; color:var(--ink);
+    font-family:"Segoe UI", "Avenir Next", system-ui, sans-serif;
+    display:flex; gap:48px; align-items:center; justify-content:center;
+    min-height:100dvh; padding:32px; }
+  .storyfont { font-family:"Segoe Print", "Comic Sans MS", "Segoe UI", sans-serif; }
+  .poster { font-weight:800; letter-spacing:.3px; }
+
+  .phone { width:375px; height:812px; border-radius:48px; position:relative;
+    background:var(--paper); overflow:hidden; flex:none;
+    box-shadow:0 0 0 12px #2a1b38, 0 0 0 14px #4a3361, 0 40px 90px rgba(0,0,0,.7); }
+  /* the Candide grain */
+  .phone::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:210;
+    opacity:.5; mix-blend-mode:multiply;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.045"/></feComponentTransfer></filter><rect width="140" height="140" filter="url(%23n)"/></svg>'); }
+  .notch { position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:150px; height:28px; background:#2a1b38; border-radius:0 0 18px 18px; z-index:220; }
+
+  .screen { position:absolute; inset:0; display:none; flex-direction:column; overflow:hidden; }
+  .screen.active { display:flex; animation:pop .4s ease; }
+  @keyframes pop { from { opacity:0; transform:scale(.985) } to { opacity:1; transform:none } }
+
+  h1 { font-size:23px; font-weight:800; letter-spacing:.2px; }
+  .dim { color:var(--ink-dim); font-size:14px; line-height:1.5; }
+  .btn { display:block; width:100%; padding:15px; border:none; border-radius:18px;
+    font-size:16px; font-weight:800; cursor:pointer;
+    background:var(--pink); color:#fff; box-shadow:0 6px 0 var(--pink-deep); }
+  .btn:active { transform:translateY(3px); box-shadow:0 3px 0 var(--pink-deep); }
+  .btn.soft { background:#fff; color:var(--ink); box-shadow:0 5px 0 #e4dccc; font-weight:700; }
+  .backlink { position:absolute; top:38px; left:16px; z-index:30; font-size:14px;
+    color:var(--ink-dim); cursor:pointer; padding:6px 10px; font-weight:700; }
+
+  /* free-standing cut-out figures, breathing like Pip used to */
+  .portrait { object-fit:contain; background:none; border:none;
+    filter:drop-shadow(0 10px 14px rgba(60,30,60,.28));
+    animation:breathe 3.6s ease-in-out infinite; }
+  @keyframes breathe { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-4px) } }
+
+  /* ================= HOME ================= */
+  #home { padding:52px 16px 16px; gap:10px; overflow-y:auto; }
+  #home .top { display:flex; justify-content:space-between; align-items:baseline; padding:0 6px; }
+  #home .top h1 { font-size:24px; font-weight:900; letter-spacing:1px; color:var(--plum); }
+  #home .topright { display:flex; align-items:center; gap:12px; }
+  #home .lablink { color:var(--ink-dim); font-size:12px; font-weight:700; text-decoration:none;
+    white-space:nowrap; transition:opacity .2s ease; }
+  #home .lablink:hover { opacity:.6; }
+  #home .tagline { padding:0 6px; font-size:13px; color:var(--ink-dim); font-weight:600; margin-top:-5px; }
+  .bento { display:grid; grid-template-columns:repeat(2, 1fr); gap:11px; }
+  .block { border-radius:24px; box-shadow:var(--shadow); cursor:pointer; position:relative;
+    overflow:hidden; transition:transform .15s; }
+  .block:active { transform:scale(.96); }
+
+  /* HERO: the world they live in */
+  .block.hero { grid-column:1/-1; aspect-ratio:1.42/1; background:#cdeef7; }
+  .block.hero img.world { position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center 30%; }
+  .block.hero .cta { position:absolute; bottom:12px; left:12px; right:12px;
+    background:var(--pink); border-radius:17px; padding:11px 13px; text-align:center;
+    color:#fff; box-shadow:0 5px 0 var(--pink-deep); }
+  .block.hero .cta b { font-weight:800; font-size:16px; display:block; }
+  .block.hero .cta small { font-size:11.5px; font-weight:700; opacity:.85; display:block; margin-top:1px; }
+
+  /* TONIGHT: page meter, plum, Pio collects the pages */
+  .block.tonight { grid-column:1/-1; background:linear-gradient(160deg, var(--plum), var(--plum-deep));
+    padding:12px 14px 13px; display:flex; flex-direction:column; gap:9px; color:#fdeff5; }
+  .tb-head { display:flex; align-items:center; gap:10px; }
+  .tb-head img { width:40px; height:40px; }
+  .tb-head b { font-size:14.5px; display:block; font-weight:800; }
+  .tb-head small { color:#d8a8c5; font-size:11px; display:block; }
+  .tb-head .peek { margin-left:auto; background:rgba(255,255,255,.14); color:#ffd9ea;
+    border-radius:12px; padding:5px 10px; font-size:11px; font-weight:800; flex:none; }
+  .pagetrack { display:flex; gap:7px; }
+  .pageslot { flex:1; aspect-ratio:4/5; border-radius:8px 11px 11px 8px; display:flex;
+    align-items:center; justify-content:center; font-size:18px;
+    border:2px dashed rgba(255,255,255,.25); color:rgba(255,255,255,.3); }
+  .pageslot.filled { background:var(--paper); border:none; color:#6d4d22;
+    box-shadow:0 0 14px rgba(255,182,220,.4), inset -3px 0 0 #e8dcc2; }
+  .pageslot.next { border:2px dashed #ff9ec6; color:#ffc3dd;
+    animation:pulse 1.8s ease-in-out infinite; font-weight:800; }
+  @keyframes pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+  .tb-status { font-size:11.5px; color:#e8c7da; }
+  .tb-status b { color:#ffd9ea; }
+  .tb-chips { display:flex; gap:8px; }
+  .tb-chips span { background:rgba(255,255,255,.13); border:1.5px solid rgba(255,255,255,.22);
+    border-radius:12px; padding:6px 11px; font-size:11.5px; font-weight:800; color:#ffe4f0; }
+
+  /* quick squares: teal & coral, host portraits */
+  .block.square { aspect-ratio:1/1; padding:13px; display:flex; flex-direction:column; color:#fff; }
+  .block.square .ic { font-size:30px; width:fit-content; }
+  .block.square b { font-size:14.5px; margin-top:auto; line-height:1.3; font-weight:800; }
+  .block.square small { font-size:11px; line-height:1.4; margin-top:4px; opacity:.92; }
+  .block.square.show { background:var(--teal); }
+  .block.square.tell { background:var(--coral); }
+
+  /* shelf row: mint */
+  .block.shelfrow2 { grid-column:1/-1; background:var(--mint); color:#fff;
+    padding:11px 16px; display:flex; align-items:center; gap:7px; font-size:13.5px; }
+  .block.shelfrow2 b { font-size:13.5px; font-weight:800; }
+  .block.shelfrow2 small { font-size:11.5px; opacity:.92; }
+  .block.shelfrow2 .covers { display:flex; margin-left:auto; }
+  .block.shelfrow2 .covers i { width:26px; height:34px; border-radius:5px; margin-left:-8px;
+    background-size:cover; background-position:center; box-shadow:0 2px 6px rgba(0,0,0,.25);
+    border:2px solid #fff; transform:rotate(-4deg); }
+  .block.shelfrow2 .covers i:nth-child(2) { transform:rotate(3deg); }
+  .block.shelfrow2 .covers i:nth-child(3) { transform:rotate(-2deg); }
+
+  /* ================= DECK ================= */
+  #deck { padding:62px 18px 16px; gap:10px; background:var(--paper); overflow-y:auto; }
+  #deck h1 { text-align:center; color:var(--plum); }
+  #deck .sub { text-align:center; font-size:13px; color:var(--ink-dim); margin-top:-4px; font-weight:600; }
+  .gamecard { background:#fff; border-radius:22px; padding:11px 14px; box-shadow:var(--shadow);
+    display:flex; gap:12px; align-items:center; cursor:pointer; border:3px solid transparent;
+    transition:transform .18s, border-color .18s; }
+  .gamecard img { width:54px; height:72px; flex:none; }
+  .gamecard b { font-size:15px; display:block; font-weight:800; }
+  .gamecard .host { font-size:11px; color:var(--pink); font-weight:800; text-transform:uppercase;
+    letter-spacing:.6px; }
+  .gamecard .meta { display:flex; gap:6px; margin-top:4px; flex-wrap:wrap; }
+  .gamecard .tag { background:#f3ede0; border-radius:9px; padding:2.5px 8px;
+    font-size:11px; font-weight:700; color:#8a7c5e; }
+  .gamecard.picked { border-color:var(--pink); transform:scale(1.03);
+    box-shadow:0 14px 36px rgba(239,77,142,.3); }
+
+  /* ================= SESSION ================= */
+  #session { padding:60px 18px 18px; gap:10px; overflow-y:auto; background:var(--paper); }
+  .hostrow { display:flex; align-items:center; gap:12px; }
+  .hostrow img { width:64px; height:94px; flex:none; }
+  .hostrow h1 { font-size:19px; line-height:1.2; }
+  .hostrow .host { font-size:11px; color:var(--pink); font-weight:800; text-transform:uppercase; letter-spacing:.6px; }
+  .brief { background:#fff; border-radius:20px; padding:13px 16px; box-shadow:var(--shadow);
+    font-size:14.5px; line-height:1.55; }
+  .brief b { color:var(--pink-deep); }
+  .brief ul { margin:6px 0 0 18px; }
+  /* visual-schedule step cards: one action, one picture, verb first */
+  .stepcards { display:flex; flex-direction:column; gap:6px; }
+  .stepcards h3 { font-size:11.5px; text-transform:uppercase; letter-spacing:1.4px;
+    color:var(--teal-deep); font-weight:800; margin-bottom:2px; }
+  .stepcard { background:#fff; border-radius:14px; padding:8px 12px; box-shadow:var(--shadow);
+    display:flex; align-items:center; gap:10px; font-size:13.5px; font-weight:700; }
+  .stepcard .n { width:22px; height:22px; border-radius:50%; background:var(--teal); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; flex:none; }
+  .stepcard .ic { font-size:21px; width:30px; text-align:center; flex:none; }
+  .tip { background:#fff4d6; border-radius:14px; padding:9px 13px; font-size:12.5px;
+    line-height:1.5; color:#8a6f2e; margin-top:6px; }
+  .ceremony { display:none; flex-direction:column; gap:10px; }
+  .ceremony.show { display:flex; animation:pop .5s ease; }
+  .ceremony img.result { width:100%; border-radius:18px; box-shadow:var(--shadow); border:6px solid #fff; }
+  .award { background:var(--pink); color:#fff; border-radius:16px;
+    padding:11px 15px; text-align:center; box-shadow:0 5px 0 var(--pink-deep); }
+  .award b { font-size:15px; display:block; font-weight:800; }
+  .award small { opacity:.9; font-size:12px; }
+  .tonightline { background:var(--plum); color:#ffd9ea; border-radius:16px; padding:11px 14px;
+    font-size:13px; font-weight:700; text-align:center; }
+  /* parents-only secret setup card */
+  .parentcard { background:#fff; border:3px dashed var(--plum); border-radius:18px;
+    padding:12px 15px; display:flex; flex-direction:column; gap:7px; }
+  .parentcard h3 { font-size:12px; letter-spacing:1.2px; color:var(--plum); font-weight:800; }
+  .parentcard .srow { display:flex; align-items:center; gap:10px; font-size:13.5px; font-weight:700; }
+  .parentcard .srow .ic { font-size:20px; width:28px; text-align:center; flex:none; }
+  .parentcard.go { border-color:var(--teal); }
+  .parentcard.go h3 { color:var(--teal-deep); }
+  .trace { background:#e8f7e9; border-radius:12px; padding:8px 12px; font-size:13px;
+    font-weight:700; color:#2f7d4f; display:none; }
+  .trace.show { display:block; animation:pop .4s ease; }
+  .cluecard { background:#fff; border-radius:18px; padding:12px 15px; box-shadow:var(--shadow);
+    display:none; gap:8px; flex-direction:column; font-size:14px; }
+  .cluecard.show { display:flex; animation:pop .4s ease; }
+  .cluecard .no { font-size:11px; font-weight:800; color:var(--teal-deep); letter-spacing:1px; }
+  .cluecard button { align-self:flex-end; border:none; background:#e0f5f3; color:var(--teal-deep);
+    font-weight:800; border-radius:12px; padding:8px 13px; cursor:pointer; font-size:13px; }
+  .findrow { background:#fff; border-radius:18px; padding:11px 14px; box-shadow:var(--shadow);
+    display:flex; gap:11px; align-items:center; font-size:13.5px; }
+  .findrow .rid { flex:1; line-height:1.45; }
+  .findrow button { border:none; background:#e7f7ed; color:#3c8f5f; font-weight:800;
+    border-radius:12px; padding:8px 12px; cursor:pointer; font-size:12.5px; flex:none; }
+  .findrow.found { background:#f4fff8; }
+  .findrow.found .rid b::after { content:" ✓"; color:#3c8f5f; }
+
+  /* ================= SHELF ================= */
+  #shelf { padding:62px 18px 18px; gap:14px; background:var(--paper); }
+  #shelf h1 { color:var(--plum); padding-left:4px; }
+  .woodrow { background:var(--plum); opacity:.25; border-radius:6px; height:9px; margin-top:-7px; }
+  .books { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; align-items:end; }
+  .book { background:#fff; border-radius:12px 16px 16px 12px; overflow:hidden; cursor:pointer;
+    box-shadow:var(--shadow); border-left:7px solid var(--pink); transition:transform .15s; }
+  .book:active { transform:translateY(-4px); }
+  .book.b2 { border-left-color:var(--teal); }
+  .book.b3 { border-left-color:var(--coral); }
+  .book .cover { height:84px; background-size:cover; background-position:center; }
+  .book .cover.plain { background:var(--sky); display:flex; align-items:center;
+    justify-content:center; padding:8px; }
+  .book .cover.plain img { max-height:100%; max-width:100%; object-fit:contain; }
+  .book figcaption { padding:8px 9px; font-size:11.5px; font-weight:700; line-height:1.3; }
+  .book figcaption small { display:block; color:var(--ink-dim); font-weight:500; font-size:10.5px; }
+
+  /* ============ READING MODE ============ */
+  #readmode { position:absolute; inset:0; z-index:230; display:none; flex-direction:column;
+    justify-content:flex-end; background:rgba(58,35,64,.6); }
+  #readmode.show { display:flex; }
+  #readmode .panel { background:var(--paper); border-radius:30px 30px 0 0; padding:22px 20px 26px;
+    display:flex; flex-direction:column; gap:10px; animation:rise .35s ease; }
+  @keyframes rise { from { transform:translateY(40px); opacity:.4 } to { transform:none; opacity:1 } }
+  #readmode h2 { font-size:18px; text-align:center; font-weight:800; color:var(--plum); }
+  #readmode .hintline { text-align:center; font-size:12.5px; color:var(--ink-dim); margin-bottom:2px; }
+  .mode { display:flex; align-items:center; gap:12px; background:#fff; border-radius:16px;
+    padding:12px 14px; cursor:pointer; font-size:14.5px; font-weight:700; border:3px solid transparent;
+    box-shadow:var(--shadow); }
+  .mode small { display:block; color:var(--ink-dim); font-weight:500; font-size:12px; }
+  .mode .ic { font-size:22px; width:34px; text-align:center; }
+  .mode.primary { border-color:var(--pink); }
+
+  /* ================= READER ================= */
+  #reader { background:var(--sky); align-items:center; justify-content:center; }
+  .bookframe { width:318px; height:560px; position:relative; perspective:1600px; }
+  .sheet { position:absolute; inset:0; transform-style:preserve-3d;
+    transform-origin:left center; transition:transform .85s cubic-bezier(.35,.1,.25,1); }
+  .sheet.flipped { transform:rotateY(-180deg); }
+  .face { position:absolute; inset:0; backface-visibility:hidden; border-radius:6px 22px 22px 6px;
+    background:#fffdf6; overflow:hidden;
+    box-shadow:0 10px 35px rgba(70,40,70,.28), inset 4px 0 10px rgba(160,120,140,.12); }
+  .face.back { transform:rotateY(180deg); border-radius:22px 6px 6px 22px;
+    background:repeating-linear-gradient(#fffdf6, #fffdf6 28px, #f6ecdc 29px);
+    display:flex; align-items:center; justify-content:center; }
+  .face.back::after { content:"·  ·  ·"; color:#e0d2b8; font-size:22px; letter-spacing:6px; }
+  .face .photo { height:58%; background-size:cover; background-position:center;
+    border-radius:0 18px 0 0; }
+  .face .caption { padding:14px 18px; font-size:14.5px; line-height:1.5; color:var(--ink); }
+  .face .narr { position:absolute; bottom:10px; right:12px; display:flex; align-items:center; gap:6px;
+    font-size:10.5px; color:var(--ink-dim); font-weight:700; }
+  .face .narr img { width:24px; height:32px; object-fit:contain;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.2)); }
+  .face.coverface { display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:14px; background:var(--sky); border:8px solid #fff; }
+  .face.coverface img.worldcover { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.9; }
+  .face.coverface .titlecard { position:relative; background:#fff; border-radius:18px; padding:16px 22px;
+    text-align:center; box-shadow:var(--shadow); }
+  .face.coverface h2 { font-size:21px; color:var(--plum); font-weight:900; }
+  .face.coverface .dim { font-size:12px; }
+  .face.plainface { display:flex; flex-direction:column; align-items:center;
+    justify-content:center; gap:14px; text-align:center; padding:26px; }
+  .face.plainface p { font-size:16px; line-height:1.65; }
+  .face.plainface img.host { width:84px; height:84px; }
+  .readerhint { position:absolute; bottom:26px; width:100%; text-align:center;
+    font-size:12.5px; color:#56808f; font-weight:700; }
+  .flipzone { position:absolute; top:0; bottom:0; width:50%; z-index:40; cursor:pointer; }
+  .flipzone.r { right:0; } .flipzone.l { left:0; }
+  #endcard { position:absolute; inset:0; z-index:60; display:none; flex-direction:column;
+    justify-content:flex-end; padding:20px; gap:10px;
+    background:linear-gradient(transparent 30%, rgba(58,35,64,.5) 70%); }
+  #endcard.show { display:flex; }
+  #endcard .panel { background:var(--paper); border-radius:26px; padding:18px; display:flex;
+    flex-direction:column; gap:10px; }
+  #endcard h2 { font-size:17px; text-align:center; font-weight:800; color:var(--plum); }
+
+  aside { max-width:330px; color:#cdc8e4; }
+  aside h2 { font-size:14px; text-transform:uppercase; letter-spacing:2px; color:#8d87b0; margin-bottom:16px; }
+  .step { display:flex; gap:13px; padding:10px 13px; border-radius:14px; cursor:pointer; align-items:baseline; }
+  .step:hover { background:#221636; }
+  .step.now { background:#2b1d42; }
+  .step b { color:#ef7eb1; font-size:13px; width:18px; flex:none; }
+  .step span { font-size:14px; }
+  .step small { display:block; color:#8d80a5; font-size:12px; margin-top:3px; line-height:1.45; }
+  aside .note { margin-top:20px; font-size:12.5px; color:#8d80a5; line-height:1.6;
+    border-top:1px solid #2b2040; padding-top:14px; }
+
+  @media (max-width:900px) {
+    .lab-stage { padding:0; background:var(--paper); min-height:100dvh; }
+    .phone { width:100%; height:100dvh; max-width:100%; border-radius:0;
+      box-shadow:none; transform:none; }
+    .notch { display:none; }
+    .phone::after { display:none; }
+    aside { display:none; }
+    /* keep the back-link and top-aligned screen content clear of the notch / status bar */
+    .backlink { top: calc(env(safe-area-inset-top) + 38px); }
+    #home { padding-top: calc(env(safe-area-inset-top) + 52px); }
+    #deck { padding-top: calc(env(safe-area-inset-top) + 62px); }
+    #session { padding-top: calc(env(safe-area-inset-top) + 60px); }
+    #shelf { padding-top: calc(env(safe-area-inset-top) + 62px); }
+  }
+</style>
+
+<script is:inline>
+  function go(id) {
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+    document.getElementById(id)?.classList.add("active");
+    document.querySelectorAll(".step").forEach(s => s.classList.toggle("now", s.dataset.s === id));
+    return true;
+  }
+
+  function toast(msg) {
+    let t = document.getElementById("toast");
+    if (!t) {
+      t = document.createElement("div");
+      t.id = "toast";
+      t.style.cssText =
+        "position:absolute;left:50%;bottom:90px;transform:translateX(-50%);z-index:300;" +
+        "background:#3a2340;color:#fff;border-radius:14px;padding:10px 16px;font-size:13px;" +
+        "max-width:300px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.3);";
+      document.querySelector(".phone").appendChild(t);
+    }
+    t.textContent = msg;
+    t.style.display = "block";
+    clearTimeout(t._h);
+    t._h = setTimeout(() => { t.style.display = "none"; }, 2400);
+  }
+
+  function chooseRead() { document.getElementById("readmode").classList.add("show"); }
+  function startReading() {
+    document.getElementById("readmode").classList.remove("show");
+    go('reader'); openBook();
+  }
+  function openTonight() { chooseRead(); }
+
+  /* ---------- sessions, each in its host's voice ---------- */
+  const SESSIONS = {
+    battle: {
+      host: "rooster", hostname: "Rico hosts", title: "The Great Drawing Battle",
+      brief: `“Cock-a-doodle-doo! Draw the <b>friendly puddle monster</b>.
+        It comes out after the rain! Everyone draws. I judge!”`,
+      steps: [
+        { icon: "🖍️", do: "Get paper and crayons for everyone" },
+        { icon: "💬", do: "Talk about it: how many eyes?" },
+        { icon: "👨‍👧", do: "Everyone draws — grown-ups too!" },
+        { icon: "🖼️", do: "Show your drawings" },
+        { icon: "📸", do: "Take a photo of each one" },
+      ],
+      tip: "Stuck? Draw a wobbly blob, give it eyes — done, monster! Ask your child to tell you about their drawing before judging; Rico listens.",
+      body: `<button class="btn" onclick="showCeremony('battle')">📸 Snap the drawings</button>
+        <div class="ceremony" id="cer-battle">
+          <img class="result" src="/assets/battle.jpg" alt="">
+          <div class="award"><b>🏆 “Most cloud-y delight!”</b><small>— Rico, official judge · Mia's entry</small></div>
+          <div class="tonightline">🌙 “Tonight I tell the WHOLE story of this battle. Attendance is mandatory. — R.”</div>
+          <button class="btn soft" onclick="go('home')">See you tonight, Rico!</button>
+        </div>`,
+    },
+    build: {
+      host: "monkey", hostname: "Momo hosts", title: "Build It for Momo",
+      brief: `“Build me a <b>clubhouse</b>! I need a bed, a roof,
+        and a spot for my boombox!”`,
+      steps: [
+        { icon: "🪑", do: "Put two chairs apart" },
+        { icon: "🛏️", do: "Lay a blanket over the top" },
+        { icon: "🧸", do: "Put cushions inside" },
+        { icon: "🛌", do: "Make a tiny bed for Momo" },
+        { icon: "📻", do: "Pick the boombox corner" },
+        { icon: "🙌", do: "Count to five — no touching!" },
+        { icon: "📸", do: "Take a photo" },
+      ],
+      tip: "Your child leads, you hold things. If it falls: rebuild stronger! Momo says wobbly clubhouses have the best dance floors.",
+      body: `<button class="btn" onclick="showCeremony('build')">📸 Snap the build</button>
+        <div class="ceremony" id="cer-build">
+          <img class="result" src="/assets/fort.jpg" alt="">
+          <div class="award"><b>🏠 Inspection: PASSED</b><small>“Best clubhouse I've ever moved into. And I move a LOT.” — Momo</small></div>
+          <div class="tonightline">🌙 “Tonight: the story of my first night in the clubhouse. Bring snacks. — M.”</div>
+          <button class="btn soft" onclick="go('home')">See you tonight, Momo!</button>
+        </div>`,
+    },
+    detective: {
+      host: "fox", hostname: "Fig hosts", title: "The Case of Rico's Egg",
+      brief: `“<b>Rico's egg is missing!</b> He's too sad to think.
+        Help me find it, detectives!”`,
+      steps: [
+        { icon: "👂", do: "Listen to the clue" },
+        { icon: "🤔", do: "Guess where it points" },
+        { icon: "🚶", do: "Walk there together" },
+        { icon: "🔍", do: "Search the spot" },
+        { icon: "🎉", do: "Shout A-HA! Next clue!" },
+      ],
+      tip: "Let your child guess first. Stuck? Give warmer/colder hints, never the answer. Gasp at every clue — the mystery is as big as you act it.",
+      body: `
+        <div class="parentcard" id="dsetup">
+          <h3>🤫 PARENTS ONLY — don't show your detective!</h3>
+          <div class="srow"><span class="ic">🥚</span>Grab a small round thing — that's the egg</div>
+          <div class="srow"><span class="ic">🙈</span>Wait till your detective looks away</div>
+          <div class="srow"><span class="ic">🛏️</span>Hide it under a pillow on a bed</div>
+          <div class="srow"><span class="ic">😇</span>Act normal</div>
+          <button class="btn" style="margin-top:6px" onclick="startCase()">Egg hidden — start the case! 🔍</button>
+        </div>
+        <div class="cluecard" id="clue1">
+          <span class="no">CLUE 1 of 3</span>
+          <span class="storyfont">“Where does the milk live?”</span>
+          <div class="trace" id="trace1">🪶 A tiny feather on the door! The trail is fresh!</div>
+          <button onclick="solveClue(1)">We searched it! →</button>
+        </div>
+        <div class="cluecard" id="clue2">
+          <span class="no">CLUE 2 of 3</span>
+          <span class="storyfont">“Where do your books sleep?”</span>
+          <div class="trace" id="trace2">✨ Eggshell glitter between two books! Getting closer!</div>
+          <button onclick="solveClue(2)">We searched it! →</button>
+        </div>
+        <div class="cluecard" id="clue3">
+          <span class="no">CLUE 3 of 3</span>
+          <span class="storyfont">“Look under your pillow!”</span>
+          <div class="trace" id="trace3">🥚 THE EGG! You found Rico's egg! CASE CLOSED!</div>
+          <button onclick="solveClue(3)">WE FOUND IT! →</button>
+        </div>
+        <div class="ceremony" id="cer-detective">
+          <div class="award"><b>🎬 CASE CLOSED</b><small>“Momo borrowed the egg for bongo practice and forgot where
+            he put it. Rico forgave him. Loudly. My fee is one cookie. — Fig”</small></div>
+          <div class="tonightline">🌙 Tonight: “The Case of Rico's Egg — solved by Detectives Mia &amp; Papa.”</div>
+          <button class="btn soft" onclick="go('home')">See you tonight, Fig!</button>
+        </div>`,
+    },
+    expedition: {
+      host: "walrus", hostname: "Waldo the Magnificent hosts", title: "The Grand Expedition",
+      brief: `“BEHOLD! Three treasures hide on your walk.
+        Find them. <b>Name them.</b> Names make things ours!”`,
+      steps: [
+        { icon: "👂", do: "Listen to the riddle" },
+        { icon: "🤔", do: "Figure out what to find" },
+        { icon: "🚶", do: "Hunt while you walk" },
+        { icon: "📸", do: "Found it? Snap a photo!" },
+        { icon: "🏷️", do: "Give it a name" },
+      ],
+      tip: "Debate the candidates — 'is THAT really a dragon's tooth?' Even one treasure makes a story; unfound ones stay on Waldo's list.",
+      body: `
+        <div class="parentcard go">
+          <h3>🚪 BEFORE YOU GO (any walk counts!)</h3>
+          <div class="srow"><span class="ic">📜</span>Read the riddles together at the door</div>
+          <div class="srow"><span class="ic">👖</span>Phone goes in the pocket</div>
+          <div class="srow"><span class="ic">👀</span>Hunt with your eyes while you walk</div>
+          <div class="srow"><span class="ic">📸</span>Found one? Phone out, snap, name it</div>
+        </div>
+        <div class="findrow" id="find1">
+          <div class="rid"><b>The dragon's tooth</b><br><span class="storyfont">“it hides near something that drinks the rain”</span></div>
+          <button onclick="foundIt(1, 'Spike')">Found!</button>
+        </div>
+        <div class="findrow" id="find2">
+          <div class="rid"><b>The giant's whisker</b><br><span class="storyfont">“longer than your arm, thinner than your finger”</span></div>
+          <button onclick="foundIt(2, 'Wiggly')">Found!</button>
+        </div>
+        <div class="findrow" id="find3">
+          <div class="rid"><b>A beast-shaped puddle</b><br><span class="storyfont">“it only counts if you can say WHICH beast”</span></div>
+          <button onclick="foundIt(3, 'Dog!')">Found!</button>
+        </div>
+        <div class="ceremony" id="cer-expedition">
+          <img class="result" src="/assets/park.jpg" alt="">
+          <div class="award"><b>🧭 Expedition review</b><small>“Three treasures, three names, zero explorers lost. MAGNIFICENT. — W.”</small></div>
+          <div class="tonightline">🌙 Tonight: the legend of Spike, Wiggly, and the Dog Puddle.</div>
+          <button class="btn soft" onclick="go('home')">See you tonight, Waldo!</button>
+        </div>`,
+    },
+  };
+
+  function openSession(g) {
+    const def = SESSIONS[g];
+    const steps =
+      `<div class="stepcards"><h3>How to play</h3>` +
+      def.steps.map((s, i) =>
+        `<div class="stepcard"><span class="n">${i + 1}</span><span class="ic">${s.icon}</span>${s.do}</div>`
+      ).join("") +
+      `<div class="tip">💡 ${def.tip}</div></div>`;
+    document.getElementById("sessionbody").innerHTML =
+      `<div class="hostrow">
+         <img class="portrait" src="/assets/candide/cut/${def.host}.png" alt="">
+         <div><span class="host">${def.hostname}</span><h1>${def.title}</h1></div>
+       </div>
+       <div class="brief storyfont">${def.brief}</div>` + steps + def.body;
+    go('session');
+  }
+
+  function showCeremony(g) {
+    document.querySelector(`#cer-${g}`).classList.add("show");
+    event.target.style.display = "none";
+  }
+
+  function startCase() {
+    document.getElementById("dsetup").style.display = "none";
+    document.getElementById("clue1").classList.add("show");
+  }
+
+  function solveClue(n) {
+    const card = document.getElementById("clue" + n);
+    card.classList.add("solved");
+    document.getElementById("trace" + n).classList.add("show");
+    const btn = card.querySelector("button");
+    btn.style.display = "none";
+    if (n < 3) setTimeout(() => document.getElementById("clue" + (n + 1)).classList.add("show"), 700);
+    else setTimeout(() => document.getElementById("cer-detective").classList.add("show"), 700);
+  }
+
+  function foundIt(n, name) {
+    const row = document.getElementById("find" + n);
+    row.classList.add("found");
+    const btn = row.querySelector("button");
+    btn.textContent = "“" + name + "”";
+    btn.disabled = true;
+    if ([1, 2, 3].every(i => document.getElementById("find" + i).classList.contains("found")))
+      document.getElementById("cer-expedition").classList.add("show");
+  }
+
+  function pipPicks() {
+    const cards = [...document.querySelectorAll(".gamecard")];
+    let i = 0, hops = 7 + Math.floor(Math.random() * 4);
+    const timer = setInterval(() => {
+      cards.forEach(c => c.classList.remove("picked"));
+      cards[i % cards.length].classList.add("picked");
+      i++;
+      if (i > hops) {
+        clearInterval(timer);
+        const chosen = cards[(i - 1) % cards.length];
+        setTimeout(() => { chosen.classList.remove("picked"); openSession(chosen.dataset.g); }, 650);
+      }
+    }, 180);
+  }
+
+  /* ---------- the book: narrated by the day's host ---------- */
+  const PAGES = [
+    { cover: true, title: "Mia & the Gang", sub: "the story of game day · told by Rico & Momo" },
+    { plain: "Cock-a-doodle-doo, Mia! Rico here. Tonight is SPECIAL — tonight we tell the story of what YOU made today. I judged. I was magnificent about it.", host: "rooster" },
+    { img: "/assets/battle.jpg", pos: "center", txt: "The GREAT DRAWING BATTLE was a rumble! You drew a cloud with big eyes and twinkling stars — the most cloud-y delight. I have never been so proud of a judging.", narr: "rooster", narrname: "Rico" },
+    { img: "/assets/fort.jpg", pos: "20% center", txt: "Then you built my clubhouse! A cozy room with a gray sofa and pillows like tiny rainbows. Best clubhouse I have ever moved into. And I move a LOT.", narr: "monkey", narrname: "Momo" },
+    { plain: "What a day, Mia. Now close your eyes… we'll all be right here, the whole gang, all night long. Goodnight, little friend. 🌙", host: "monster", hostname: "Mimi whispers the goodnight" },
+  ];
+  let flipped = 0, sheets = [];
+
+  function openBook() {
+    const frame = document.getElementById("bookframe");
+    frame.innerHTML = ""; sheets = []; flipped = 0;
+    document.getElementById("endcard").classList.remove("show");
+    PAGES.forEach((p, i) => {
+      const sheet = document.createElement("div");
+      sheet.className = "sheet";
+      const front = document.createElement("div");
+      front.className = "face front";
+      if (p.cover) {
+        front.classList.add("coverface");
+        front.innerHTML = `<img class="worldcover" src="/assets/candide/world.jpg" alt="">
+          <div class="titlecard"><h2>${p.title}</h2><span class="dim">${p.sub}</span></div>`;
+      } else if (p.plain) {
+        front.classList.add("plainface");
+        front.innerHTML = `<img class="host portrait" src="/assets/candide/cut/${p.host}.png" alt="">
+          <p class="storyfont">${p.plain}</p>` +
+          (p.hostname ? `<span class="dim" style="font-size:11px">${p.hostname}</span>` : "");
+      } else {
+        front.innerHTML = `<div class="photo" style="background-image:url('${p.img}'); background-position:${p.pos || "center"}"></div>
+          <div class="caption storyfont">${p.txt}</div>
+          <div class="narr"><img src="/assets/candide/cut/${p.narr}.png" alt=""> told by ${p.narrname}</div>`;
+      }
+      const back = document.createElement("div");
+      back.className = "face back";
+      sheet.appendChild(front); sheet.appendChild(back);
+      sheet.style.zIndex = PAGES.length - i;
+      frame.appendChild(sheet);
+      sheets.push(sheet);
+    });
+  }
+
+  function flip(dir) {
+    if (dir > 0) {
+      if (flipped >= sheets.length) return;
+      const s = sheets[flipped];
+      s.style.zIndex = 200;
+      s.classList.add("flipped");
+      const n = flipped;
+      s.addEventListener("transitionend", () => { s.style.zIndex = n + 1; }, { once: true });
+      flipped++;
+      if (flipped === sheets.length)
+        setTimeout(() => document.getElementById("endcard").classList.add("show"), 650);
+    } else {
+      if (flipped <= 0) return;
+      document.getElementById("endcard").classList.remove("show");
+      flipped--;
+      const s = sheets[flipped];
+      s.style.zIndex = 200;
+      s.classList.remove("flipped");
+      s.addEventListener("transitionend", () => { s.style.zIndex = PAGES.length - flipped; }, { once: true });
+    }
+  }
+  openBook();
+</script>
