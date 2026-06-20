@@ -2,197 +2,220 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Candide · Play Flow">
+<Base title="Candide · Wild Ordinary">
   <div class="lab-stage">
 
+    <header class="top">
+      <h1>Wild Ordinary — clickable prototype</h1>
+      <p>Real content · one day, end to end. Tap through, or jump with the map below.</p>
+    </header>
+
+    <div class="stage">
     <div class="phone">
       <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span class="dots">●●● ▭</span></div>
 
-      <!-- HOME -->
-      <section class="screen active" id="home">
-        <div class="top">
-          <h1>CANDIDE</h1>
-          <span class="topright">
-            <a href="/candide-strategy-lab" class="lablink">‹ strategy lab</a>
-            <span style="color:#b5a8be; font-size:20px">⚙</span>
-          </span>
+      <!-- 0 ONBOARDING -->
+      <section class="screen active" data-i="0">
+        <a class="lablink" href="/candide-strategy-lab">‹ strategy lab</a>
+        <div class="tag">first run</div>
+        <div class="spacer"></div>
+        <img class="ch" src="/assets/candide/cut/rooster.png" alt="Candide" style="height:132px;align-self:center;">
+        <h2 style="text-align:center;">Let's build Lila's<br>storybook.</h2>
+        <p class="lead" style="text-align:center;">A hundred small adventures are hidden inside ordinary days. You do one together — then I turn it into a page you keep forever.</p>
+        <div class="pill" style="align-self:center;">100 wild-ordinary moments · 0 found</div>
+        <div class="spacer"></div>
+        <button class="btn" onclick="go(1)">Start today</button>
+        <p class="dim" style="text-align:center;">Everything stays on this phone.</p>
+      </section>
+
+      <!-- 1 SETUP / MOOD -->
+      <section class="screen" data-i="1">
+        <div class="back" onclick="go(0)">‹ back</div>
+        <div class="tag">setup · D</div>
+        <div style="margin-top:4px;">
+          <div class="kick">Shape the moment</div>
+          <h2>How's right now?</h2>
         </div>
-        <p class="tagline">Play together by day — get a storybook every night.</p>
-        <div class="bento">
-          <div class="block hero" onclick="go('deck')">
-            <img class="world" src="/assets/candide/world.jpg" alt="the Candide world">
-            <div class="cta"><b>Pick a game to play together</b><small>real-world games · 5–20 min · the gang hosts</small></div>
+        <div class="chipgrp"><span class="lbl">How long</span><div class="chips">
+          <span class="chip on">5 min</span><span class="chip">15 min</span><span class="chip">20+ min</span></div></div>
+        <div class="chipgrp"><span class="lbl">Her energy</span><div class="chips">
+          <span class="chip">Wound up</span><span class="chip on">Restless</span><span class="chip">Calm</span></div></div>
+        <div class="chipgrp"><span class="lbl">Where</span><div class="chips">
+          <span class="chip on">Inside</span><span class="chip">Outside</span></div></div>
+        <div class="spacer"></div>
+        <button class="btn ghost" onclick="go(2)">Pick by value</button>
+        <button class="btn" onclick="go(3)">Choose for me →</button>
+      </section>
+
+      <!-- 2 VALUE PICKER -->
+      <section class="screen" data-i="2">
+        <div class="back" onclick="go(1)">‹ back</div>
+        <div class="tag">by value</div>
+        <div style="margin-top:4px;">
+          <div class="kick">Pick a friend to host</div>
+          <h2>What to grow in Lila?</h2>
+        </div>
+        <div class="vgrid">
+          <div class="vchip"><div class="av"><img class="ch" src="/assets/candide/cut/rooster.png" alt="Candide"></div><b>Gratitude</b><small>with Candide</small></div>
+          <div class="vchip"><div class="av"><img class="ch" src="/assets/candide/cut/monster.png" alt="Boro"></div><b>Big feelings</b><small>with Boro</small></div>
+          <div class="vchip"><div class="av"><img class="ch" src="/assets/candide/cut/fox.png" alt="Theo"></div><b>Patience</b><small>with Theo</small></div>
+          <div class="vchip on"><div class="av"><img class="ch" src="/assets/candide/cut/monkey.png" alt="Momo"></div><b>Trying new things</b><small>with Momo</small></div>
+          <div class="vchip"><div class="av"><img class="ch" src="/assets/candide/cut/tallman.png" alt="Step"></div><b>Being brave</b><small>with Step</small></div>
+          <div class="vchip"><div class="av"><img class="ch" src="/assets/candide/cut/frog.png" alt="Kiko"></div><b>Big energy</b><small>with Kiko</small></div>
+        </div>
+        <div class="spacer"></div>
+        <button class="btn" onclick="go(3)">See tonight's adventure →</button>
+      </section>
+
+      <!-- 3 DARE HOME -->
+      <section class="screen" data-i="3">
+        <div class="tag">C · the dare</div>
+        <div class="kick">Wild Ordinary</div>
+        <div><div class="dim">Hi Kara</div><h2>Today's dare is in.</h2></div>
+        <div class="bookbar"><b>Book of 100</b><div class="bar"><i style="width:6%"></i></div><b>6 found</b></div>
+        <div class="dare">
+          <div class="inner">
+            <img class="ch" id="hostimg" src="/assets/candide/cut/monkey.png" alt="Momo" style="height:88px;">
+            <div class="from" id="from">Momo dares you & Lila</div>
+            <div class="quote" id="quote">“Build me a hideout from three soft things — then climb in and tell each other the scariest thing that isn’t actually scary.”</div>
+            <div class="meta" id="meta">5–20 min · inside · pillows & blankets</div>
+            <div class="swapped" id="pill">✦ swapped — your one for today</div>
           </div>
-          <div class="block tonight" onclick="openTonight()">
-            <div class="tb-head">
-              <img class="portrait" src="/assets/candide/cut/bird.png" style="animation-delay:.3s" alt="Pio">
-              <div><b>Tonight's storybook</b><small>Pio collects a page from every game & snap</small></div>
-              <span class="peek">peek ›</span>
+          <canvas class="scratchcanvas" id="scratch"></canvas>
+        </div>
+        <div class="dareActions" id="dareActions">
+          <div class="btnrow">
+            <button class="btn" style="flex:2;" onclick="go(4)">▶ Take the dare</button>
+            <button class="btn ghost" id="swapBtn" style="flex:1;" onclick="openSwap()">Swap</button>
+          </div>
+        </div>
+        <div class="listrow" onclick="go(8)"><span style="font-size:22px;">📖</span>
+          <div style="flex:1;"><b>Lila's storybook</b><br><small>6 pages so far · tap to read</small></div><span class="dim">›</span></div>
+
+        <div class="scrim" id="scrim" onclick="closeSwap()"></div>
+        <div class="sheet" id="sheet">
+          <h3>Not today?</h3>
+          <p class="dim" style="margin-top:-4px;">Tell us why — we'll find one that fits. Just one swap.</p>
+          <div class="reason" onclick="pickReason('calm')">Too wild <small>want calmer</small></div>
+          <div class="reason" onclick="pickReason('energy')">Too calm <small>want to move</small></div>
+          <div class="reason" onclick="pickReason('nostuff')">No stuff <small>nothing to build with</small></div>
+          <div class="reason" onclick="pickReason('done')">Already did it</div>
+          <div class="cancel" onclick="closeSwap()">never mind</div>
+        </div>
+      </section>
+
+      <!-- 4 ACTIVITY INTRO -->
+      <section class="screen" data-i="4">
+        <div class="back" onclick="go(3)">‹ home</div>
+        <div class="tag">C · invite</div>
+        <div class="photo" style="height:150px;margin-top:4px;">MOMO'S CORNER OF THE WORLD<br>(host art, breathing)</div>
+        <div class="row"><div class="av"><img class="ch" src="/assets/candide/cut/monkey.png" alt="Momo"></div><div><b style="font-size:16px;">Build it for Momo</b><br><span class="dim">hosted by Momo</span></div></div>
+        <p class="lead">Momo's corner of the world feels a little empty right now. He's never had anywhere to hide. Build him one from three soft things — then squeeze in together and trade the scariest thing that isn't actually scary.</p>
+        <div><span class="pill">Trying new things · spatial play & problem-solving</span></div>
+        <div class="spacer"></div>
+        <button class="btn" onclick="go(5)">How do we play? →</button>
+      </section>
+
+      <!-- 5 HOW TO PLAY -->
+      <section class="screen" data-i="5">
+        <div class="back" onclick="go(4)">‹ back</div>
+        <div class="tag">C · play</div>
+        <div class="kick">Step by step · away from the screen</div>
+        <h2>Build the hideout</h2>
+        <div class="step"><div class="n">1</div><span>Pull two chairs back-to-back, a little apart.</span></div>
+        <div class="step"><div class="n">2</div><span>Drape your biggest blanket over the top.</span></div>
+        <div class="step"><div class="n">3</div><span>Tuck cushions inside for a soft floor.</span></div>
+        <div class="step"><div class="n">4</div><span>Leave one gap open — that's Momo's door.</span></div>
+        <div class="step"><div class="n">5</div><span>Fold a towel into a tiny bed for him.</span></div>
+        <div class="step"><div class="n">6</div><span>Climb in together — then take turns: the scariest thing that isn't actually scary.</span></div>
+        <p class="dim" style="text-align:center;">The build is the warm-up. The sharing is the point.</p>
+        <button class="btn" onclick="go(6)">We built it — snap it →</button>
+      </section>
+
+      <!-- 6 CAPTURE -->
+      <section class="screen cam" data-i="6">
+        <div class="back" onclick="go(5)" style="color:#d7d6df;">‹ back</div>
+        <div class="tag">B · capture</div>
+        <div class="vf"><div class="lbl">Point at the hideout<br>you built together</div></div>
+        <div style="text-align:center;color:#f2f1f6;font-size:14px;font-weight:700;">Snap Momo's hideout</div>
+        <div class="shutter" onclick="go(7)"></div>
+        <div style="text-align:center;color:#9b9aa4;font-size:10.5px;">Stays on this phone. Nothing uploaded, ever.</div>
+      </section>
+
+      <!-- 7 MEMORY NOTE -->
+      <section class="screen" data-i="7">
+        <div class="back" onclick="go(6)">‹ retake</div>
+        <div class="tag">B · keep it</div>
+        <div class="photo" style="height:150px;margin-top:4px;">THE PHOTO YOU JUST TOOK</div>
+        <h3>Anything you want to remember?</h3>
+        <div class="note">Lila named it “the cave” and refused to come out for dinner.</div>
+        <p class="dim">A line for you — Candide writes the story.</p>
+        <div class="spacer"></div>
+        <button class="btn ghost" onclick="go(10)">Skip</button>
+        <button class="btn" onclick="go(10)">Add it to the storybook →</button>
+      </section>
+
+      <!-- 8 READ CHOOSER -->
+      <section class="screen" data-i="8">
+        <div class="tag">A · how to read</div>
+        <div style="margin-top:4px;"><div class="kick">Tell the story</div><h2>How shall we read it?</h2></div>
+        <div class="ropt on" onclick="go(9)"><span class="ic">📖</span><div><b>Read together on screen</b><small>flip the pages, side by side</small></div></div>
+        <div class="ropt" onclick="go(9)"><span class="ic">🌙</span><div><b>Listen in the dark</b><small>Momo reads aloud, phone face-down</small></div></div>
+        <div class="ropt" onclick="go(9)"><span class="ic">✂️</span><div><b>Print the little book</b><small>one folded sheet, no screen at all</small></div></div>
+        <div class="ropt" onclick="go(9)"><span class="ic">🕯️</span><div><b>Parent-reading mode</b><small>you read from a dim script; Lila just listens</small></div></div>
+      </section>
+
+      <!-- 9 BEDTIME BOOK -->
+      <section class="screen" data-i="9" style="background:var(--sky);">
+        <div class="back" onclick="go(3)">‹ home</div>
+        <div class="tag">A · the book</div>
+        <div class="kick" style="text-align:center;">A new page · told by Momo</div>
+        <div class="bookwrap">
+          <div class="book">
+            <div class="pg photo" style="border-radius:0;border:none;">YOUR PHOTO — THE REAL HIDEOUT<div class="overlay"><img class="ch" src="/assets/candide/cut/monkey.png" alt="Momo" style="height:104px;"></div></div>
+            <div class="txt">
+              <p>“You built me a cave out of two chairs and the blue blanket. We squeezed inside, and Lila told me the scariest thing that isn't really scary — the vacuum — and then I told her mine. After we said them out loud, neither one was scary anymore. I think I'll live here now.”</p>
+              <div class="narr"><img class="ch chin" src="/assets/candide/cut/monkey.png" alt="Momo"> told by Momo · from the photo you took</div>
             </div>
-            <div class="pagetrack">
-              <div class="pageslot filled">🖍</div>
-              <div class="pageslot filled">🏗</div>
-              <div class="pageslot next">+</div>
-              <div class="pageslot"></div>
-              <div class="pageslot"></div>
-            </div>
-            <div class="tb-status"><b>2 pages ready</b> — a fine little book. Add a page:</div>
-            <div class="tb-chips">
-              <span onclick="event.stopPropagation(); go('deck')">🎴 game</span>
-              <span onclick="event.stopPropagation(); toast('Show the gang: snap anything your child made (mock)')">📸 snap</span>
-              <span onclick="event.stopPropagation(); toast('Add photos from today (mock)')">🖼 photos</span>
-            </div>
           </div>
-          <div class="block square show" onclick="toast('Snap what they made — the right friend reacts: Grub reviews food, Rico judges art... (mock)')">
-            <div class="ic">📸</div>
-            <b>Snap what they made</b>
-            <small>the gang reacts — and it joins tonight's story</small>
-          </div>
-          <div class="block square tell" onclick="toast('Léon watched your day from up there... and got it all wrong. Correct him! (mock)')">
-            <div class="ic">🗣️</div>
-            <b>Turn your day into a story</b>
-            <small>Léon saw it all — incorrectly. 3 little questions</small>
-          </div>
-          <div class="block shelfrow2" onclick="go('shelf')">
-            📚 <b>Your storybooks</b><small>· every play day, kept forever</small>
-            <div class="covers">
-              <i style="background-image:url('/assets/battle.jpg')"></i>
-              <i style="background-image:url('/assets/park.jpg')"></i>
-              <i style="background-image:url('/assets/fort.jpg')"></i>
-            </div>
-          </div>
+          <div class="livedbar">✦ 7 of 100 lived · 93 still hidden</div>
         </div>
+        <button class="btn plum" onclick="go(3)">The end →</button>
       </section>
 
-      <!-- DECK -->
-      <section class="screen" id="deck">
-        <div class="backlink" onclick="go('home')">‹ back</div>
-        <div style="height:10px"></div>
-        <h1>🎴 Today's deck</h1>
-        <p class="sub">tap a card — or let the gang choose</p>
-        <div class="gamecard" data-g="battle" onclick="openSession('battle')">
-          <img class="portrait" src="/assets/candide/cut/rooster.png" alt="Rico">
-          <div><span class="host">Rico hosts</span><b>The Great Drawing Battle</b>
-            <div class="meta"><span class="tag">⏱ 15 min</span><span class="tag">🧺 paper + crayons</span><span class="tag">🏠</span></div>
+      <!-- 10 CLOSE -->
+      <section class="screen" data-i="10">
+        <div class="tag">saved</div>
+        <div class="kick" style="margin-top:4px;">Kept on this phone, forever</div>
+        <h2>Saved to Lila's storybook.</h2>
+        <div class="card" style="gap:13px;">
+          <div class="row">
+            <div class="photo" style="width:72px;height:72px;border-radius:13px;flex:none;font-size:9px;">YOUR PHOTO</div>
+            <div><b style="font-size:15px;">Build it for Momo</b><br><span class="dim"><img class="ch chin" src="/assets/candide/cut/monkey.png" alt="Momo"> Trying new things · today</span></div>
           </div>
+          <div class="note" style="min-height:auto;padding:11px 13px;">“Lila named it ‘the cave’ and refused to come out for dinner.”</div>
+          <div class="livedbar" style="justify-content:flex-start;">✦ 7 of 100 lived · 93 still hidden</div>
         </div>
-        <div class="gamecard" data-g="build" onclick="openSession('build')">
-          <img class="portrait" src="/assets/candide/cut/monkey.png" style="animation-delay:.5s" alt="Momo">
-          <div><span class="host">Momo hosts</span><b>Build It for Momo</b>
-            <div class="meta"><span class="tag">⏱ 20 min</span><span class="tag">🧺 one room</span><span class="tag">🏠</span></div>
-          </div>
-        </div>
-        <div class="gamecard" data-g="detective" onclick="openSession('detective')">
-          <img class="portrait" src="/assets/candide/cut/fox.png" style="animation-delay:1s" alt="Fig">
-          <div><span class="host">Fig hosts</span><b>The Case of Rico's Egg</b>
-            <div class="meta"><span class="tag">⏱ 15 min</span><span class="tag">🧺 nothing</span><span class="tag">🏠</span></div>
-          </div>
-        </div>
-        <div class="gamecard" data-g="expedition" onclick="openSession('expedition')">
-          <img class="portrait" src="/assets/candide/cut/walrus.png" style="animation-delay:1.5s" alt="Waldo">
-          <div><span class="host">Waldo the Magnificent hosts</span><b>The Grand Expedition</b>
-            <div class="meta"><span class="tag">⏱ any walk</span><span class="tag">🧺 the world</span><span class="tag">🌳</span></div>
-          </div>
-        </div>
-        <div style="flex:1"></div>
-        <button class="btn" onclick="pipPicks()">🎲 Let the gang pick!</button>
-        <div style="height:6px"></div>
+        <div class="card"><div class="row"><span style="font-size:22px;">✦</span>
+          <div><b>Soft close</b><br><span class="dim">“Is Momo still worried? How does your body feel now?”</span></div></div></div>
+        <div class="spacer"></div>
+        <p class="dim" style="text-align:center;">Read it whenever you like — from Lila's storybook.</p>
+        <button class="btn" onclick="go(3)">Again tomorrow →</button>
       </section>
 
-      <!-- SESSION -->
-      <section class="screen" id="session">
-        <div class="backlink" onclick="go('deck')">‹ deck</div>
-        <div style="height:6px"></div>
-        <div id="sessionbody" style="display:flex; flex-direction:column; gap:10px;"></div>
-        <div style="height:10px"></div>
-      </section>
-
-      <!-- SHELF -->
-      <section class="screen" id="shelf">
-        <div class="backlink" onclick="go('home')">‹ home</div>
-        <div style="height:20px"></div>
-        <h1>📚 Your storybooks</h1>
-        <div class="books">
-          <figure class="book" onclick="chooseRead()">
-            <div class="cover" style="background-image:url('/assets/battle.jpg')"></div>
-            <figcaption>The Great Drawing Battle ⭐<small>tonight · told by Rico</small></figcaption>
-          </figure>
-          <figure class="book b2" onclick="chooseRead()">
-            <div class="cover" style="background-image:url('/assets/park.jpg')"></div>
-            <figcaption>The Playground Day<small>Sunday · told by Gus</small></figcaption>
-          </figure>
-          <figure class="book b3" onclick="chooseRead()">
-            <div class="cover plain"><img src="/assets/candide/cut/monster.png" alt=""></div>
-            <figcaption>Mimi's Quiet Day<small>Friday · her own day</small></figcaption>
-          </figure>
-        </div>
-        <div class="woodrow"></div>
-        <div class="books" style="margin-top:14px">
-          <figure class="book" onclick="chooseRead()">
-            <div class="cover" style="background-image:url('/assets/drawing.jpg')"></div>
-            <figcaption>You Drew the Gang!<small>Thursday · told by Rico</small></figcaption>
-          </figure>
-          <figure class="book b2" onclick="chooseRead()">
-            <div class="cover" style="background-image:url('/assets/fort.jpg')"></div>
-            <figcaption>Momo Moves In<small>Wednesday · told by Momo</small></figcaption>
-          </figure>
-        </div>
-        <div class="woodrow"></div>
-        <div style="flex:1"></div>
-        <button class="btn soft">🖨️ Print this week as a little book</button>
-        <div style="height:18px"></div>
-      </section>
-
-      <!-- READER -->
-      <section class="screen" id="reader">
-        <div class="backlink" onclick="go('home')" style="color:#4a7080">‹ home</div>
-        <div class="bookframe" id="bookframe"></div>
-        <p class="readerhint">tap the right side to turn the page →</p>
-        <div class="flipzone l" onclick="flip(-1)"></div>
-        <div class="flipzone r" onclick="flip(1)"></div>
-        <div id="endcard">
-          <div class="panel">
-            <h2>The end 🌙 sweet dreams!</h2>
-            <button class="btn soft" onclick="openBook()">Read it again</button>
-            <button class="btn soft" onclick="go('shelf')">Back to the shelf</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- READING MODE -->
-      <div id="readmode">
-        <div class="panel">
-          <h2>How shall we read tonight?</h2>
-          <p class="hintline">pick the cozy level — three of these need no screen at all</p>
-          <div class="mode primary" onclick="startReading()">
-            <div class="ic">📖</div><div>Read together on screen<small>the classic page-flip book</small></div>
-          </div>
-          <div class="mode" onclick="toast('Listen mode: tonight\'s narrator reads it out loud, phone face-down (mock)')">
-            <div class="ic">🌙</div><div>Listen in the dark<small>tonight's narrator reads, phone face-down</small></div>
-          </div>
-          <div class="mode" onclick="toast('Print: one A4 sheet folds into a tiny 8-page book (mock)')">
-            <div class="ic">🖨️</div><div>Print the little book<small>one sheet of paper, bedtime stays paper</small></div>
-          </div>
-          <div class="mode" onclick="toast('Parent mode: dim script view, only you see the screen (mock)')">
-            <div class="ic">🤫</div><div>Parent-reading mode<small>dim script view — the child never sees a screen</small></div>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <aside>
-      <h2>Candide · cast reskin v5</h2>
-      <div class="step now" data-s="home" onclick="go('home')"><b>1</b><span>Home<small>The hero IS the world art. Pio runs the page meter; Grub fronts Snap, Léon fronts Tell — every surface has a face.</small></span></div>
-      <div class="step" data-s="deck" onclick="go('deck')"><b>2</b><span>The deck<small>Each game card shows its HOST: Rico judges battles, Momo runs builds, Fig investigates, Waldo leads expeditions.</small></span></div>
-      <div class="step" data-s="session" onclick="openSession('detective')"><b>3</b><span>Sessions<small>Briefs rewritten in each host's voice. The detective case is now inter-cast: Rico's egg is missing.</small></span></div>
-      <div class="step" data-s="shelf" onclick="go('shelf')"><b>4</b><span>Shelf<small>Books credit their narrator ("told by Rico"). Mimi narrates every goodnight page.</small></span></div>
-      <div class="step" data-s="reader" onclick="chooseRead()"><b>5</b><span>The book<small>World-art cover; narrator badge on each page; Mimi's goodnight.</small></span></div>
-      <div class="note">
-        Cast & roles: docs/CAST.md (names are placeholders for the artist).
-        Character art © the commissioning artist; grain/palette lifted from it.
-        Story texts/photos remain real pipeline output.
-      </div>
+    <aside class="annot" style="max-width:280px;font-size:12px;color:#56544f;line-height:1.65;">
+      <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#8c8a83;margin-bottom:8px;">What got ironed out</div>
+      <p style="margin-bottom:9px;"><b>One home, not two.</b> The "pick a game" deck is gone — the daily dare is the game. Home = scratch the dare.</p>
+      <p style="margin-bottom:9px;"><b>Three steering tools, one job.</b> Setup filters, value picker, and Swap all narrow the same pool. Setup/value run at first-run; Swap is the daily escape hatch.</p>
+      <p style="margin-bottom:9px;"><b>All six characters carry a value</b> (incl. Theo = patience), so none is orphaned.</p>
+      <p><b>Real copy throughout</b> — "Lila" is a sample name; swap in the real child at sign-up.</p>
     </aside>
+    </div>
+
+    <footer class="flowmap" id="map"></footer>
 
   </div>
 </Base>
@@ -203,586 +226,282 @@ import Base from "../layouts/Base.astro";
     display: none;
   }
 
-  :root {
-    --paper: #fbf8f1;
-    --ink: #3a2340;
-    --ink-dim: #9b8aa0;
-    --pink: #ef4d8e; --pink-deep: #d63677;
-    --teal: #43c6bb; --teal-deep: #2ea89e;
-    --coral: #ff5d57;
-    --mint: #5fcb8b;
-    --plum: #6d2f5d; --plum-deep: #4d2044;
-    --sky: #cdeef7;
-    --shadow: 0 10px 28px rgba(109, 47, 93, .16);
+  :root{
+    --bg:#eceae4; --panel:#ffffff; --ink:#2b2a28; --dim:#8c8a83;
+    --line:#e2e0d8; --line2:#d4d2c9; --plum:#5a2d52; --pink:#e0457e; --pinkdeep:#b82f63;
+    --pink2:#fbeaf0; --mint:#3c9b63; --mint2:#e9f6ee; --sky:#eaf2f6;
   }
-  * { box-sizing:border-box; margin:0; }
-  .lab-stage { background:#181024; color:var(--ink);
-    font-family:"Segoe UI", "Avenir Next", system-ui, sans-serif;
-    display:flex; gap:48px; align-items:center; justify-content:center;
-    min-height:100dvh; padding:32px; }
-  .storyfont { font-family:"Segoe Print", "Comic Sans MS", "Segoe UI", sans-serif; }
-  .poster { font-weight:800; letter-spacing:.3px; }
+  *{box-sizing:border-box;margin:0;-webkit-font-smoothing:antialiased;
+    font-family:"Segoe UI","Avenir Next",system-ui,-apple-system,sans-serif;}
+  .lab-stage{background:var(--bg);color:var(--ink);display:flex;flex-direction:column;align-items:center;
+    min-height:100dvh;padding:22px 16px 70px;gap:16px;}
+  header.top{text-align:center;max-width:440px;}
+  header.top h1{font-size:18px;font-weight:700;color:var(--plum);}
+  header.top p{font-size:12.5px;color:var(--dim);margin-top:4px;line-height:1.5;}
+  .stage{display:flex;align-items:flex-start;gap:20px;}
 
-  .phone { width:375px; height:812px; border-radius:48px; position:relative;
-    background:var(--paper); overflow:hidden; flex:none;
-    box-shadow:0 0 0 12px #2a1b38, 0 0 0 14px #4a3361, 0 40px 90px rgba(0,0,0,.7); }
-  /* the Candide grain */
-  .phone::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:210;
-    opacity:.5; mix-blend-mode:multiply;
-    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.045"/></feComponentTransfer></filter><rect width="140" height="140" filter="url(%23n)"/></svg>'); }
-  .notch { position:absolute; top:0; left:50%; transform:translateX(-50%);
-    width:150px; height:28px; background:#2a1b38; border-radius:0 0 18px 18px; z-index:220; }
+  .phone{width:340px;height:710px;background:var(--panel);border-radius:42px;position:relative;
+    overflow:hidden;flex:none;box-shadow:0 0 0 2px var(--ink),0 18px 40px rgba(0,0,0,.22);}
+  .statusbar{position:absolute;top:0;left:0;right:0;height:40px;display:flex;align-items:center;
+    justify-content:space-between;padding:0 26px;font-size:12px;font-weight:700;color:var(--ink);z-index:60;}
+  .statusbar .dots{display:flex;gap:4px;align-items:center;}
+  .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:104px;height:24px;
+    background:var(--ink);border-radius:14px;z-index:61;}
+  .screen{position:absolute;inset:0;display:none;flex-direction:column;padding:48px 20px 18px;gap:13px;overflow-y:auto;}
+  .screen.active{display:flex;}
 
-  .screen { position:absolute; inset:0; display:none; flex-direction:column; overflow:hidden; }
-  .screen.active { display:flex; animation:pop .4s ease; }
-  @keyframes pop { from { opacity:0; transform:scale(.985) } to { opacity:1; transform:none } }
+  .tag{position:absolute;top:46px;right:16px;font-size:9px;font-weight:800;letter-spacing:.7px;
+    background:var(--plum);color:#fff;border-radius:7px;padding:4px 7px;z-index:40;text-transform:uppercase;}
+  .back{position:absolute;top:46px;left:14px;font-size:12.5px;font-weight:700;color:var(--dim);cursor:pointer;z-index:40;padding:3px 5px;}
+  .lablink{position:absolute;top:46px;left:14px;font-size:12.5px;font-weight:700;color:var(--dim);cursor:pointer;z-index:40;padding:3px 5px;text-decoration:none;}
+  .lablink:hover{color:var(--plum);}
+  .kick{font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--dim);}
+  h2{font-size:23px;font-weight:700;line-height:1.18;color:var(--ink);letter-spacing:-.2px;}
+  h3{font-size:16px;font-weight:700;}
+  .lead{font-size:14px;line-height:1.6;color:#55534e;}
+  .dim{color:var(--dim);font-size:12.5px;line-height:1.5;}
+  .spacer{flex:1;}
 
-  h1 { font-size:23px; font-weight:800; letter-spacing:.2px; }
-  .dim { color:var(--ink-dim); font-size:14px; line-height:1.5; }
-  .btn { display:block; width:100%; padding:15px; border:none; border-radius:18px;
-    font-size:16px; font-weight:800; cursor:pointer;
-    background:var(--pink); color:#fff; box-shadow:0 6px 0 var(--pink-deep); }
-  .btn:active { transform:translateY(3px); box-shadow:0 3px 0 var(--pink-deep); }
-  .btn.soft { background:#fff; color:var(--ink); box-shadow:0 5px 0 #e4dccc; font-weight:700; }
-  .backlink { position:absolute; top:38px; left:16px; z-index:30; font-size:14px;
-    color:var(--ink-dim); cursor:pointer; padding:6px 10px; font-weight:700; }
+  .btn{display:block;width:100%;text-align:center;padding:15px;border:none;border-radius:15px;
+    background:var(--pink);color:#fff;font-size:15.5px;font-weight:700;cursor:pointer;letter-spacing:.2px;}
+  .btn:active{transform:translateY(1px);}
+  .btn.dark{background:var(--ink);}
+  .btn.ghost{background:#fff;color:var(--ink);border:1.6px solid var(--line2);}
+  .btn.plum{background:var(--plum);}
+  .btnrow{display:flex;gap:10px;}
+  .link{font-size:13px;font-weight:700;color:var(--plum);text-align:center;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
 
-  /* free-standing cut-out figures, breathing like Pip used to */
-  .portrait { object-fit:contain; background:none; border:none;
-    filter:drop-shadow(0 10px 14px rgba(60,30,60,.28));
-    animation:breathe 3.6s ease-in-out infinite; }
-  @keyframes breathe { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-4px) } }
+  .photo{border:1.6px dashed var(--line2);border-radius:16px;background:
+    repeating-linear-gradient(45deg,#f4f3ef,#f4f3ef 8px,#ecebe5 8px,#ecebe5 16px);
+    display:flex;align-items:center;justify-content:center;text-align:center;color:var(--dim);
+    font-size:11px;font-weight:700;padding:12px;}
+  .av{width:52px;height:52px;border-radius:50%;background:var(--pink2);display:flex;align-items:center;
+    justify-content:center;font-size:26px;flex:none;}
+  .av.lg{width:76px;height:76px;font-size:40px;}
+  .ch{display:block;object-fit:contain;}
+  .av img.ch{width:100%;height:100%;object-fit:contain;padding:9%;}
+  img.chin{height:18px;width:18px;object-fit:contain;vertical-align:-4px;display:inline-block;}
+  .card{border:1.4px solid var(--line);border-radius:16px;background:#fff;padding:15px;display:flex;flex-direction:column;gap:11px;}
+  .row{display:flex;align-items:center;gap:11px;}
+  .pill{display:inline-block;font-size:11px;font-weight:700;color:var(--plum);background:var(--pink2);border-radius:20px;padding:5px 11px;}
 
-  /* ================= HOME ================= */
-  #home { padding:52px 16px 16px; gap:10px; overflow-y:auto; }
-  #home .top { display:flex; justify-content:space-between; align-items:baseline; padding:0 6px; }
-  #home .top h1 { font-size:24px; font-weight:900; letter-spacing:1px; color:var(--plum); }
-  #home .topright { display:flex; align-items:center; gap:12px; }
-  #home .lablink { color:var(--ink-dim); font-size:12px; font-weight:700; text-decoration:none;
-    white-space:nowrap; transition:opacity .2s ease; }
-  #home .lablink:hover { opacity:.6; }
-  #home .tagline { padding:0 6px; font-size:13px; color:var(--ink-dim); font-weight:600; margin-top:-5px; }
-  .bento { display:grid; grid-template-columns:repeat(2, 1fr); gap:11px; }
-  .block { border-radius:24px; box-shadow:var(--shadow); cursor:pointer; position:relative;
-    overflow:hidden; transition:transform .15s; }
-  .block:active { transform:scale(.96); }
+  /* progress */
+  .bookbar{display:flex;align-items:center;gap:10px;border:1.4px solid var(--line);border-radius:13px;background:#fff;padding:10px 13px;}
+  .bookbar .bar{flex:1;height:8px;border-radius:6px;background:var(--line);position:relative;overflow:hidden;}
+  .bookbar .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--pink);}
+  .bookbar b{font-size:12px;font-weight:700;white-space:nowrap;}
 
-  /* HERO: the world they live in */
-  .block.hero { grid-column:1/-1; aspect-ratio:1.42/1; background:#cdeef7; }
-  .block.hero img.world { position:absolute; inset:0; width:100%; height:100%;
-    object-fit:cover; object-position:center 30%; }
-  .block.hero .cta { position:absolute; bottom:12px; left:12px; right:12px;
-    background:var(--pink); border-radius:17px; padding:11px 13px; text-align:center;
-    color:#fff; box-shadow:0 5px 0 var(--pink-deep); }
-  .block.hero .cta b { font-weight:800; font-size:16px; display:block; }
-  .block.hero .cta small { font-size:11.5px; font-weight:700; opacity:.85; display:block; margin-top:1px; }
+  /* chips */
+  .chipgrp{display:flex;flex-direction:column;gap:7px;}
+  .chipgrp .lbl{font-size:11px;font-weight:800;letter-spacing:.5px;color:var(--dim);text-transform:uppercase;}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;}
+  .chip{border:1.5px solid var(--line2);border-radius:11px;background:#fff;padding:9px 13px;font-size:13px;font-weight:700;cursor:pointer;color:#55534e;}
+  .chip.on{border-color:var(--pink);background:var(--pink2);color:var(--plum);}
 
-  /* TONIGHT: page meter, plum, Pio collects the pages */
-  .block.tonight { grid-column:1/-1; background:linear-gradient(160deg, var(--plum), var(--plum-deep));
-    padding:12px 14px 13px; display:flex; flex-direction:column; gap:9px; color:#fdeff5; }
-  .tb-head { display:flex; align-items:center; gap:10px; }
-  .tb-head img { width:40px; height:40px; }
-  .tb-head b { font-size:14.5px; display:block; font-weight:800; }
-  .tb-head small { color:#d8a8c5; font-size:11px; display:block; }
-  .tb-head .peek { margin-left:auto; background:rgba(255,255,255,.14); color:#ffd9ea;
-    border-radius:12px; padding:5px 10px; font-size:11px; font-weight:800; flex:none; }
-  .pagetrack { display:flex; gap:7px; }
-  .pageslot { flex:1; aspect-ratio:4/5; border-radius:8px 11px 11px 8px; display:flex;
-    align-items:center; justify-content:center; font-size:18px;
-    border:2px dashed rgba(255,255,255,.25); color:rgba(255,255,255,.3); }
-  .pageslot.filled { background:var(--paper); border:none; color:#6d4d22;
-    box-shadow:0 0 14px rgba(255,182,220,.4), inset -3px 0 0 #e8dcc2; }
-  .pageslot.next { border:2px dashed #ff9ec6; color:#ffc3dd;
-    animation:pulse 1.8s ease-in-out infinite; font-weight:800; }
-  @keyframes pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
-  .tb-status { font-size:11.5px; color:#e8c7da; }
-  .tb-status b { color:#ffd9ea; }
-  .tb-chips { display:flex; gap:8px; }
-  .tb-chips span { background:rgba(255,255,255,.13); border:1.5px solid rgba(255,255,255,.22);
-    border-radius:12px; padding:6px 11px; font-size:11.5px; font-weight:800; color:#ffe4f0; }
+  /* value grid */
+  .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .vchip{border:1.5px solid var(--line2);border-radius:15px;background:#fff;padding:13px 11px;display:flex;
+    flex-direction:column;align-items:center;gap:5px;cursor:pointer;text-align:center;}
+  .vchip.on{border-color:var(--pink);background:var(--pink2);}
+  .vchip .av{width:42px;height:42px;font-size:22px;background:#f4f3ef;}
+  .vchip.on .av{background:#fff;}
+  .vchip b{font-size:13.5px;font-weight:700;}
+  .vchip small{font-size:10.5px;color:var(--dim);font-weight:600;}
 
-  /* quick squares: teal & coral, host portraits */
-  .block.square { aspect-ratio:1/1; padding:13px; display:flex; flex-direction:column; color:#fff; }
-  .block.square .ic { font-size:30px; width:fit-content; }
-  .block.square b { font-size:14.5px; margin-top:auto; line-height:1.3; font-weight:800; }
-  .block.square small { font-size:11px; line-height:1.4; margin-top:4px; opacity:.92; }
-  .block.square.show { background:var(--teal); }
-  .block.square.tell { background:var(--coral); }
+  /* dare */
+  .dare{position:relative;flex:1;border-radius:20px;overflow:hidden;min-height:250px;}
+  .inner{position:absolute;inset:0;z-index:1;background:var(--pink2);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:12px;text-align:center;padding:24px;}
+  .inner .from{font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--pinkdeep);text-transform:uppercase;}
+  .inner .quote{font-size:19px;font-weight:700;line-height:1.38;color:var(--plum);}
+  .inner .meta{font-size:12px;color:#8a6076;font-weight:600;}
+  .swapped{font-size:10px;font-weight:800;letter-spacing:.4px;color:#fff;background:var(--plum);border-radius:20px;padding:4px 11px;display:none;}
+  .swapped.show{display:inline-block;}
+  .cover{position:absolute;inset:0;z-index:5;cursor:pointer;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:12px;text-align:center;padding:24px;
+    background:repeating-linear-gradient(45deg,#efeae0,#efeae0 12px,#e6e0d4 12px,#e6e0d4 24px);
+    transition:opacity .5s ease,transform .5s ease;}
+  .cover .seal{width:84px;height:84px;border-radius:50%;border:2px dashed var(--plum);background:#fff;display:flex;
+    align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--plum);text-align:center;line-height:1.2;}
+  .cover .big{font-size:20px;font-weight:700;color:var(--ink);}
+  .cover .hint{font-size:12px;color:#6f6e68;font-weight:600;}
+  .cover .tapme{font-size:11.5px;font-weight:800;letter-spacing:.6px;color:#fff;background:var(--pink);border-radius:12px;padding:8px 14px;animation:pulse 1.6s infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+  .cover.gone{opacity:0;transform:scale(1.05);pointer-events:none;}
+  .scratchcanvas{position:absolute;inset:0;z-index:5;cursor:grab;touch-action:none;}
+  .scratchcanvas:active{cursor:grabbing;}
+  .dareActions{opacity:0;transform:translateY(6px);pointer-events:none;transition:opacity .35s ease,transform .35s ease;}
+  .dareActions.show{opacity:1;transform:none;pointer-events:auto;}
 
-  /* shelf row: mint */
-  .block.shelfrow2 { grid-column:1/-1; background:var(--mint); color:#fff;
-    padding:11px 16px; display:flex; align-items:center; gap:7px; font-size:13.5px; }
-  .block.shelfrow2 b { font-size:13.5px; font-weight:800; }
-  .block.shelfrow2 small { font-size:11.5px; opacity:.92; }
-  .block.shelfrow2 .covers { display:flex; margin-left:auto; }
-  .block.shelfrow2 .covers i { width:26px; height:34px; border-radius:5px; margin-left:-8px;
-    background-size:cover; background-position:center; box-shadow:0 2px 6px rgba(0,0,0,.25);
-    border:2px solid #fff; transform:rotate(-4deg); }
-  .block.shelfrow2 .covers i:nth-child(2) { transform:rotate(3deg); }
-  .block.shelfrow2 .covers i:nth-child(3) { transform:rotate(-2deg); }
+  /* sheet */
+  .scrim{position:absolute;inset:0;z-index:70;background:rgba(43,42,40,.45);display:none;}
+  .scrim.show{display:block;}
+  .sheet{position:absolute;left:0;right:0;bottom:0;z-index:71;background:#fff;border-radius:24px 24px 0 0;
+    padding:20px 18px 24px;transform:translateY(100%);transition:transform .32s ease;display:flex;flex-direction:column;gap:9px;}
+  .sheet.show{transform:translateY(0);}
+  .reason{border:1.5px solid var(--line2);border-radius:13px;background:#fff;padding:13px 14px;display:flex;
+    align-items:center;justify-content:space-between;cursor:pointer;font-size:14px;font-weight:700;}
+  .reason small{font-size:11px;color:var(--dim);font-weight:600;}
+  .cancel{text-align:center;font-size:12.5px;color:var(--dim);cursor:pointer;font-weight:700;padding-top:3px;}
 
-  /* ================= DECK ================= */
-  #deck { padding:62px 18px 16px; gap:10px; background:var(--paper); overflow-y:auto; }
-  #deck h1 { text-align:center; color:var(--plum); }
-  #deck .sub { text-align:center; font-size:13px; color:var(--ink-dim); margin-top:-4px; font-weight:600; }
-  .gamecard { background:#fff; border-radius:22px; padding:11px 14px; box-shadow:var(--shadow);
-    display:flex; gap:12px; align-items:center; cursor:pointer; border:3px solid transparent;
-    transition:transform .18s, border-color .18s; }
-  .gamecard img { width:54px; height:72px; flex:none; }
-  .gamecard b { font-size:15px; display:block; font-weight:800; }
-  .gamecard .host { font-size:11px; color:var(--pink); font-weight:800; text-transform:uppercase;
-    letter-spacing:.6px; }
-  .gamecard .meta { display:flex; gap:6px; margin-top:4px; flex-wrap:wrap; }
-  .gamecard .tag { background:#f3ede0; border-radius:9px; padding:2.5px 8px;
-    font-size:11px; font-weight:700; color:#8a7c5e; }
-  .gamecard.picked { border-color:var(--pink); transform:scale(1.03);
-    box-shadow:0 14px 36px rgba(239,77,142,.3); }
+  /* steps */
+  .step{border:1.4px solid var(--line);border-radius:13px;background:#fff;padding:12px;display:flex;align-items:center;gap:12px;}
+  .step .n{width:26px;height:26px;border-radius:50%;background:var(--pink2);color:var(--plum);display:flex;align-items:center;
+    justify-content:center;font-size:13px;font-weight:800;flex:none;}
+  .step span{font-size:13.5px;font-weight:600;line-height:1.35;}
 
-  /* ================= SESSION ================= */
-  #session { padding:60px 18px 18px; gap:10px; overflow-y:auto; background:var(--paper); }
-  .hostrow { display:flex; align-items:center; gap:12px; }
-  .hostrow img { width:64px; height:94px; flex:none; }
-  .hostrow h1 { font-size:19px; line-height:1.2; }
-  .hostrow .host { font-size:11px; color:var(--pink); font-weight:800; text-transform:uppercase; letter-spacing:.6px; }
-  .brief { background:#fff; border-radius:20px; padding:13px 16px; box-shadow:var(--shadow);
-    font-size:14.5px; line-height:1.55; }
-  .brief b { color:var(--pink-deep); }
-  .brief ul { margin:6px 0 0 18px; }
-  /* visual-schedule step cards: one action, one picture, verb first */
-  .stepcards { display:flex; flex-direction:column; gap:6px; }
-  .stepcards h3 { font-size:11.5px; text-transform:uppercase; letter-spacing:1.4px;
-    color:var(--teal-deep); font-weight:800; margin-bottom:2px; }
-  .stepcard { background:#fff; border-radius:14px; padding:8px 12px; box-shadow:var(--shadow);
-    display:flex; align-items:center; gap:10px; font-size:13.5px; font-weight:700; }
-  .stepcard .n { width:22px; height:22px; border-radius:50%; background:var(--teal); color:#fff;
-    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; flex:none; }
-  .stepcard .ic { font-size:21px; width:30px; text-align:center; flex:none; }
-  .tip { background:#fff4d6; border-radius:14px; padding:9px 13px; font-size:12.5px;
-    line-height:1.5; color:#8a6f2e; margin-top:6px; }
-  .ceremony { display:none; flex-direction:column; gap:10px; }
-  .ceremony.show { display:flex; animation:pop .5s ease; }
-  .ceremony img.result { width:100%; border-radius:18px; box-shadow:var(--shadow); border:6px solid #fff; }
-  .award { background:var(--pink); color:#fff; border-radius:16px;
-    padding:11px 15px; text-align:center; box-shadow:0 5px 0 var(--pink-deep); }
-  .award b { font-size:15px; display:block; font-weight:800; }
-  .award small { opacity:.9; font-size:12px; }
-  .tonightline { background:var(--plum); color:#ffd9ea; border-radius:16px; padding:11px 14px;
-    font-size:13px; font-weight:700; text-align:center; }
-  /* parents-only secret setup card */
-  .parentcard { background:#fff; border:3px dashed var(--plum); border-radius:18px;
-    padding:12px 15px; display:flex; flex-direction:column; gap:7px; }
-  .parentcard h3 { font-size:12px; letter-spacing:1.2px; color:var(--plum); font-weight:800; }
-  .parentcard .srow { display:flex; align-items:center; gap:10px; font-size:13.5px; font-weight:700; }
-  .parentcard .srow .ic { font-size:20px; width:28px; text-align:center; flex:none; }
-  .parentcard.go { border-color:var(--teal); }
-  .parentcard.go h3 { color:var(--teal-deep); }
-  .trace { background:#e8f7e9; border-radius:12px; padding:8px 12px; font-size:13px;
-    font-weight:700; color:#2f7d4f; display:none; }
-  .trace.show { display:block; animation:pop .4s ease; }
-  .cluecard { background:#fff; border-radius:18px; padding:12px 15px; box-shadow:var(--shadow);
-    display:none; gap:8px; flex-direction:column; font-size:14px; }
-  .cluecard.show { display:flex; animation:pop .4s ease; }
-  .cluecard .no { font-size:11px; font-weight:800; color:var(--teal-deep); letter-spacing:1px; }
-  .cluecard button { align-self:flex-end; border:none; background:#e0f5f3; color:var(--teal-deep);
-    font-weight:800; border-radius:12px; padding:8px 13px; cursor:pointer; font-size:13px; }
-  .findrow { background:#fff; border-radius:18px; padding:11px 14px; box-shadow:var(--shadow);
-    display:flex; gap:11px; align-items:center; font-size:13.5px; }
-  .findrow .rid { flex:1; line-height:1.45; }
-  .findrow button { border:none; background:#e7f7ed; color:#3c8f5f; font-weight:800;
-    border-radius:12px; padding:8px 12px; cursor:pointer; font-size:12.5px; flex:none; }
-  .findrow.found { background:#f4fff8; }
-  .findrow.found .rid b::after { content:" ✓"; color:#3c8f5f; }
+  /* camera */
+  .cam{background:#16151a;}
+  .vf{flex:1;border-radius:18px;border:2px solid rgba(255,255,255,.45);position:relative;overflow:hidden;
+    display:flex;align-items:flex-end;justify-content:center;padding:16px;
+    background:repeating-linear-gradient(45deg,#23222a,#23222a 9px,#1d1c23 9px,#1d1c23 18px);}
+  .vf .lbl{color:#d7d6df;font-size:12px;font-weight:700;text-align:center;}
+  .shutter{width:64px;height:64px;border-radius:50%;background:#fff;border:5px solid rgba(255,255,255,.4);cursor:pointer;align-self:center;}
 
-  /* ================= SHELF ================= */
-  #shelf { padding:62px 18px 18px; gap:14px; background:var(--paper); }
-  #shelf h1 { color:var(--plum); padding-left:4px; }
-  .woodrow { background:var(--plum); opacity:.25; border-radius:6px; height:9px; margin-top:-7px; }
-  .books { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; align-items:end; }
-  .book { background:#fff; border-radius:12px 16px 16px 12px; overflow:hidden; cursor:pointer;
-    box-shadow:var(--shadow); border-left:7px solid var(--pink); transition:transform .15s; }
-  .book:active { transform:translateY(-4px); }
-  .book.b2 { border-left-color:var(--teal); }
-  .book.b3 { border-left-color:var(--coral); }
-  .book .cover { height:84px; background-size:cover; background-position:center; }
-  .book .cover.plain { background:var(--sky); display:flex; align-items:center;
-    justify-content:center; padding:8px; }
-  .book .cover.plain img { max-height:100%; max-width:100%; object-fit:contain; }
-  .book figcaption { padding:8px 9px; font-size:11.5px; font-weight:700; line-height:1.3; }
-  .book figcaption small { display:block; color:var(--ink-dim); font-weight:500; font-size:10.5px; }
+  /* note */
+  .note{border:1.5px solid var(--line2);border-radius:14px;background:#fff;padding:13px;font-size:13.5px;line-height:1.55;
+    color:#55534e;min-height:96px;font-style:italic;}
 
-  /* ============ READING MODE ============ */
-  #readmode { position:absolute; inset:0; z-index:230; display:none; flex-direction:column;
-    justify-content:flex-end; background:rgba(58,35,64,.6); }
-  #readmode.show { display:flex; }
-  #readmode .panel { background:var(--paper); border-radius:30px 30px 0 0; padding:22px 20px 26px;
-    display:flex; flex-direction:column; gap:10px; animation:rise .35s ease; }
-  @keyframes rise { from { transform:translateY(40px); opacity:.4 } to { transform:none; opacity:1 } }
-  #readmode h2 { font-size:18px; text-align:center; font-weight:800; color:var(--plum); }
-  #readmode .hintline { text-align:center; font-size:12.5px; color:var(--ink-dim); margin-bottom:2px; }
-  .mode { display:flex; align-items:center; gap:12px; background:#fff; border-radius:16px;
-    padding:12px 14px; cursor:pointer; font-size:14.5px; font-weight:700; border:3px solid transparent;
-    box-shadow:var(--shadow); }
-  .mode small { display:block; color:var(--ink-dim); font-weight:500; font-size:12px; }
-  .mode .ic { font-size:22px; width:34px; text-align:center; }
-  .mode.primary { border-color:var(--pink); }
+  /* read options */
+  .ropt{border:1.5px solid var(--line2);border-radius:14px;background:#fff;padding:13px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+  .ropt .ic{font-size:22px;flex:none;}
+  .ropt b{font-size:14px;font-weight:700;display:block;}
+  .ropt small{font-size:11.5px;color:var(--dim);}
+  .ropt.on{border-color:var(--pink);background:var(--pink2);}
 
-  /* ================= READER ================= */
-  #reader { background:var(--sky); align-items:center; justify-content:center; }
-  .bookframe { width:318px; height:560px; position:relative; perspective:1600px; }
-  .sheet { position:absolute; inset:0; transform-style:preserve-3d;
-    transform-origin:left center; transition:transform .85s cubic-bezier(.35,.1,.25,1); }
-  .sheet.flipped { transform:rotateY(-180deg); }
-  .face { position:absolute; inset:0; backface-visibility:hidden; border-radius:6px 22px 22px 6px;
-    background:#fffdf6; overflow:hidden;
-    box-shadow:0 10px 35px rgba(70,40,70,.28), inset 4px 0 10px rgba(160,120,140,.12); }
-  .face.back { transform:rotateY(180deg); border-radius:22px 6px 6px 22px;
-    background:repeating-linear-gradient(#fffdf6, #fffdf6 28px, #f6ecdc 29px);
-    display:flex; align-items:center; justify-content:center; }
-  .face.back::after { content:"·  ·  ·"; color:#e0d2b8; font-size:22px; letter-spacing:6px; }
-  .face .photo { height:58%; background-size:cover; background-position:center;
-    border-radius:0 18px 0 0; }
-  .face .caption { padding:14px 18px; font-size:14.5px; line-height:1.5; color:var(--ink); }
-  .face .narr { position:absolute; bottom:10px; right:12px; display:flex; align-items:center; gap:6px;
-    font-size:10.5px; color:var(--ink-dim); font-weight:700; }
-  .face .narr img { width:24px; height:32px; object-fit:contain;
-    filter:drop-shadow(0 2px 4px rgba(0,0,0,.2)); }
-  .face.coverface { display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:14px; background:var(--sky); border:8px solid #fff; }
-  .face.coverface img.worldcover { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.9; }
-  .face.coverface .titlecard { position:relative; background:#fff; border-radius:18px; padding:16px 22px;
-    text-align:center; box-shadow:var(--shadow); }
-  .face.coverface h2 { font-size:21px; color:var(--plum); font-weight:900; }
-  .face.coverface .dim { font-size:12px; }
-  .face.plainface { display:flex; flex-direction:column; align-items:center;
-    justify-content:center; gap:14px; text-align:center; padding:26px; }
-  .face.plainface p { font-size:16px; line-height:1.65; }
-  .face.plainface img.host { width:84px; height:84px; }
-  .readerhint { position:absolute; bottom:26px; width:100%; text-align:center;
-    font-size:12.5px; color:#56808f; font-weight:700; }
-  .flipzone { position:absolute; top:0; bottom:0; width:50%; z-index:40; cursor:pointer; }
-  .flipzone.r { right:0; } .flipzone.l { left:0; }
-  #endcard { position:absolute; inset:0; z-index:60; display:none; flex-direction:column;
-    justify-content:flex-end; padding:20px; gap:10px;
-    background:linear-gradient(transparent 30%, rgba(58,35,64,.5) 70%); }
-  #endcard.show { display:flex; }
-  #endcard .panel { background:var(--paper); border-radius:26px; padding:18px; display:flex;
-    flex-direction:column; gap:10px; }
-  #endcard h2 { font-size:17px; text-align:center; font-weight:800; color:var(--plum); }
+  /* book */
+  .bookwrap{flex:1;display:flex;flex-direction:column;justify-content:center;gap:13px;}
+  .book{border:1.4px solid var(--line);border-radius:10px 18px 18px 10px;background:#fff;overflow:hidden;box-shadow:0 8px 20px rgba(80,40,70,.12);}
+  .book .pg{height:230px;position:relative;}
+  .book .pg .overlay{position:absolute;bottom:12px;left:52%;transform:translateX(-50%);width:84px;height:104px;
+    display:flex;align-items:flex-end;justify-content:center;font-size:46px;}
+  .book .txt{padding:14px 16px;}
+  .book .txt p{font-size:14px;line-height:1.6;color:var(--ink);}
+  .book .narr{margin-top:11px;font-size:10.5px;color:var(--dim);font-weight:700;letter-spacing:.3px;display:flex;align-items:center;gap:6px;}
+  .livedbar{display:flex;align-items:center;justify-content:center;gap:8px;font-size:11.5px;font-weight:700;color:var(--plum);}
 
-  aside { max-width:330px; color:#cdc8e4; }
-  aside h2 { font-size:14px; text-transform:uppercase; letter-spacing:2px; color:#8d87b0; margin-bottom:16px; }
-  .step { display:flex; gap:13px; padding:10px 13px; border-radius:14px; cursor:pointer; align-items:baseline; }
-  .step:hover { background:#221636; }
-  .step.now { background:#2b1d42; }
-  .step b { color:#ef7eb1; font-size:13px; width:18px; flex:none; }
-  .step span { font-size:14px; }
-  .step small { display:block; color:#8d80a5; font-size:12px; margin-top:3px; line-height:1.45; }
-  aside .note { margin-top:20px; font-size:12.5px; color:#8d80a5; line-height:1.6;
-    border-top:1px solid #2b2040; padding-top:14px; }
+  /* home extras */
+  .listrow{border:1.4px solid var(--line);border-radius:14px;background:#fff;padding:13px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+  .listrow b{font-size:14px;font-weight:700;}
+  .listrow small{font-size:11.5px;color:var(--dim);}
+  .nav{margin-top:auto;display:flex;align-items:center;justify-content:space-around;border-top:1.4px solid var(--line);padding-top:11px;}
+  .nav .tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:700;color:var(--dim);}
+  .nav .tab.on{color:var(--plum);}
+  .nav .tab .ic{font-size:19px;}
 
-  @media (max-width:900px) {
-    .lab-stage { padding:0; background:var(--paper); min-height:100dvh; }
-    .phone { width:100%; height:100dvh; max-width:100%; border-radius:0;
-      box-shadow:none; transform:none; }
-    .notch { display:none; }
-    .phone::after { display:none; }
-    aside { display:none; }
-    /* keep the back-link and top-aligned screen content clear of the notch / status bar */
-    .backlink { top: calc(env(safe-area-inset-top) + 38px); }
-    #home { padding-top: calc(env(safe-area-inset-top) + 52px); }
-    #deck { padding-top: calc(env(safe-area-inset-top) + 62px); }
-    #session { padding-top: calc(env(safe-area-inset-top) + 60px); }
-    #shelf { padding-top: calc(env(safe-area-inset-top) + 62px); }
+  footer.flowmap{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:480px;}
+  footer.flowmap button{font-size:10.5px;font-weight:700;border:1px solid var(--line2);background:#fff;color:var(--dim);
+    border-radius:8px;padding:5px 9px;cursor:pointer;}
+  footer.flowmap button.on{background:var(--plum);color:#fff;border-color:var(--plum);}
+
+  @media (max-width:900px){
+    .lab-stage{padding:0;gap:0;min-height:100dvh;background:var(--panel);}
+    .stage{width:100%;gap:0;}
+    .phone{width:100%;height:100dvh;max-width:100%;border-radius:0;box-shadow:none;}
+    header.top,aside.annot,footer.flowmap{display:none;}
+    .statusbar,.notch{display:none;}
+    /* keep top-pinned chrome and screen content clear of the notch / status bar */
+    .screen{padding-top:calc(env(safe-area-inset-top) + 48px);}
+    .back,.tag,.lablink{top:calc(env(safe-area-inset-top) + 46px);}
   }
 </style>
 
 <script is:inline>
-  function go(id) {
-    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-    document.getElementById(id)?.classList.add("active");
-    document.querySelectorAll(".step").forEach(s => s.classList.toggle("now", s.dataset.s === id));
-    return true;
+  var screens=document.querySelectorAll('.screen');
+  var labels=['0 Onboard','1 Setup','2 Value','3 Dare home','4 Invite','5 Play','6 Capture','7 Note','8 Read?','9 Book','10 Saved'];
+  var map=document.getElementById('map');
+  labels.forEach(function(l,i){var b=document.createElement('button');b.textContent=l;b.onclick=function(){go(i);};map.appendChild(b);});
+  function go(i){
+    screens.forEach(function(s){s.classList.remove('active');});
+    screens[i].classList.add('active');screens[i].scrollTop=0;
+    map.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('on',j===i);});
+    if(i===3){setTimeout(resetDare,30);}
   }
-
-  function toast(msg) {
-    let t = document.getElementById("toast");
-    if (!t) {
-      t = document.createElement("div");
-      t.id = "toast";
-      t.style.cssText =
-        "position:absolute;left:50%;bottom:90px;transform:translateX(-50%);z-index:300;" +
-        "background:#3a2340;color:#fff;border-radius:14px;padding:10px 16px;font-size:13px;" +
-        "max-width:300px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.3);";
-      document.querySelector(".phone").appendChild(t);
-    }
-    t.textContent = msg;
-    t.style.display = "block";
-    clearTimeout(t._h);
-    t._h = setTimeout(() => { t.style.display = "none"; }, 2400);
-  }
-
-  function chooseRead() { document.getElementById("readmode").classList.add("show"); }
-  function startReading() {
-    document.getElementById("readmode").classList.remove("show");
-    go('reader'); openBook();
-  }
-  function openTonight() { chooseRead(); }
-
-  /* ---------- sessions, each in its host's voice ---------- */
-  const SESSIONS = {
-    battle: {
-      host: "rooster", hostname: "Rico hosts", title: "The Great Drawing Battle",
-      brief: `“Cock-a-doodle-doo! Draw the <b>friendly puddle monster</b>.
-        It comes out after the rain! Everyone draws. I judge!”`,
-      steps: [
-        { icon: "🖍️", do: "Get paper and crayons for everyone" },
-        { icon: "💬", do: "Talk about it: how many eyes?" },
-        { icon: "👨‍👧", do: "Everyone draws — grown-ups too!" },
-        { icon: "🖼️", do: "Show your drawings" },
-        { icon: "📸", do: "Take a photo of each one" },
-      ],
-      tip: "Stuck? Draw a wobbly blob, give it eyes — done, monster! Ask your child to tell you about their drawing before judging; Rico listens.",
-      body: `<button class="btn" onclick="showCeremony('battle')">📸 Snap the drawings</button>
-        <div class="ceremony" id="cer-battle">
-          <img class="result" src="/assets/battle.jpg" alt="">
-          <div class="award"><b>🏆 “Most cloud-y delight!”</b><small>— Rico, official judge · Mia's entry</small></div>
-          <div class="tonightline">🌙 “Tonight I tell the WHOLE story of this battle. Attendance is mandatory. — R.”</div>
-          <button class="btn soft" onclick="go('home')">See you tonight, Rico!</button>
-        </div>`,
-    },
-    build: {
-      host: "monkey", hostname: "Momo hosts", title: "Build It for Momo",
-      brief: `“Build me a <b>clubhouse</b>! I need a bed, a roof,
-        and a spot for my boombox!”`,
-      steps: [
-        { icon: "🪑", do: "Put two chairs apart" },
-        { icon: "🛏️", do: "Lay a blanket over the top" },
-        { icon: "🧸", do: "Put cushions inside" },
-        { icon: "🛌", do: "Make a tiny bed for Momo" },
-        { icon: "📻", do: "Pick the boombox corner" },
-        { icon: "🙌", do: "Count to five — no touching!" },
-        { icon: "📸", do: "Take a photo" },
-      ],
-      tip: "Your child leads, you hold things. If it falls: rebuild stronger! Momo says wobbly clubhouses have the best dance floors.",
-      body: `<button class="btn" onclick="showCeremony('build')">📸 Snap the build</button>
-        <div class="ceremony" id="cer-build">
-          <img class="result" src="/assets/fort.jpg" alt="">
-          <div class="award"><b>🏠 Inspection: PASSED</b><small>“Best clubhouse I've ever moved into. And I move a LOT.” — Momo</small></div>
-          <div class="tonightline">🌙 “Tonight: the story of my first night in the clubhouse. Bring snacks. — M.”</div>
-          <button class="btn soft" onclick="go('home')">See you tonight, Momo!</button>
-        </div>`,
-    },
-    detective: {
-      host: "fox", hostname: "Fig hosts", title: "The Case of Rico's Egg",
-      brief: `“<b>Rico's egg is missing!</b> He's too sad to think.
-        Help me find it, detectives!”`,
-      steps: [
-        { icon: "👂", do: "Listen to the clue" },
-        { icon: "🤔", do: "Guess where it points" },
-        { icon: "🚶", do: "Walk there together" },
-        { icon: "🔍", do: "Search the spot" },
-        { icon: "🎉", do: "Shout A-HA! Next clue!" },
-      ],
-      tip: "Let your child guess first. Stuck? Give warmer/colder hints, never the answer. Gasp at every clue — the mystery is as big as you act it.",
-      body: `
-        <div class="parentcard" id="dsetup">
-          <h3>🤫 PARENTS ONLY — don't show your detective!</h3>
-          <div class="srow"><span class="ic">🥚</span>Grab a small round thing — that's the egg</div>
-          <div class="srow"><span class="ic">🙈</span>Wait till your detective looks away</div>
-          <div class="srow"><span class="ic">🛏️</span>Hide it under a pillow on a bed</div>
-          <div class="srow"><span class="ic">😇</span>Act normal</div>
-          <button class="btn" style="margin-top:6px" onclick="startCase()">Egg hidden — start the case! 🔍</button>
-        </div>
-        <div class="cluecard" id="clue1">
-          <span class="no">CLUE 1 of 3</span>
-          <span class="storyfont">“Where does the milk live?”</span>
-          <div class="trace" id="trace1">🪶 A tiny feather on the door! The trail is fresh!</div>
-          <button onclick="solveClue(1)">We searched it! →</button>
-        </div>
-        <div class="cluecard" id="clue2">
-          <span class="no">CLUE 2 of 3</span>
-          <span class="storyfont">“Where do your books sleep?”</span>
-          <div class="trace" id="trace2">✨ Eggshell glitter between two books! Getting closer!</div>
-          <button onclick="solveClue(2)">We searched it! →</button>
-        </div>
-        <div class="cluecard" id="clue3">
-          <span class="no">CLUE 3 of 3</span>
-          <span class="storyfont">“Look under your pillow!”</span>
-          <div class="trace" id="trace3">🥚 THE EGG! You found Rico's egg! CASE CLOSED!</div>
-          <button onclick="solveClue(3)">WE FOUND IT! →</button>
-        </div>
-        <div class="ceremony" id="cer-detective">
-          <div class="award"><b>🎬 CASE CLOSED</b><small>“Momo borrowed the egg for bongo practice and forgot where
-            he put it. Rico forgave him. Loudly. My fee is one cookie. — Fig”</small></div>
-          <div class="tonightline">🌙 Tonight: “The Case of Rico's Egg — solved by Detectives Mia &amp; Papa.”</div>
-          <button class="btn soft" onclick="go('home')">See you tonight, Fig!</button>
-        </div>`,
-    },
-    expedition: {
-      host: "walrus", hostname: "Waldo the Magnificent hosts", title: "The Grand Expedition",
-      brief: `“BEHOLD! Three treasures hide on your walk.
-        Find them. <b>Name them.</b> Names make things ours!”`,
-      steps: [
-        { icon: "👂", do: "Listen to the riddle" },
-        { icon: "🤔", do: "Figure out what to find" },
-        { icon: "🚶", do: "Hunt while you walk" },
-        { icon: "📸", do: "Found it? Snap a photo!" },
-        { icon: "🏷️", do: "Give it a name" },
-      ],
-      tip: "Debate the candidates — 'is THAT really a dragon's tooth?' Even one treasure makes a story; unfound ones stay on Waldo's list.",
-      body: `
-        <div class="parentcard go">
-          <h3>🚪 BEFORE YOU GO (any walk counts!)</h3>
-          <div class="srow"><span class="ic">📜</span>Read the riddles together at the door</div>
-          <div class="srow"><span class="ic">👖</span>Phone goes in the pocket</div>
-          <div class="srow"><span class="ic">👀</span>Hunt with your eyes while you walk</div>
-          <div class="srow"><span class="ic">📸</span>Found one? Phone out, snap, name it</div>
-        </div>
-        <div class="findrow" id="find1">
-          <div class="rid"><b>The dragon's tooth</b><br><span class="storyfont">“it hides near something that drinks the rain”</span></div>
-          <button onclick="foundIt(1, 'Spike')">Found!</button>
-        </div>
-        <div class="findrow" id="find2">
-          <div class="rid"><b>The giant's whisker</b><br><span class="storyfont">“longer than your arm, thinner than your finger”</span></div>
-          <button onclick="foundIt(2, 'Wiggly')">Found!</button>
-        </div>
-        <div class="findrow" id="find3">
-          <div class="rid"><b>A beast-shaped puddle</b><br><span class="storyfont">“it only counts if you can say WHICH beast”</span></div>
-          <button onclick="foundIt(3, 'Dog!')">Found!</button>
-        </div>
-        <div class="ceremony" id="cer-expedition">
-          <img class="result" src="/assets/park.jpg" alt="">
-          <div class="award"><b>🧭 Expedition review</b><small>“Three treasures, three names, zero explorers lost. MAGNIFICENT. — W.”</small></div>
-          <div class="tonightline">🌙 Tonight: the legend of Spike, Wiggly, and the Dog Puddle.</div>
-          <button class="btn soft" onclick="go('home')">See you tonight, Waldo!</button>
-        </div>`,
-    },
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.onclick=function(){
+      var sibs=c.parentElement.querySelectorAll('.chip');
+      sibs.forEach(function(s){s.classList.remove('on');});c.classList.add('on');
+    };
+  });
+  document.querySelectorAll('.vchip').forEach(function(v){
+    v.onclick=function(){document.querySelectorAll('.vchip').forEach(function(x){x.classList.remove('on');});v.classList.add('on');};
+  });
+  document.querySelectorAll('.ropt').forEach(function(r){
+    r.onclick=function(){document.querySelectorAll('.ropt').forEach(function(x){x.classList.remove('on');});r.classList.add('on');};
+  });
+  var alts={
+    calm:['monster.png','Boro asks you & Lila','“Make a nest where you two just fit — then whisper one thing that felt too big today.”','5 min · inside · one blanket'],
+    energy:['frog.png','Kiko dares you & Lila','“Spin three times, freeze like statues — then each shout the silliest thing that makes you laugh.”','5 min · just space'],
+    nostuff:['fox.png','Theo dares you & Lila','“Cross the room without one sound — then tell each other one tiny thing nobody else noticed today.”','5 min · nothing needed'],
+    done:['tallman.png','Step dares you & Lila','“Move the heaviest thing you two can lift somewhere new — then each name one thing you’re braver about than last year.”','10 min · anything heavy-ish']
   };
+  var swapUsed=false;
+  function openSwap(){if(swapUsed)return;
+    document.getElementById('scrim').classList.add('show');document.getElementById('sheet').classList.add('show');}
+  function closeSwap(){document.getElementById('scrim').classList.remove('show');document.getElementById('sheet').classList.remove('show');}
+  function pickReason(k){var a=alts[k];
+    document.getElementById('hostimg').src='/assets/candide/cut/'+a[0];
+    document.getElementById('from').textContent=a[1];document.getElementById('quote').textContent=a[2];
+    document.getElementById('meta').textContent=a[3];document.getElementById('pill').classList.add('show');
+    swapUsed=true;var b=document.getElementById('swapBtn');b.classList.add('ghost');b.style.opacity=.55;
+    b.textContent='one a day';b.setAttribute('onclick','');closeSwap();}
 
-  function openSession(g) {
-    const def = SESSIONS[g];
-    const steps =
-      `<div class="stepcards"><h3>How to play</h3>` +
-      def.steps.map((s, i) =>
-        `<div class="stepcard"><span class="n">${i + 1}</span><span class="ic">${s.icon}</span>${s.do}</div>`
-      ).join("") +
-      `<div class="tip">💡 ${def.tip}</div></div>`;
-    document.getElementById("sessionbody").innerHTML =
-      `<div class="hostrow">
-         <img class="portrait" src="/assets/candide/cut/${def.host}.png" alt="">
-         <div><span class="host">${def.hostname}</span><h1>${def.title}</h1></div>
-       </div>
-       <div class="brief storyfont">${def.brief}</div>` + steps + def.body;
-    go('session');
+  // --- real scratch-to-reveal ---
+  var cv=document.getElementById('scratch'),ctx=cv.getContext('2d'),scratching=false,scratchDone=false;
+  function paintCover(){
+    var w=cv.width,h=cv.height;
+    ctx.globalCompositeOperation='source-over';
+    ctx.fillStyle='#e9e3d8';ctx.fillRect(0,0,w,h);
+    ctx.strokeStyle='#ded6c7';ctx.lineWidth=11;
+    for(var x=-h;x<w;x+=24){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x+h,h);ctx.stroke();}
+    ctx.textAlign='center';
+    ctx.fillStyle='#5a2d52';ctx.font='800 17px "Segoe UI",system-ui,sans-serif';
+    ctx.fillText('SCRATCH TO REVEAL',w/2,h/2-4);
+    ctx.fillStyle='#6f6e68';ctx.font='600 12px "Segoe UI",system-ui,sans-serif';
+    ctx.fillText('one a day — a friend picked it for Lila',w/2,h/2+18);
   }
-
-  function showCeremony(g) {
-    document.querySelector(`#cer-${g}`).classList.add("show");
-    event.target.style.display = "none";
+  function initScratch(){
+    var d=cv.parentElement,w=d.clientWidth,h=d.clientHeight;
+    if(!w||!h)return;
+    cv.width=w;cv.height=h;paintCover();scratchDone=false;
   }
-
-  function startCase() {
-    document.getElementById("dsetup").style.display = "none";
-    document.getElementById("clue1").classList.add("show");
+  function eraseAt(px,py){
+    var r=cv.getBoundingClientRect();
+    var x=(px-r.left)*(cv.width/r.width),y=(py-r.top)*(cv.height/r.height);
+    ctx.globalCompositeOperation='destination-out';
+    ctx.beginPath();ctx.arc(x,y,28,0,Math.PI*2);ctx.fill();
+    checkScratch();
   }
-
-  function solveClue(n) {
-    const card = document.getElementById("clue" + n);
-    card.classList.add("solved");
-    document.getElementById("trace" + n).classList.add("show");
-    const btn = card.querySelector("button");
-    btn.style.display = "none";
-    if (n < 3) setTimeout(() => document.getElementById("clue" + (n + 1)).classList.add("show"), 700);
-    else setTimeout(() => document.getElementById("cer-detective").classList.add("show"), 700);
+  function checkScratch(){
+    if(scratchDone)return;
+    var data=ctx.getImageData(0,0,cv.width,cv.height).data,clear=0,total=0;
+    for(var i=3;i<data.length;i+=160){total++;if(data[i]===0)clear++;}
+    if(total&&clear/total>0.55)revealDare();
   }
-
-  function foundIt(n, name) {
-    const row = document.getElementById("find" + n);
-    row.classList.add("found");
-    const btn = row.querySelector("button");
-    btn.textContent = "“" + name + "”";
-    btn.disabled = true;
-    if ([1, 2, 3].every(i => document.getElementById("find" + i).classList.contains("found")))
-      document.getElementById("cer-expedition").classList.add("show");
+  function revealDare(){
+    scratchDone=true;
+    cv.style.transition='opacity .4s ease';cv.style.opacity=0;
+    setTimeout(function(){cv.style.display='none';},420);
+    document.getElementById('dareActions').classList.add('show');
   }
-
-  function pipPicks() {
-    const cards = [...document.querySelectorAll(".gamecard")];
-    let i = 0, hops = 7 + Math.floor(Math.random() * 4);
-    const timer = setInterval(() => {
-      cards.forEach(c => c.classList.remove("picked"));
-      cards[i % cards.length].classList.add("picked");
-      i++;
-      if (i > hops) {
-        clearInterval(timer);
-        const chosen = cards[(i - 1) % cards.length];
-        setTimeout(() => { chosen.classList.remove("picked"); openSession(chosen.dataset.g); }, 650);
-      }
-    }, 180);
+  function xy(e){return e.touches&&e.touches[0]?[e.touches[0].clientX,e.touches[0].clientY]:[e.clientX,e.clientY];}
+  cv.addEventListener('mousedown',function(e){scratching=true;var p=xy(e);eraseAt(p[0],p[1]);});
+  window.addEventListener('mousemove',function(e){if(scratching){var p=xy(e);eraseAt(p[0],p[1]);}});
+  window.addEventListener('mouseup',function(){scratching=false;});
+  cv.addEventListener('touchstart',function(e){scratching=true;var p=xy(e);eraseAt(p[0],p[1]);e.preventDefault();},{passive:false});
+  cv.addEventListener('touchmove',function(e){if(scratching){var p=xy(e);eraseAt(p[0],p[1]);e.preventDefault();}},{passive:false});
+  cv.addEventListener('touchend',function(){scratching=false;});
+  function resetDare(){
+    swapUsed=false;
+    var b=document.getElementById('swapBtn');b.style.opacity='';b.textContent='Swap';b.setAttribute('onclick','openSwap()');
+    document.getElementById('pill').classList.remove('show');
+    document.getElementById('hostimg').src='/assets/candide/cut/monkey.png';
+    document.getElementById('from').textContent='Momo dares you & Lila';
+    document.getElementById('quote').textContent='“Build me a hideout from three soft things — then climb in and tell each other the scariest thing that isn’t actually scary.”';
+    document.getElementById('meta').textContent='5–20 min · inside · pillows & blankets';
+    cv.style.display='';cv.style.opacity=1;
+    document.getElementById('dareActions').classList.remove('show');
+    initScratch();
   }
-
-  /* ---------- the book: narrated by the day's host ---------- */
-  const PAGES = [
-    { cover: true, title: "Mia & the Gang", sub: "the story of game day · told by Rico & Momo" },
-    { plain: "Cock-a-doodle-doo, Mia! Rico here. Tonight is SPECIAL — tonight we tell the story of what YOU made today. I judged. I was magnificent about it.", host: "rooster" },
-    { img: "/assets/battle.jpg", pos: "center", txt: "The GREAT DRAWING BATTLE was a rumble! You drew a cloud with big eyes and twinkling stars — the most cloud-y delight. I have never been so proud of a judging.", narr: "rooster", narrname: "Rico" },
-    { img: "/assets/fort.jpg", pos: "20% center", txt: "Then you built my clubhouse! A cozy room with a gray sofa and pillows like tiny rainbows. Best clubhouse I have ever moved into. And I move a LOT.", narr: "monkey", narrname: "Momo" },
-    { plain: "What a day, Mia. Now close your eyes… we'll all be right here, the whole gang, all night long. Goodnight, little friend. 🌙", host: "monster", hostname: "Mimi whispers the goodnight" },
-  ];
-  let flipped = 0, sheets = [];
-
-  function openBook() {
-    const frame = document.getElementById("bookframe");
-    frame.innerHTML = ""; sheets = []; flipped = 0;
-    document.getElementById("endcard").classList.remove("show");
-    PAGES.forEach((p, i) => {
-      const sheet = document.createElement("div");
-      sheet.className = "sheet";
-      const front = document.createElement("div");
-      front.className = "face front";
-      if (p.cover) {
-        front.classList.add("coverface");
-        front.innerHTML = `<img class="worldcover" src="/assets/candide/world.jpg" alt="">
-          <div class="titlecard"><h2>${p.title}</h2><span class="dim">${p.sub}</span></div>`;
-      } else if (p.plain) {
-        front.classList.add("plainface");
-        front.innerHTML = `<img class="host portrait" src="/assets/candide/cut/${p.host}.png" alt="">
-          <p class="storyfont">${p.plain}</p>` +
-          (p.hostname ? `<span class="dim" style="font-size:11px">${p.hostname}</span>` : "");
-      } else {
-        front.innerHTML = `<div class="photo" style="background-image:url('${p.img}'); background-position:${p.pos || "center"}"></div>
-          <div class="caption storyfont">${p.txt}</div>
-          <div class="narr"><img src="/assets/candide/cut/${p.narr}.png" alt=""> told by ${p.narrname}</div>`;
-      }
-      const back = document.createElement("div");
-      back.className = "face back";
-      sheet.appendChild(front); sheet.appendChild(back);
-      sheet.style.zIndex = PAGES.length - i;
-      frame.appendChild(sheet);
-      sheets.push(sheet);
-    });
-  }
-
-  function flip(dir) {
-    if (dir > 0) {
-      if (flipped >= sheets.length) return;
-      const s = sheets[flipped];
-      s.style.zIndex = 200;
-      s.classList.add("flipped");
-      const n = flipped;
-      s.addEventListener("transitionend", () => { s.style.zIndex = n + 1; }, { once: true });
-      flipped++;
-      if (flipped === sheets.length)
-        setTimeout(() => document.getElementById("endcard").classList.add("show"), 650);
-    } else {
-      if (flipped <= 0) return;
-      document.getElementById("endcard").classList.remove("show");
-      flipped--;
-      const s = sheets[flipped];
-      s.style.zIndex = 200;
-      s.classList.remove("flipped");
-      s.addEventListener("transitionend", () => { s.style.zIndex = PAGES.length - flipped; }, { once: true });
-    }
-  }
-  openBook();
+  go(0);
 </script>
